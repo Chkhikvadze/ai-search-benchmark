@@ -12,5 +12,11 @@ Scrape data from each providers:
 
 dataset/data.jsonl questions and store responses in results folder. [provider]_result.jsonl
 
+Result must contains links and summary of text
+
 
 Use semantic commits: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+
+
+Reference:
+https://github.com/Talc-AI/search-bench
