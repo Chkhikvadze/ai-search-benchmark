@@ -1,1 +1,16 @@
-# meta-benchmark
+# Scrape Data:
+
+Scrape data from each providers: 
+
+1. Andi Search
+2. ChatGPT Search
+3. Google Gemini
+4. Perplexity 
+5. You.com
+6. Datura
+
+
+dataset/data.jsonl questions and store responses in results folder. [provider]_result.jsonl
+
+
+Use semantic commits: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
