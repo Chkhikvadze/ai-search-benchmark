@@ -20,3 +20,7 @@ Use semantic commits: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f4
 
 Reference:
 https://github.com/Talc-AI/search-bench
+
+
+Note:
+Add all running instructions in readme, and send PR
