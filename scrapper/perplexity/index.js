@@ -22,7 +22,7 @@ async function submitFollowUp(followUpText) {
         await sleep(200);
     }
 
-    const viewMoreSrcsButton = document.querySelector('.flex.h-full.max-h-\\[190px\\].w-\\[40vw\\].cursor-pointer.flex-col.justify-between.gap-1.rounded-lg.p-sm.md\\:w-auto.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.transition.duration-300.bg-offset.dark\\:bg-offsetDark.md\\:hover\\:bg-offsetPlus.md\\:dark\\:hover\\:bg-offsetPlusDark');
+    const viewMoreSrcsButton = document.querySelector('.flex.h-full.max-h-\\[190px\\].w-\\[40vw\\].cursor-pointer.flex-col.justify-between.gap-1.rounded-lg.p-sm.md\\:w-auto.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.transition.duration-300.bg-offsetPlus.dark\\:bg-offsetPlusDark.md\\:hover\\:bg-offsetPlus.md\\:dark\\:hover\\:bg-offsetPlusDark');
     let srcs = [];
 
     if (viewMoreSrcsButton) {
@@ -116,9 +116,9 @@ async function main(queries, startIndex, endIndex) {
             results.push({ query, srcs, answerText });
             downloadedQueries.add(query);
 
-            if ((i - startIndex + 1) % 15 === 0 || i === endIndex) {
-                const start = i - ((i - startIndex) % 15) ;
-                const end = Math.min(i, start + 14);
+            if ((i - startIndex + 1) % 30 === 0 || i === endIndex) {
+                const start = i - ((i - startIndex) % 30) ;
+                const end = Math.min(i, start + 29);
 
                 const filename = `pplx_results_${start + 1}_${end + 1}.json`;
                 download_results({ results: results.slice(results.length - (end - start + 1)) }, filename);
