@@ -65,6 +65,8 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+results/missing_questions.jsonl
+
 # PyBuilder
 target/
 
