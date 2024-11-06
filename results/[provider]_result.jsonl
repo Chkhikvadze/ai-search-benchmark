@@ -8,5 +8,6 @@
             "url": "google.com",
             "description": "Description"
         }
-    ]
+    ],
+    "response_time": 120
 }
