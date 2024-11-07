@@ -1,20 +1,22 @@
-## Running Instructions:
+# Perplexity AI Scraper
 
-### General Setup
+## Description
 
-All scrapers require Node.js and npm to be installed.  Individual scraper setup instructions are detailed below.
+The Perplexity AI Scraper is a tool designed to scrape search results from Perplexity AI. It runs directly in the browser console, making it easy to use without additional software installations. This tool is ideal for users who need to automate the retrieval of search results from Perplexity AI.
 
-### Perplexity AI Scraper
+## Installation Instructions
 
-1. **Prerequisites:**  Ensure you are logged into your Perplexity AI account in your browser.
+1. **Prerequisites:** Ensure you have a web browser installed on your PC, preferably Google Chrome. You must also be logged into your Perplexity AI account in your browser.
 
-2. **Open Developer Tools:** Open your browser's developer tools by pressing F12.
+## Usage Instructions
 
-3. **Navigate to Console:** Select the "Console" tab within the developer tools.
+1. **Open Developer Tools:** Open your browser's developer tools by pressing F12.
 
-4. **Copy and Paste Scraper Code:** Copy the contents of the `scrapper/perplexity/index.js` file and paste it into the browser's console.
+2. **Navigate to Console:** Select the "Console" tab within the developer tools.
 
-5. **Define Queries:** Define the `queries` variable in the console. This should be an array of JSON objects, each containing an `id`, `question`, and `expected_answer`.  Example:
+3. **Copy and Paste Scraper Code:** Copy the contents of the `scrapper/perplexity/index.js` file and paste it into the browser's console.
+
+4. **Define Queries:** Define the `queries` variable in the console. This should be an array of JSON objects, each containing an `id`, `question`, and `expected_answer`. Example:
 
    ```javascript
    queries = [
@@ -24,18 +26,16 @@ All scrapers require Node.js and npm to be installed.  Individual scraper setup 
    ];
    ```
 
-6. **Run the Scraper:** Execute the `main` function in the console, providing three arguments:
+5. **Run the Scraper:** Execute the `main` function in the console, providing three arguments:
 
-   * `queries`: The array of query objects defined in step 5.
+   * `queries`: The array of query objects defined in step 4.
    * `startIndex`: The index of the first query to process (inclusive).
    * `endIndex`: The index of the last query to process (inclusive).
 
    Example: `main(queries, 0, 2)` will process the first three queries.
 
+6. **Downloaded Results:** The scraper will download results in batches of 15 (or fewer, if the end of the query list is reached) to JSON files named `pplx_results_[start]_to_[end].json`. It also stores results in local storage to resume progress if interrupted.
 
-7. **Downloaded Results:** The scraper will download results in batches of 15 (or fewer, if the end of the query list is reached) to JSON files named `pplx_results_[start]_to_[end].json`.  It also stores results in local storage to resume progress if interrupted.
+## Video Example
 
-
-
-Note:
-Add all running instructions in readme, and send PR
+For a visual demonstration of how to run the scraper, you can [watch the video](assets/running_example.mp4)

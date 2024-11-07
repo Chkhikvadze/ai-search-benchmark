@@ -129,7 +129,7 @@ async function main(queries, startIndex, endIndex) {
                     url: src.href,
                     description: src.description
                 })),
-                response_time: responseTime
+                response_time: responseTime / 1000  // Convert to seconds
             };
 
             results.push(formattedResult);
