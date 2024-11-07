@@ -60,6 +60,8 @@ class LinkRelevanceModel:
 
     async def get_rewards(self, prompt: str, results):
         try:
+            print("Computing link relevance rewards")
+
             # Collect all links_with_metadata and map URLs to their respective results
             all_links_with_metadata = []
             url_to_results = {}  # Map from URL to list of results that include it

@@ -52,6 +52,8 @@ class SummaryRelevanceModel:
 
     async def get_rewards(self, prompt: str, results: List[Dict]):
         try:
+            print("Computing Summary Relevance rewards")
+
             scoring_messages = []
             index_to_result = {}
 

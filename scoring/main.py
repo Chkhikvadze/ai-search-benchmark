@@ -13,9 +13,11 @@ summary_relevance_model = SummaryRelevanceModel(llm_reward)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+CONCURRENT_TASKS = 5  # Adjust this value as needed
 
-async def compute_relevance():
-    for question, data in results.items():
+
+async def process_question(semaphore, question, data):
+    async with semaphore:
         prompt = question
         providers = data.get("providers", [])
 
@@ -31,9 +33,8 @@ async def compute_relevance():
             }
             results_list.append(result)
 
-        # Call get_rewards to compute link_relevance
+        # Call get_rewards to compute link_relevance and summary_relevance
         await link_relevance_model.get_rewards(prompt, results_list)
-        # Call get_rewards to compute summary_relevance
         await summary_relevance_model.get_rewards(prompt, results_list)
 
         # Update provider_data with computed link_relevance and summary_relevance
@@ -42,6 +43,45 @@ async def compute_relevance():
             provider_data["summary_relevance"] = results_list[i].get(
                 "summary_relevance", 0
             )
+
+
+async def compute_relevance():
+    semaphore = asyncio.Semaphore(CONCURRENT_TASKS)  # Limit concurrent tasks
+    tasks = [
+        process_question(semaphore, question, data)
+        for question, data in results.items()
+    ]
+    await asyncio.gather(*tasks)
+
+
+# async def compute_relevance():
+#     for question, data in results.items():
+#         prompt = question
+#         providers = data.get("providers", [])
+
+#         # Prepare results in the expected format
+#         results_list = []
+#         for provider_data in providers:
+#             result = {
+#                 "urls": provider_data.get("urls", []),
+#                 "search_results": provider_data.get("search_results", []),
+#                 "summary": provider_data.get("summary", ""),
+#                 "link_relevance": 0,  # Will be updated
+#                 "summary_relevance": 0,  # Will be updated
+#             }
+#             results_list.append(result)
+
+#         # Call get_rewards to compute link_relevance
+#         await link_relevance_model.get_rewards(prompt, results_list)
+#         # Call get_rewards to compute summary_relevance
+#         await summary_relevance_model.get_rewards(prompt, results_list)
+
+#         # Update provider_data with computed link_relevance and summary_relevance
+#         for i, provider_data in enumerate(providers):
+#             provider_data["link_relevance"] = results_list[i].get("link_relevance", 0)
+#             provider_data["summary_relevance"] = results_list[i].get(
+#                 "summary_relevance", 0
+#             )
 
 
 # Run the asynchronous function
