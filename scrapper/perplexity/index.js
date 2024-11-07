@@ -13,6 +13,8 @@ async function submitFollowUp(followUpText) {
         submitButton.click();
     }, 100);
 
+    const startTime = performance.now();
+
     let rewriteButton = undefined;
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -21,6 +23,10 @@ async function submitFollowUp(followUpText) {
         rewriteButton = Array.from(buttons).find(button => button.textContent.includes('Rewrite'));
         await sleep(200);
     }
+
+    const endTime = performance.now();
+    const responseTime = endTime - startTime;
+    console.log(`Response time: ${responseTime.toFixed(2)} ms`);
 
     const viewMoreSrcsButton = document.querySelector('.flex.h-full.max-h-\\[190px\\].w-\\[40vw\\].cursor-pointer.flex-col.justify-between.gap-1.rounded-lg.p-sm.md\\:w-auto.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.transition.duration-300.bg-offsetPlus.dark\\:bg-offsetPlusDark.md\\:hover\\:bg-offsetPlus.md\\:dark\\:hover\\:bg-offsetPlusDark');
     let srcs = [];
@@ -39,8 +45,18 @@ async function submitFollowUp(followUpText) {
             await sleep(200);
         }
 
-        for (let i = 0; i < sources.children.length; i++) {
-            srcs.push(sources.children[i].children[0].children[0].href);
+        for (const element of sources.children) {
+            const sourceElement = element.querySelector('a');
+            if (sourceElement) {
+                const href = sourceElement.href;
+                const titleElement = sourceElement.querySelector('.line-clamp-3');
+                const descriptionElement = sourceElement.querySelector('.mt-two');
+
+                const title = titleElement ? titleElement.textContent.trim() : '';
+                const description = descriptionElement ? descriptionElement.textContent.trim() : '';
+
+                srcs.push({ href, title, description });
+            }
         }
     }
 
@@ -62,14 +78,13 @@ async function submitFollowUp(followUpText) {
     document.querySelector('button.bg-superAlt.text-white.hover\\:opacity-50').click();
     await sleep(3000);
 
-    return { srcs, answerText };
+    return { srcs, answerText, responseTime };
 }
 
 
 
 
-function download_results(input, filename) {
-    const content = JSON.stringify(input, null, 2);
+function download_results(content, filename) {
     const blob = new Blob([content], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -86,20 +101,11 @@ function decodeUnicode(str) {
 }
 
 async function main(queries, startIndex, endIndex) {
+    // Clear existing local storage for perplexity results
+    localStorage.removeItem('perplexity_results');
+
     let results = [];
     let downloadedQueries = new Set();
-
-    try {
-        const existingResults = JSON.parse(localStorage.getItem('perplexity_results')) || [];
-        existingResults.forEach(res => downloadedQueries.add(res.query));
-        results = existingResults;
-        console.log("Loaded existing results:", results.length);
-    } catch (e) {
-        console.error("Error loading existing results:", e);
-    }
-
-    startIndex = Math.max(0, startIndex);
-    endIndex = Math.min(queries.length - 1, endIndex);
 
     for (let i = startIndex; i <= endIndex; i++) {
         let query = decodeURIComponent(escape((queries[i].question)));
@@ -112,22 +118,35 @@ async function main(queries, startIndex, endIndex) {
         console.log(`Processing query ${i + 1}: ${query}`);
 
         try {
-            const { srcs, answerText } = await submitFollowUp(query);
-            results.push({ query, srcs, answerText });
+            const { srcs, answerText, responseTime } = await submitFollowUp(query);
+
+            const formattedResult = {
+                id: queries[i].id,
+                question: query,
+                result: answerText,
+                search_results: srcs.map(src => ({
+                    title: src.title,
+                    url: src.href,
+                    description: src.description
+                })),
+                response_time: responseTime
+            };
+
+            results.push(formattedResult);
             downloadedQueries.add(query);
 
-            if ((i - startIndex + 1) % 30 === 0 || i === endIndex) {
-                const start = i - ((i - startIndex) % 30) ;
-                const end = Math.min(i, start + 29);
-
-                const filename = `pplx_results_${start + 1}_${end + 1}.json`;
-                download_results({ results: results.slice(results.length - (end - start + 1)) }, filename);
-                localStorage.setItem('perplexity_results', JSON.stringify(results));
-                console.log(`Downloaded ${end - start + 1} results to ${filename}`);
-            }
+            // Log the formatted result
+            console.log(`Formatted result for query ${i + 1}:`, JSON.stringify(formattedResult, null, 2));
 
         } catch (error) {
             console.error(`Error processing query ${i + 1}: ${query}`, error);
         }
     }
+
+    // Create a filename with the format pplx_startindex_endindex.jsonl
+    const filename = `pplx_${startIndex}_${endIndex}.jsonl`;
+
+    // Download the results as a JSONL file
+    const jsonlContent = results.map(result => JSON.stringify(result)).join('\n');
+    download_results(jsonlContent, filename);
 }
