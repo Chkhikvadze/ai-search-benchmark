@@ -9,7 +9,7 @@ The AI Search Wars Have Begun - SearchGPT, Gemini Grounding, and more. In this r
 3. **[OpenAI ChatGPT](https://openai.com/index/introducing-chatgpt-search/)** - Learn about ChatGPT Search
 4. **[Perplexity](https://www.perplexity.ai/)** - Visit Perplexity
 5. **[Google Gemini](https://gemini.google.com/app)** - Visit Google Gemini
-6. **[Datura (Meta - Subnet 22), decentralized](https://chi.datura.ai/)** - Visit Datura
+6. **[Datura (Meta - Bittensor Network, Subnet 22)](https://chi.datura.ai/)** - Visit Datura
 
 Through this benchmark, we aim to provide insights into the capabilities and performance of these AI search engines, helping users and developers make informed decisions about which platforms best meet their needs.
 
@@ -113,13 +113,23 @@ By incorporating these factors, our scoring mechanism provides a holistic view o
 
 Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
 
-| Provider          | Product            | Summary Text Relevance | Link Title & Description Relevance | Performance (ms) | Embedding Similarity |
-|-------------------|--------------------|------------------------|------------------------------------|------------------|----------------------|
-| Andi Search       | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| You.com           | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| OpenAI ChatGPT    | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Perplexity        | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Google Gemini     | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura            | Nova 1.0           | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-|                   | Orbit 1.0          | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-|                   | Horizon 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Provider               | Summary Text Relevance | Link Title & Description Relevance | Performance (ms) | Embedding Similarity |
+|------------------------|------------------------|------------------------------------|------------------|----------------------|
+| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Andi Search            | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| You.com                | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| OpenAI ChatGPT         | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Perplexity             | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Google Gemini          | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+
+
+
+## 🚀 Future Directions
+
+We are committed to regularly updating this benchmark to reflect the latest advancements in AI search technologies. Your feedback is invaluable to us, as we strive to make this benchmark as practical and user-focused as possible.
+
+If you encounter any inaccuracies or areas for improvement, please share your thoughts with us. We are eager to enhance the benchmark based on your insights.
+
+For inquiries, suggestions, or contributions, feel free to contact matt at talc.ai.
