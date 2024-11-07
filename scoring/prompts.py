@@ -356,7 +356,7 @@ Score 5:
   - Content: "AI is transforming industries."
   - Output: Score 5, Explanation: Mentions AI but not healthcare.
 
-Score 9:
+Score 10:
 - Criteria: Content mentions multiple keywords/themes and provides detailed, well-explained information with examples or evidence.
 - Example:
   - Question: "Latest trends in renewable energy?"
@@ -370,10 +370,10 @@ Important Rules:
 4. Scoring:
    - 2: No relevant keywords.
    - 5: Superficial mention.
-   - 9: Detailed, well-explained information with examples or evidence.
+   - 10: Detailed, well-explained information with examples or evidence.
    
 Output Format:
-Score: [2, 5, or 9], Explanation:
+Score: [2, 5, or 10], Explanation:
 """
 
 text_and_summarized_description_scoring_template = """

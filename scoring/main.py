@@ -1,202 +1,169 @@
 import asyncio
 import json
 import os
-
-# from scoring.link_relevance import LinkRelevanceModel
-from scoring.search_relevance import LinkRelevanceModel
 from scoring.reward_llm import RewardLLM
+from scoring.link_relevance import LinkRelevanceModel
+from scoring.parser import results
 
-# Read results file
 
-PROVIDERS = {
-    "datura_nova": "datura_10_results.jsonl",
-    "datura_orbit": "datura_30_results.jsonl",
-    "datura_horizon": "datura_120_results.jsonl",
-    "perplexity": "perplexity_ai_result.jsonl",
-    "andi": "andi_result.jsonl",
-    "chatgpt": "chatgpt_search_200_result.jsonl",
-}
+llm_reward = RewardLLM()
+link_relevance_model = LinkRelevanceModel(llm_reward)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
-# Define parsers for each provider
-def parse_perplexity(item):
-    return {
-        "id": item.get("id"),
-        "question": item.get("question"),
-        "summary": item.get("result", {}).get("answerText"),
-        "urls": item.get("result", {}).get("srcs", []),
-    }
+async def compute_link_relevance():
+    for question, data in results.items():
+        prompt = question
+        providers = data.get("providers", [])
+
+        # Prepare results in the expected format
+        results_list = []
+        for provider_data in providers:
+            result = {
+                "urls": provider_data.get("urls", []),
+                "search_results": provider_data.get("search_results", []),
+                "link_relevance": 0,  # Will be updated
+            }
+            results_list.append(result)
+
+        # Call get_rewards to compute link_relevance
+        await link_relevance_model.get_rewards(prompt, results_list)
+
+        # Update provider_data with computed link_relevance
+        for i, provider_data in enumerate(providers):
+            provider_data["link_relevance"] = results_list[i].get("link_relevance", 0)
 
 
-def parse_datura(item):
-    # Placeholder for Datura parsing logic
-    result = item.get("result", "{}")
+# Run the asynchronous function
+asyncio.run(compute_link_relevance())
 
-    data = []
+# Collect provider stats
+provider_stats = {}
 
-    # Split the result by newlines and process each line
-    for line in result.splitlines():
-        line = line.strip()  # Remove leading/trailing whitespace
+for item in results.values():
+    providers = item.get("providers", [])
+    for provider_data in providers:
+        provider_name = provider_data.get("name")
+        if provider_name not in provider_stats:
+            provider_stats[provider_name] = {
+                "link_relevance_total": 0,
+                "summary_relevance_total": 0,
+                "embedding_relevance_total": 0,
+                "response_time_total": 0,
+                "num_questions": 0,
+            }
+        provider_stats[provider_name]["link_relevance_total"] += provider_data.get(
+            "link_relevance", 0
+        )
+        provider_stats[provider_name]["summary_relevance_total"] += provider_data.get(
+            "summary_relevance", 0
+        )
+        provider_stats[provider_name]["embedding_relevance_total"] += provider_data.get(
+            "embedding_relevance", 0
+        )
+        provider_stats[provider_name]["response_time_total"] += provider_data.get(
+            "response_time", 0
+        )
+        provider_stats[provider_name]["num_questions"] += 1
 
-        if line.startswith("data: "):
-            json_str = line[len("data: ") :].strip()  # Remove the prefix
+# Calculate averages
+for provider_name, stats in provider_stats.items():
+    num_questions = stats["num_questions"]
+    stats["link_relevance_avg"] = (
+        stats["link_relevance_total"] / num_questions if num_questions else 0
+    )
+    stats["summary_relevance_avg"] = (
+        stats["summary_relevance_total"] / num_questions if num_questions else 0
+    )
+    stats["embedding_relevance_avg"] = (
+        stats["embedding_relevance_total"] / num_questions if num_questions else 0
+    )
+    stats["response_time_avg"] = (
+        stats["response_time_total"] / num_questions if num_questions else 0
+    )
 
-            try:
-                json_obj = json.loads(json_str)  # Parse the JSON
-                data.append(json_obj)  # Collect the parsed JSON objects
-            except json.JSONDecodeError:
-                # Handle JSON parsing error if needed
-                continue
-
-    completion = (
-        data[len(data) - 1].get("content") if data else None
-    )  # Get the last JSON object
-
-    return {
-        "id": item.get("id"),
-        "question": item.get("question"),
-        "summary": completion,  # Updated to use the list of parsed data
-        "urls": item.get("srcs", []),
-    }
-
-
-def parse_andi(item):
-    # Placeholder for Andi parsing logic
-    return {
-        "id": item.get("id"),
-        "question": item.get("question"),
-        "summary": item.get("andi-answer"),
-        "urls": item.get("andi-links", []),
-    }
-
-
-def parse_chatgpt(item):
-    # Placeholder for ChatGPT parsing logic
-    return {
-        "id": item.get("id"),
-        "question": item.get("question"),
-        "summary": item.get("text"),
-        "urls": item.get("sources", {}).get("searchResults", []),
-    }
-
-
-results = {}
-
-sample_result = {
-    "id": "Unique identifier for the query",
-    "question": "The question posed to the search provider",
-    "providers": [
-        {
-            "name": "Name of the search provider (Datura, Perplexity, etc.)",
-            "urls": [
-                "URL of the search result",
-            ],
-            "summary": "Summary of the search result",
-            "link_relevance": 0,
-            "summary_relevance": 0,
-            "embedding_relevance": 0,
-        }
-    ],
+# Map provider names to display names and products
+provider_display_names = {
+    "andi": ("Andi Search", "-"),
+    "you": ("You.com", "-"),
+    "chatgpt": ("OpenAI ChatGPT", "-"),
+    "perplexity": ("Perplexity", "-"),
+    "google_gemini": ("Google Gemini", "-"),
+    "datura_nova": ("Datura", "Nova 1.0"),
+    "datura_orbit": ("Datura", "Orbit 1.0"),
+    "datura_horizon": ("Datura", "Horizon 1.0"),
 }
 
-# Read and parse results from each provider
-for provider, filename in PROVIDERS.items():
-    results_file_path = os.path.join(os.path.dirname(current_dir), "results", filename)
-    with open(results_file_path) as f:
-        items = [json.loads(line) for line in f]
-        items = sorted(items, key=lambda x: x["question"])
-        items = items[:10]
+# Prepare table entries
+providers_order = [
+    "andi",
+    "you",
+    "chatgpt",
+    "perplexity",
+    "google_gemini",
+    "datura_nova",
+    "datura_orbit",
+    "datura_horizon",
+]
 
-        for item in items:
-            parsed_item = None
+table_entries = []
 
-            if provider == "perplexity":
-                parsed_item = parse_perplexity(item)
-            elif (
-                provider == "datura_nova"
-                or provider == "datura_orbit"
-                or provider == "datura_horizon"
-            ):
-                parsed_item = parse_datura(item)
-            elif provider == "andi":
-                parsed_item = parse_andi(item)
-            elif provider == "chatgpt":
-                parsed_item = parse_chatgpt(item)
-
-            if parsed_item:
-                id = parsed_item.get("id")
-                question = parsed_item.get("question")
-                summary = parsed_item.get("summary")
-                urls = parsed_item.get("urls")
-
-                if question not in results:
-                    results[question] = {
-                        "id": id,
-                        "question": question,
-                        "providers": [],
-                    }
-
-                results[question]["providers"].append(
-                    {
-                        "name": provider,
-                        "urls": urls,
-                        "summary": summary,
-                        "link_relevance": 0,
-                        "summary_relevance": 0,
-                        "embedding_relevance": 0,
-                    }
-                )
-
-# benchmark = [
-#     {
-#         "id": "Unique identifier for the query",
-#         "question": "The question posed to the search provider",
-#         "providers": [
-#             {
-#                 "name": "Name of the search provider (Datura, Perplexity, etc.)",
-#                 "link_relevance": "Link relevance score",
-#                 "summary_relevance": "Summary relevance score",
-#                 "embedding_relevance": "Embedding relevance score",
-#                 "results": [
-#                     {
-#                         "title": "Title of the search result",
-#                         "url": "URL of the search result",
-#                         "description": "Description of the search result",
-#                     }
-#                 ],
-#             },
-#         ],
-#     },
-# ]
-
-
-async def main():
-    reward_llm = RewardLLM()
-
-    link_relevance_model = LinkRelevanceModel(
-        llm_reward=reward_llm,
+for provider_name in providers_order:
+    display_name, product = provider_display_names.get(
+        provider_name, (provider_name, "-")
     )
-
-    for _, item in results.items():
-        prompt = item.get("question")
-        providers = item.get("providers", [])
-
-        await link_relevance_model.get_rewards(prompt, providers)
-
-        # Perform scoring for each provider
-        # summary_relevance = summary_relevance_model.get_rewards(prompt, summary)
-        # embedding_relevance = embedding_relevance_model.get_rewards(prompt, summary)
-
-    # write file
-    output_file_path = os.path.join(
-        os.path.dirname(current_dir), "results", "benchmark.jsonl"
+    stats = provider_stats.get(
+        provider_name,
+        {
+            "link_relevance_avg": 0,
+            "summary_relevance_avg": 0,
+            "embedding_relevance_avg": 0,
+            "response_time_avg": 0,
+        },
     )
+    entry = {
+        "Provider": display_name,
+        "Product": product,
+        "Summary Text Relevance": f"{stats['summary_relevance_avg']:.2f}",
+        "Link Title & Description Relevance": f"{stats['link_relevance_avg']:.2f}",
+        "Performance (ms)": f"{stats['response_time_avg']:.2f}",
+        "Embedding Similarity": f"{stats['embedding_relevance_avg']:.2f}",
+    }
+    table_entries.append(entry)
 
-    with open(output_file_path, "w") as f:
-        for result in results.values():
-            f.write(json.dumps(result) + "\n")
+# Generate Markdown content
+md_content = "## 📊 Results Table\n\n"
+md_content += "Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:\n\n"
+md_content += "| Provider          | Product            | Summary Text Relevance | Link Title & Description Relevance | Performance (ms) | Embedding Similarity |\n"
+md_content += "|-------------------|--------------------|------------------------|------------------------------------|------------------|----------------------|\n"
 
+prev_display_name = None
 
-asyncio.run(main())
+for entry in table_entries:
+    provider_cell = entry["Provider"]
+    if provider_cell == prev_display_name:
+        provider_cell = ""
+    else:
+        prev_display_name = provider_cell
+    md_content += f"| {provider_cell:<17} | {entry['Product']:<18} | {entry['Summary Text Relevance']:<22} | {entry['Link Title & Description Relevance']:<34} | {entry['Performance (ms)']:<16} | {entry['Embedding Similarity']:<22} |\n"
+
+# Write Markdown file
+md_file_path = os.path.join(os.path.dirname(current_dir), "results", "benchmark.md")
+with open(md_file_path, "w") as f:
+    f.write(md_content)
+
+# Write JSON file
+json_output = {
+    "results_table": table_entries,
+    "provider_stats": provider_stats,
+}
+
+output_file_path = os.path.join(
+    os.path.dirname(current_dir), "results", "benchmark.json"
+)
+
+with open(output_file_path, "w") as f:
+    json.dump(json_output, f, indent=2)
+
+print("Benchmark results have been written to the Markdown and JSON files.")
