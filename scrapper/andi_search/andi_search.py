@@ -5,30 +5,29 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import json, re, time
 import os
 
-
 input_path = os.path.join("..", "..", "dataset", "data.jsonl")
-output_path = os.path.join("..", "..", "results", "andi_result.jsonl")
+output_path = os.path.join("..", "..", "results", "andi_result_new.jsonl")
 
 questions = []
 with open(input_path, 'r') as file:
     for line in file:
         questions.append(json.loads(line.strip()))
-df = pd.DataFrame(questions, columns=['id','question','expected_answer'])
+df = pd.DataFrame(questions, columns=['id', 'question', 'expected_answer'])
 
 questions_list = df['question'].to_list()
 
-chrome_options = webdriver.ChromeOptions()
-prefs = {"profile.managed_default_content_settings.images": 2}  # disable images from being loaded to improve speeds
 chrome_options = Options()
-chrome_options.add_experimental_option("prefs", prefs)
-chrome_options.add_experimental_option("detach", True)
-driver = webdriver.Chrome(options=chrome_options)  
-driver.get("https://andisearch.com")
+chrome_options.add_argument('--disable-dev-shm-usage')
 
+# Use webdriver_manager to handle ChromeDriver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+driver.get("https://andisearch.com")
 
 responses = []
 responses_links = []
@@ -43,12 +42,16 @@ with open(output_path, "a") as file:
         input_box.clear()
         input_box.send_keys(question)
         input_box.send_keys(Keys.RETURN)
+
+        # Start timing after sending the question
+        start_time = time.time()
+
         time.sleep(15)
         try:
             response_var = driver.find_elements(By.CSS_SELECTOR, 'div.lw-response')
             if response_var:
                 p_tags = response_var[-1].find_elements(By.TAG_NAME, "p")
-                if len(p_tags)>1:
+                if len(p_tags) > 1:
                     andi_ans = p_tags[1].text
                     andi_ans = re.sub(u"(\u2018|\u2019)", "'", andi_ans) 
                 else:
@@ -61,14 +64,20 @@ with open(output_path, "a") as file:
                 )
             )
 
+            # End timing after receiving the response
+            end_time = time.time()
+            response_time = end_time - start_time
 
             item["id"] = df["id"].iloc[index]
             item["question"] = df["question"].iloc[index]
             item["expected-answer"] = df["expected_answer"].iloc[index]
             item["andi-answer"] = andi_ans
             item["andi-links"] = link_div.text
-            file.write(json.dumps(item)+'\n')
+            item["response-time"] = response_time  # Add response time to the item
+            file.write(json.dumps(item) + '\n')
 
         except TimeoutException:
             print(f"Timeout while waiting for response to question: '{question}'")
             continue
+
+driver.quit()
