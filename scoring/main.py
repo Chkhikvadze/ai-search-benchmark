@@ -1,18 +1,20 @@
 import asyncio
 import json
 import os
+from scoring.parser import results
 from scoring.reward_llm import RewardLLM
 from scoring.link_relevance import LinkRelevanceModel
-from scoring.parser import results
-
+from scoring.summary_relevance import SummaryRelevanceModel
 
 llm_reward = RewardLLM()
+
 link_relevance_model = LinkRelevanceModel(llm_reward)
+summary_relevance_model = SummaryRelevanceModel(llm_reward)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
-async def compute_link_relevance():
+async def compute_relevance():
     for question, data in results.items():
         prompt = question
         providers = data.get("providers", [])
@@ -23,20 +25,27 @@ async def compute_link_relevance():
             result = {
                 "urls": provider_data.get("urls", []),
                 "search_results": provider_data.get("search_results", []),
+                "summary": provider_data.get("summary", ""),
                 "link_relevance": 0,  # Will be updated
+                "summary_relevance": 0,  # Will be updated
             }
             results_list.append(result)
 
         # Call get_rewards to compute link_relevance
         await link_relevance_model.get_rewards(prompt, results_list)
+        # Call get_rewards to compute summary_relevance
+        await summary_relevance_model.get_rewards(prompt, results_list)
 
-        # Update provider_data with computed link_relevance
+        # Update provider_data with computed link_relevance and summary_relevance
         for i, provider_data in enumerate(providers):
             provider_data["link_relevance"] = results_list[i].get("link_relevance", 0)
+            provider_data["summary_relevance"] = results_list[i].get(
+                "summary_relevance", 0
+            )
 
 
 # Run the asynchronous function
-asyncio.run(compute_link_relevance())
+asyncio.run(compute_relevance())
 
 # Collect provider stats
 provider_stats = {}
