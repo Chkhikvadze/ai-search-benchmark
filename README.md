@@ -1,6 +1,6 @@
-# AI Search Providers Benchmark
+# 🏆 AI Search Providers Benchmark
 
-## Introduction
+## 📚 Introduction
 
 The AI Search Wars Have Begun - SearchGPT, Gemini Grounding, and more. In this rapidly evolving digital landscape, AI-powered search engines are at the forefront of innovation, offering users enhanced search capabilities and personalized experiences. This benchmark aims to analyze, fetch, and prepare data from leading AI search providers currently available in the market. Our focus includes:
 
@@ -13,13 +13,13 @@ The AI Search Wars Have Begun - SearchGPT, Gemini Grounding, and more. In this r
 
 Through this benchmark, we aim to provide insights into the capabilities and performance of these AI search engines, helping users and developers make informed decisions about which platforms best meet their needs.
 
-## Dataset
+## 📊 Dataset
 
 In our first test, we decided to utilize a dataset from the [Talc AI SearchBench repository](https://github.com/Talc-AI/search-bench). We extend our gratitude to the Talc AI team for their valuable contribution.
 
 The SearchBench repository addresses common issues with traditional benchmarks by focusing on practical, everyday use cases rather than theoretical limits. It emphasizes realistic user queries and the incorporation of new knowledge over time, ensuring that AI products remain relevant and useful.
 
-### Methodology
+### 🛠️ Methodology
 
 The Talc AI team creates datasets by:
 
@@ -36,25 +36,23 @@ They categorize their dataset into four major categories:
 
 This approach ensures that the dataset is both comprehensive and adaptable to real-world scenarios, making it an excellent resource for benchmarking AI search providers.
 
-
-## Data Fetch Process
+## 🔍 Data Fetch Process
 
 In our project, we aim to gather data from various AI search providers. However, many of these providers do not offer APIs for direct data retrieval. To address this, we have developed simple scraper scripts to extract data from each provider for our dataset.
 
-### Dataset Source
+### 📂 Dataset Source
 
 Our dataset is sourced from the Talc AI Search Bench repository and is stored in the `dataset/data.jsonl` file.
 
 To better illustrate the structure of responses in your `README.md`, you can provide a more detailed example of the JSON structure. Here's how you can update the `README.md` to include a more comprehensive example:
 
-
 Filling in more realistic values in the example can indeed make it clearer and more informative for users. Here's an updated version of the example with more detailed and realistic values:
 
-### Scraper Scripts
+### 🧰 Scraper Scripts
 
 All scraper scripts are located in the `./scraper` directory. These scripts are designed to collect data from each provider's repository. We execute these processes on our local machines, and the collected data is stored in the `results` directory.
 
-### Structure of Responses
+### 📐 Structure of Responses
 
 The structure of the responses is as follows:
 
@@ -63,7 +61,7 @@ The structure of the responses is as follows:
 3. **Search Results**: This includes web links, titles, and descriptions returned by the providers.
 4. **Response Time**: The time taken to receive the response from the provider, measured in milliseconds.
 
-#### Example Response
+#### 📝 Example Response
 
 ```json
 {
@@ -87,3 +85,41 @@ The structure of the responses is as follows:
 ```
 
 By using this approach, we ensure that we can gather the necessary data for our analysis, even in the absence of direct API access from the providers.
+
+## 📈 Scoring Mechanism
+
+To evaluate the performance and relevance of AI search providers, we have developed a comprehensive scoring mechanism. This mechanism assesses the quality of responses based on several key factors:
+
+1. **Summary Text Relevance**:
+   - We utilize a language model (LLM) to evaluate the relevance of the summary text provided by each AI search provider in relation to the question asked.
+   - In our initial tests, we employed GPT-4o to assess the relevance between the summary text and the questions.
+
+2. **Link Title and Description Relevance**:
+   - Each link's title and description returned by the provider are checked for contextual relevance to the question.
+   - This involves analyzing whether the content of the links is pertinent to the query, ensuring that the search results are not only accurate but also useful.
+
+3. **Performance**:
+   - This metric evaluates the response time of each provider, measured in milliseconds.
+   - Faster response times contribute positively to the overall score, as they enhance the user experience by providing timely information.
+
+4. **Embedding Similarity**:
+   - We calculate the similarity between the embeddings of the question and the returned results.
+   - This involves using vector representations to measure how closely related the question is to the content of the results, providing an additional layer of relevance assessment.
+
+By incorporating these factors, our scoring mechanism provides a holistic view of each provider's capabilities, helping users and developers make informed decisions based on both qualitative and quantitative data.
+
+
+## 📊 Results Table
+
+Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
+
+| Provider          | Product            | Summary Text Relevance | Link Title & Description Relevance | Performance (ms) | Embedding Similarity |
+|-------------------|--------------------|------------------------|------------------------------------|------------------|----------------------|
+| Andi Search       | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| You.com           | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| OpenAI ChatGPT    | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Perplexity        | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Google Gemini     | -                  | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura            | Nova 1.0           | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+|                   | Orbit 1.0          | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+|                   | Horizon 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
