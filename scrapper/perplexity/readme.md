@@ -1,10 +1,6 @@
 
 ## Running Instructions:
 
-### General Setup
-
-All scrapers require Node.js and npm to be installed.  Individual scraper setup instructions are detailed below.
-
 ### Perplexity AI Scraper
 
 1. **Prerequisites:**  Ensure you are logged into your Perplexity AI account in your browser.
@@ -35,8 +31,3 @@ All scrapers require Node.js and npm to be installed.  Individual scraper setup 
 
 
 7. **Downloaded Results:** The scraper will download results in batches of 15 (or fewer, if the end of the query list is reached) to JSON files named `pplx_results_[start]_to_[end].json`.  It also stores results in local storage to resume progress if interrupted.
-
-
-
-Note:
-Add all running instructions in readme, and send PR
