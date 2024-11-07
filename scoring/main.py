@@ -3,6 +3,8 @@ import json
 import os
 
 # from scoring.link_relevance import LinkRelevanceModel
+from scoring.search_relevance import LinkRelevanceModel
+from scoring.reward_llm import RewardLLM
 
 # Read results file
 
@@ -11,8 +13,8 @@ PROVIDERS = {
     "datura_orbit": "datura_30_results.jsonl",
     "datura_horizon": "datura_120_results.jsonl",
     "perplexity": "perplexity_ai_result.jsonl",
-    # "andi": "andi_result.jsonl",
-    # "chatgpt": "chatgpt_search_200_result.jsonl",
+    "andi": "andi_result.jsonl",
+    "chatgpt": "chatgpt_search_200_result.jsonl",
 }
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -88,11 +90,13 @@ sample_result = {
     "providers": [
         {
             "name": "Name of the search provider (Datura, Perplexity, etc.)",
-            "links": [
-                {
-                    "url": "URL of the search result",
-                }
+            "urls": [
+                "URL of the search result",
             ],
+            "summary": "Summary of the search result",
+            "link_relevance": 0,
+            "summary_relevance": 0,
+            "embedding_relevance": 0,
         }
     ],
 }
@@ -132,75 +136,67 @@ for provider, filename in PROVIDERS.items():
                         "id": id,
                         "question": question,
                         "providers": [],
-                        "summary": summary,
-                        "urls": urls,
                     }
 
                 results[question]["providers"].append(
                     {
                         "name": provider,
-                        "links": urls,
+                        "urls": urls,
+                        "summary": summary,
+                        "link_relevance": 0,
+                        "summary_relevance": 0,
+                        "embedding_relevance": 0,
                     }
                 )
 
-
-# Sort all results by question
-# results = sorted(results, key=lambda x: x["question"])
-
-# items = sorted(items, key=lambda x: x["question"])
-
-# items = items[:10]
-
-# results = {
-#     "id": "Unique identifier for the query",
-#     "question": "The question posed to the search provider",
-#     "providers": [],
-#     "result": "A summary of the text and links obtained from the search",
-#     "search_results": [
-#         {
-#             "title": "Title of the search result",
-#             "url": "URL of the search result",
-#             "description": "Description of the search result",
-#         }
-#     ],
-# }
-
-benchmark = [
-    {
-        "id": "Unique identifier for the query",
-        "question": "The question posed to the search provider",
-        "providers": [
-            {
-                "name": "Name of the search provider (Datura, Perplexity, etc.)",
-                "link_relevance": "Link relevance score",
-                "summary_relevance": "Summary relevance score",
-                "embedding_relevance": "Embedding relevance score",
-                "results": [
-                    {
-                        "title": "Title of the search result",
-                        "url": "URL of the search result",
-                        "description": "Description of the search result",
-                    }
-                ],
-            },
-        ],
-    },
-]
+# benchmark = [
+#     {
+#         "id": "Unique identifier for the query",
+#         "question": "The question posed to the search provider",
+#         "providers": [
+#             {
+#                 "name": "Name of the search provider (Datura, Perplexity, etc.)",
+#                 "link_relevance": "Link relevance score",
+#                 "summary_relevance": "Summary relevance score",
+#                 "embedding_relevance": "Embedding relevance score",
+#                 "results": [
+#                     {
+#                         "title": "Title of the search result",
+#                         "url": "URL of the search result",
+#                         "description": "Description of the search result",
+#                     }
+#                 ],
+#             },
+#         ],
+#     },
+# ]
 
 
 async def main():
-    # for item in results:
-    #     prompt = item.get("question")
-    #     urls = item.get("srcs", [])
-    #     summary = item.get("result")
+    reward_llm = RewardLLM()
 
     link_relevance_model = LinkRelevanceModel(
-        device="cpu",
-        scoring_type="web",
-        llm_reward=None,
+        llm_reward=reward_llm,
     )
 
-    link_relevance_model.get_rewards()
+    for _, item in results.items():
+        prompt = item.get("question")
+        providers = item.get("providers", [])
+
+        await link_relevance_model.get_rewards(prompt, providers)
+
+        # Perform scoring for each provider
+        # summary_relevance = summary_relevance_model.get_rewards(prompt, summary)
+        # embedding_relevance = embedding_relevance_model.get_rewards(prompt, summary)
+
+    # write file
+    output_file_path = os.path.join(
+        os.path.dirname(current_dir), "results", "benchmark.jsonl"
+    )
+
+    with open(output_file_path, "w") as f:
+        for result in results.values():
+            f.write(json.dumps(result) + "\n")
 
 
 asyncio.run(main())
