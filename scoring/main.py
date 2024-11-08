@@ -174,17 +174,17 @@ for provider_name in providers_order:
     entry = {
         "Provider": display_name,
         "Product": product,
-        "Summary Text Relevance": f"{stats['summary_relevance_avg']:.2f}",
-        "Link Title & Description Relevance": f"{stats['link_relevance_avg']:.2f}",
-        "Performance (ms)": f"{stats['response_time_avg']:.2f}",
-        "Embedding Similarity": f"{stats['embedding_relevance_avg']:.2f}",
+        "Summary Text Relevance": f"{stats['summary_relevance_avg'] * 100:.2f}%",
+        "Link Title & Description Relevance": f"{stats['link_relevance_avg'] * 100:.2f}%",
+        "Performance (s)": f"{stats['response_time_avg']:.2f}s",
+        "Embedding Similarity": f"{stats['embedding_relevance_avg'] * 100:.2f}%",
     }
     table_entries.append(entry)
 
 # Generate Markdown content
 md_content = "## 📊 Results Table\n\n"
 md_content += "Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:\n\n"
-md_content += "| Provider          | Product            | Summary Text Relevance | Link Title & Description Relevance | Performance (ms) | Embedding Similarity |\n"
+md_content += "| Provider          | Product            | Summary Text Relevance | Link Title & Description Relevance | Performance (s) | Embedding Similarity |\n"
 md_content += "|-------------------|--------------------|------------------------|------------------------------------|------------------|----------------------|\n"
 
 prev_display_name = None
@@ -195,7 +195,7 @@ for entry in table_entries:
         provider_cell = ""
     else:
         prev_display_name = provider_cell
-    md_content += f"| {provider_cell:<17} | {entry['Product']:<18} | {entry['Summary Text Relevance']:<22} | {entry['Link Title & Description Relevance']:<34} | {entry['Performance (ms)']:<16} | {entry['Embedding Similarity']:<22} |\n"
+    md_content += f"| {provider_cell:<17} | {entry['Product']:<18} | {entry['Summary Text Relevance']:<22} | {entry['Link Title & Description Relevance']:<34} | {entry['Performance (s)']:<16} | {entry['Embedding Similarity']:<22} |\n"
 
 # Write Markdown file
 md_file_path = os.path.join(os.path.dirname(current_dir), "results", "benchmark.md")
