@@ -104,6 +104,8 @@ To evaluate the performance and relevance of AI search providers, we have develo
 
 By incorporating these factors, our scoring mechanism provides a holistic view of each provider's capabilities, helping users and developers make informed decisions based on both qualitative and quantitative data.
 
+![Contextual Relevance](docs/assets/contextual_relevance.webp)
+
 ## ⚡ Fastest and Most Affordable Models
 
 In this section, we evaluate the AI search providers based on their speed and cost-effectiveness. The following chart illustrates the latency of each model, providing insights into which models offer the fastest response times at the most affordable rates.
