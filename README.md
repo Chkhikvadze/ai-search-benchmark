@@ -17,12 +17,21 @@ The AI Search Wars Have Begun - ChatGPT Search, Andi Search, Gemini Grounding, a
 
 Through this benchmark, we aim to provide insights into the capabilities and performance of these AI search engines, helping users and developers make informed decisions about which platforms best meet their needs.
 
-## 📊 Dataset
 
-In our first test, we decided to utilize a dataset from the [Talc AI SearchBench repository](https://github.com/Talc-AI/search-bench). We extend our gratitude to the Talc AI team for their valuable contribution.
+## 📊 Provider Performance Comparison
 
-The SearchBench repository addresses common issues with traditional benchmarks by focusing on practical, everyday use cases rather than theoretical limits. It emphasizes realistic user queries and the incorporation of new knowledge over time, ensuring that AI products remain relevant and useful.
+Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
 
+| Provider          | Summary Text Relevance | Link Title & Description Relevance | Performance (s) | Embedding Similarity |
+|-------------------|------------------------|------------------------------------|-----------------|----------------------|
+| Andi Search       | 19.95%                 | 22.44%                             | 7.84s            | 0.00%               |
+| You.com           | 21.34%                 | 24.66%                             | 1.74s            | 0.00%               |
+| OpenAI ChatGPT    | 13.65%                 | 24.86%                             | 0.59s            | 0.00%               |
+| Perplexity        | 12.13%                 | 25.00%                             | 5.66s            | 0.00%               |
+| Google Gemini     | 0.00%                  | 0.00%                              | 0.00s            | 0.00%               |
+| Datura Nova 1.0   | 12.29%                 | 22.39%                             | 0.00s            | 0.00%               |
+| Datura Orbit 1.0  | 14.84%                 | 23.31%                             | 0.00s            | 0.00%               |
+| Datura Horizon 1.0 | 0.00%                  | 0.00%                              | 0.00s            | 0.00%              |
 
 ### 🏆 Top Model Analysis
 
@@ -41,6 +50,19 @@ The SearchBench repository addresses common issues with traditional benchmarks b
     </div>
 </div> -->
 
+## 🐦 Twitter Relevance Results
+
+In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Datura and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
+
+Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
+
+| Provider               | Summary Relevance      | Twitter Content Relevance          | Performance (ms) | Embedding Similarity |
+|------------------------|------------------------|------------------------------------|------------------|----------------------|
+| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+
 
 ### 📊 Top Models Chart
 
@@ -57,6 +79,7 @@ The SearchBench repository addresses common issues with traditional benchmarks b
         <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
     </div>
 </div> -->
+
 
 
 ## 📈 Scoring Mechanism
@@ -80,37 +103,6 @@ To evaluate the performance and relevance of AI search providers, we have develo
    - This involves using vector representations to measure how closely related the question is to the content of the results, providing an additional layer of relevance assessment.
 
 By incorporating these factors, our scoring mechanism provides a holistic view of each provider's capabilities, helping users and developers make informed decisions based on both qualitative and quantitative data.
-
-
-## 📊 Provider Performance Comparison
-
-Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
-
-| Provider          | Summary Text Relevance | Link Title & Description Relevance | Performance (s) | Embedding Similarity |
-|-------------------|------------------------|------------------------------------|-----------------|----------------------|
-| Andi Search       | 19.95%                 | 22.44%                             | 7.84s            | 0.00%               |
-| You.com           | 21.34%                 | 24.66%                             | 1.74s            | 0.00%               |
-| OpenAI ChatGPT    | 13.65%                 | 24.86%                             | 0.59s            | 0.00%               |
-| Perplexity        | 12.13%                 | 25.00%                             | 5.66s            | 0.00%               |
-| Google Gemini     | 0.00%                  | 0.00%                              | 0.00s            | 0.00%               |
-| Datura Nova 1.0   | 12.29%                 | 22.39%                             | 0.00s            | 0.00%               |
-| Datura Orbit 1.0  | 14.84%                 | 23.31%                             | 0.00s            | 0.00%               |
-| Datura Horizon 1.0 | 0.00%                  | 0.00%                              | 0.00s            | 0.00%              |
-
-
-
-## 🐦 Twitter Relevance Results
-
-In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Datura and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
-
-Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
-
-| Provider               | Summary Relevance      | Twitter Content Relevance          | Performance (ms) | Embedding Similarity |
-|------------------------|------------------------|------------------------------------|------------------|----------------------|
-| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
 
 ## ⚡ Fastest and Most Affordable Models
 
@@ -142,6 +134,13 @@ This approach ensures that the dataset is both comprehensive and adaptable to re
 ## 🔍 Data Fetch Process
 
 In our project, we aim to gather data from various AI search providers. However, many of these providers do not offer APIs for direct data retrieval. To address this, we have developed simple scraper scripts to extract data from each provider for our dataset.
+
+## 📊 Dataset
+
+In our first test, we decided to utilize a dataset from the [Talc AI SearchBench repository](https://github.com/Talc-AI/search-bench). We extend our gratitude to the Talc AI team for their valuable contribution.
+
+The SearchBench repository addresses common issues with traditional benchmarks by focusing on practical, everyday use cases rather than theoretical limits. It emphasizes realistic user queries and the incorporation of new knowledge over time, ensuring that AI products remain relevant and useful.
+
 
 ### 📂 Dataset Source
 
