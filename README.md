@@ -157,16 +157,9 @@ To better illustrate the structure of responses in your `README.md`, you can pro
 
 Filling in more realistic values in the example can indeed make it clearer and more informative for users. Here's an updated version of the example with more detailed and realistic values:
 
-<div style="display: flex; justify-content: space-between;">
-    <div style="width: 48%; text-align: center;">
-        <h4>📈 Areas</h4>
-        <img src="docs/assets/subcategory_percentages.png" alt="Subcategory Percentages" style="width: 100%;">
-    </div>
-    <div style="width: 48%; text-align: center;">
-        <h4>📉 Categories</h4>
-        <img src="docs/assets/summary_category_percentages.png" alt="Summary Category Percentages" style="width: 100%;">
-    </div>
-</div>
+| 📈 Areas | 📉 Categories |
+|----------|--------------|
+| ![Subcategory Percentages](docs/assets/subcategory_percentages.png) | ![Summary Category Percentages](docs/assets/summary_category_percentages.png) |
 
 By using this approach, we ensure that we can gather the necessary data for our analysis, even in the absence of direct API access from the providers.
 
