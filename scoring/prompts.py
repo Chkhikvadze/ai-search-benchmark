@@ -1,4 +1,6 @@
 import re
+from pydantic import BaseModel, Field
+from enum import Enum
 
 
 class BasePrompt:
@@ -89,6 +91,26 @@ def clean_template(template):
     # Join the lines back together
     return "\n".join(cleaned_lines)
 
+
+class TopicCategoryEnum(str, Enum):
+    architecture = "Architecture"
+    arts = "Arts"
+    fashion = "Fashion"
+    astronomy = "Astronomy"
+    anime = "Anime"
+    auto = "Auto (Automotive)"
+    traditional_sports = "Traditional Sports"
+    e_sports = "E-sports"
+    technology = "Technology"
+    paper = "Paper"
+    entertainment = "Entertainment"
+    finance = "Finance"
+    general_news = "General News"
+    false_premise = "False Premise"
+
+class ClassificationResult(BaseModel):
+    """Represents the result of a topic classification."""
+    category: TopicCategoryEnum = Field(..., description="The category of the question.")
 
 system_summary_relevance_scoring_template = """
 You are a meticulous Content Quality Analyst, tasked with evaluating the relevance, accuracy, and depth of summaries. Each score reflects how well the summary addresses the core question within the <Question></Question> tags.
@@ -196,4 +218,59 @@ And the summarized description of the text content:
 </SummarizedText>
 
 Please evaluate the above, <Text></Text> and <SummarizedText></SummarizedText> using relevance Scoring Guide in the system message.
+"""
+
+
+topic_classification_prompt = """
+You are a topic classifier, your task is to classify the question into one of the following categories.
+
+Here are the categories with their descriptions:
+1. **Architecture**: 
+   - Covers topics related to building design, structural engineering, historical and modern architectural styles, influential architects, and construction techniques. It may include questions on famous landmarks, sustainable architecture, and architectural theories.
+
+2. **Arts**: 
+   - Encompasses questions about various forms of visual and performing arts, including painting, sculpture, theater, dance, and music. This category often explores famous artists, art movements, techniques, and the impact of art on society.
+
+3. **Fashion**: 
+   - Focuses on the ever-evolving world of clothing, style trends, influential designers, and the fashion industry. It includes questions about historical and contemporary fashion, cultural influences, fashion weeks, and sustainable fashion practices.
+
+4. **Astronomy**: 
+   - Delves into celestial phenomena, the study of stars, planets, galaxies, and the universe. Questions here might cover the solar system, space exploration, astrophysics, and the history of astronomical discoveries.
+
+5. **Anime**: 
+   - Dedicated to Japanese animated media, this category explores popular anime series, genres, creators, character development, and the impact of anime on global pop culture. It may also touch on manga, the comics that often inspire anime adaptations.
+
+6. **Auto (Automotive)**: 
+   - This category covers automobiles, their design, technology, history, and innovation. Topics include major car manufacturers, electric vehicles, automotive trends, classic cars, and the impact of cars on the environment.
+
+7. **Traditional Sports**: 
+   - Includes questions about well-known, established sports like soccer, basketball, and cricket. It may explore the history of sports, famous athletes, major sporting events, and the evolution of sports rules and equipment.
+
+8. **E-sports**: 
+   - Focuses on competitive gaming, including popular video games, gaming tournaments, professional players, game strategies, and the rise of e-sports as a global phenomenon. Topics might also cover game development and e-sports organizations.
+
+9. **Technology**: 
+   - Encompasses a wide range of topics on advancements in digital devices, software, artificial intelligence, cybersecurity, and the internet. It explores tech companies, innovations, and the impact of technology on daily life and industries.
+
+10. **Paper**: 
+   - Examines everything related to paper, including its production, types, uses, and the history of paper-making. Topics might also include sustainable paper production, recycling, and the impact of digital media on paper use.
+
+11. **Entertainment**: 
+   - Covers topics within film, television, music, and celebrity culture. It includes questions about movies, popular series, entertainment trends, awards, streaming platforms, and the impact of media on society.
+
+12. **Finance**: 
+   - Focuses on financial systems, investment, economics, and personal finance. Topics range from banking, stock markets, and cryptocurrencies to economic theories, budgeting, and financial planning.
+
+13. **General News**: 
+   - Involves current events and developments around the world, covering politics, health, science, environmental issues, and more. It provides a snapshot of significant events affecting various regions and sectors.
+
+14. **False Premise**: 
+   - This category includes questions based on incorrect or misleading assumptions, intended to challenge logical reasoning. It might explore misconceptions, logical fallacies, or debunking common myths.
+
+This is the question asked by the user.
+<Question>
+{}
+</Question>
+
+Please classify the user question into one of the categories above.
 """
