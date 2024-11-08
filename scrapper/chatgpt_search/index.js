@@ -7,9 +7,9 @@ function sleep(ms) {
 function clickButton(selector) {
   const button = document.querySelector(selector);
   if (button) {
-      button.click();
+    button.click();
   } else {
-      console.error(`Button not found: ${selector}`);
+    console.error(`Button not found: ${selector}`);
   }
 }
 
@@ -17,11 +17,11 @@ function clickButton(selector) {
 function initializeChat() {
   // Click "New chat" button to start a new session
   clickButton('button[aria-label="New chat"]');
-  
+
   // Wait 1-2 seconds for the page to load
   setTimeout(() => {
-      // Click the "Web" button to enable web searching
-      clickWebButton();
+    // Click the "Web" button to enable web searching
+    clickWebButton();
   }, 1500); // Adjust timeout based on network or page load time
 }
 
@@ -29,9 +29,9 @@ function initializeChat() {
 function clickWebButton() {
   const webButton = document.querySelector('button[aria-label="Search the web"]');
   if (webButton) {
-      webButton.click();
+    webButton.click();
   } else {
-      console.error('Web button not found.');
+    console.error('Web button not found.');
   }
 }
 
@@ -39,11 +39,11 @@ function clickWebButton() {
 async function findSubmitButton() {
   let submitButton = null;
   while (!submitButton) {
-      submitButton = document.querySelector('button[data-testid="send-button"]');
-      if (!submitButton) {
-          console.log('Waiting for submit button to appear...');
-          await sleep(500); // Wait for 500ms before checking again
-      }
+    submitButton = document.querySelector('button[data-testid="send-button"]');
+    if (!submitButton) {
+      console.log('Waiting for submit button to appear...');
+      await sleep(500); // Wait for 500ms before checking again
+    }
   }
   return submitButton;
 }
@@ -68,9 +68,9 @@ async function clickSubmitButton() {
 async function waitForResponseToFinish() {
   let isGenerating = true;
   while (isGenerating) {
-      const stopButton = document.querySelector('button[data-testid="stop-button"]');
-      isGenerating = !!stopButton; // True if "Stop streaming" button is present
-      await sleep(300); // Check every 300ms
+    const stopButton = document.querySelector('button[data-testid="stop-button"]');
+    isGenerating = !!stopButton; // True if "Stop streaming" button is present
+    await sleep(300); // Check every 300ms
   }
 }
 
@@ -83,48 +83,48 @@ async function isResponseBeingGenerated() {
 // Function to parse citations and search results separately
 function parseCitationsAndResults() {
   const sources = {
-      citations: [],
-      searchResults: []
+    citations: [],
+    searchResults: []
   };
 
   const mainContainer = document.querySelector('.flex.w-full.flex-col.border-t.border-token-border-light.bg-token-main-surface-primary');
   if (mainContainer) {
-      const sections = mainContainer.querySelectorAll(':scope > div');
+    const sections = mainContainer.querySelectorAll(':scope > div');
 
-      sections.forEach(section => {
-          const header = section.querySelector('div.sticky');
-          if (header && header.innerText.includes("Citations")) {
-              const citationItems = section.querySelectorAll('.flex.flex-col.px-3.py-2 > div');
-              citationItems.forEach(citation => {
-                  const linkElement = citation.querySelector('a');
-                  const titleElement = citation.querySelector('div.line-clamp-2.text-sm.font-semibold');
-                  const descriptionElement = citation.querySelector('div.line-clamp-2.text-sm.font-normal');
+    sections.forEach(section => {
+      const header = section.querySelector('div.sticky');
+      if (header && header.innerText.includes("Citations")) {
+        const citationItems = section.querySelectorAll('.flex.flex-col.px-3.py-2 > div');
+        citationItems.forEach(citation => {
+          const linkElement = citation.querySelector('a');
+          const titleElement = citation.querySelector('div.line-clamp-2.text-sm.font-semibold');
+          const descriptionElement = citation.querySelector('div.line-clamp-2.text-sm.font-normal');
 
-                  if (linkElement && titleElement && descriptionElement) {
-                      sources.citations.push({
-                          url: linkElement.href,
-                          title: titleElement.innerText,
-                          description: descriptionElement.innerText
-                      });
-                  }
-              });
-          } else if (header && header.innerText.includes("Search Results")) {
-              const searchResultItems = section.querySelectorAll('.flex.flex-col.px-3.py-2 > div');
-              searchResultItems.forEach(result => {
-                  const linkElement = result.querySelector('a');
-                  const titleElement = result.querySelector('div.line-clamp-2.text-sm.font-semibold');
-                  const descriptionElement = result.querySelector('div.line-clamp-2.text-sm.font-normal');
-
-                  if (linkElement && titleElement && descriptionElement) {
-                      sources.searchResults.push({
-                          link: linkElement.href,
-                          title: titleElement.innerText,
-                          description: descriptionElement.innerText
-                      });
-                  }
-              });
+          if (linkElement && titleElement && descriptionElement) {
+            sources.citations.push({
+              url: linkElement.href,
+              title: titleElement.innerText,
+              description: descriptionElement.innerText
+            });
           }
-      });
+        });
+      } else if (header && header.innerText.includes("Search Results")) {
+        const searchResultItems = section.querySelectorAll('.flex.flex-col.px-3.py-2 > div');
+        searchResultItems.forEach(result => {
+          const linkElement = result.querySelector('a');
+          const titleElement = result.querySelector('div.line-clamp-2.text-sm.font-semibold');
+          const descriptionElement = result.querySelector('div.line-clamp-2.text-sm.font-normal');
+
+          if (linkElement && titleElement && descriptionElement) {
+            sources.searchResults.push({
+              link: linkElement.href,
+              title: titleElement.innerText,
+              description: descriptionElement.innerText
+            });
+          }
+        });
+      }
+    });
   }
 
   return sources;
@@ -149,17 +149,17 @@ async function extractHumanMessages() {
   const responses = document.querySelectorAll('article.w-full.text-token-text-primary');
 
   for (const element of responses) {
-      const response = element;
-      let textContent = response.innerText;
+    const response = element;
+    let textContent = response.innerText;
 
-      if (response.querySelector('[data-message-author-role="user"]')) {
-          // Remove "You said:\n" from the beginning of the text
-          const userPrefix = "You said:\n";
-          if (textContent.startsWith(userPrefix)) {
-              textContent = textContent.slice(userPrefix.length);
-          }
-          userMessages.add(textContent); // Add the processed question to the set
+    if (response.querySelector('[data-message-author-role="user"]')) {
+      // Remove "You said:\n" from the beginning of the text
+      const userPrefix = "You said:\n";
+      if (textContent.startsWith(userPrefix)) {
+        textContent = textContent.slice(userPrefix.length);
       }
+      userMessages.add(textContent); // Add the processed question to the set
+    }
   }
 
   return userMessages; // Return the set of user messages
@@ -173,7 +173,6 @@ async function parseResponses() {
 
   let currentQuestion = null;
   let currentId = null;
-  let questionStartTime = null; // Variable to store the start time of the question
 
   for (const element of responses) {
     const response = element;
@@ -187,7 +186,6 @@ async function parseResponses() {
       }
       currentQuestion = textContent;
       currentId = questions.find(q => q.question === currentQuestion)?.id; // Find the corresponding ID
-      questionStartTime = Date.now(); // Record the start time
     } else if (response.querySelector('[data-message-author-role="assistant"]') && currentQuestion) {
       // Remove "ChatGPT said:\nChatGPT\n\n" from the beginning of the text
       const unwantedPrefix = "ChatGPT said:\nChatGPT\n\n";
@@ -205,15 +203,12 @@ async function parseResponses() {
         sources = parseCitationsAndResults(); // Parse the citations and search results
       }
 
-      // Calculate response time
-      const responseTime = Date.now() - questionStartTime; // Calculate the response time
-
       responseData.push({
         id: currentId,
         question: currentQuestion,
         result: textContent,
         search_results: sources.searchResults,
-        response_time: responseTime
+        response_time: resTimes[currentQuestion]
       });
 
       currentQuestion = null; // Reset the question for the next pair
@@ -223,6 +218,8 @@ async function parseResponses() {
   return responseData;
 }
 
+const resTimes = {};
+
 // Main function to submit questions within a specified range
 async function submitAllQuestionsSequentially(questions, startIndex, endIndex) {
   let attempts = 0;
@@ -230,51 +227,56 @@ async function submitAllQuestionsSequentially(questions, startIndex, endIndex) {
   let missingQuestions = selectedQuestions.map(q => q.question);
 
   while (missingQuestions.length > 0 && attempts < 5) {
-      console.log(`Attempt ${attempts + 1}: Submitting questions...`);
-      await sleep(1000);
+    console.log(`Attempt ${attempts + 1}: Submitting questions...`);
+    await sleep(1000);
 
-      for (const element of missingQuestions) {
-          const question = element;
+    for (const element of missingQuestions) {
+      const question = element;
 
-          // Wait until the system is not generating a response
-          while (await isResponseBeingGenerated()) {
-              console.log('Waiting for current response to finish before submitting next question...');
-              await sleep(1000); // Wait for 1 second before checking again
-          }
+      // Add the question to the textarea and wait before submitting
+      await addSentence(question);
 
-          // Add the question to the textarea and wait before submitting
-          await addSentence(question);
+      // Click submit button
+      await clickSubmitButton();
 
-          // Click submit button
-          await clickSubmitButton();
+      const startTime = Date.now();
 
-          // Wait for the response generation to finish
-          await waitForResponseToFinish();
+      // Wait for the response generation to finish
+      await waitForResponseToFinish();
 
-          // Wait before submitting the next question to avoid rate limiting
-          await sleep(2000); // Adjust this based on your observation
+      // Wait until the system is not generating a response
+      while (await isResponseBeingGenerated()) {
+        console.log('Waiting for current response to finish before submitting next question...');
+        await sleep(1000); // Wait for 1 second before checking again
       }
 
-      // Wait for 7 seconds before starting to parse the responses
-      console.log('Waiting for 7 seconds before parsing responses...');
-      await sleep(7000);
+      resTimes[question] = Date.now() - startTime;
+      console.log("duration to response", resTimes[question]);
 
-      // After the last question's response is generated, extract human messages
-      console.log('Extracting human messages to check for missing questions...');
-      const processedQuestions = await extractHumanMessages();
+      // Wait before submitting the next question to avoid rate limiting
+      await sleep(2000); // Adjust this based on your observation
+    }
 
-      // Determine which questions are still missing
-      missingQuestions = selectedQuestions
-          .map(q => q.question)
-          .filter(question => !processedQuestions.has(question));
+    // Wait for 7 seconds before starting to parse the responses
+    console.log('Waiting for 7 seconds before parsing responses...');
+    await sleep(7000);
 
-      attempts++;
+    // After the last question's response is generated, extract human messages
+    console.log('Extracting human messages to check for missing questions...');
+    const processedQuestions = await extractHumanMessages();
+
+    // Determine which questions are still missing
+    missingQuestions = selectedQuestions
+      .map(q => q.question)
+      .filter(question => !processedQuestions.has(question));
+
+    attempts++;
   }
 
   if (missingQuestions.length > 0) {
-      console.warn('Some questions could not be submitted after 5 attempts:', missingQuestions);
+    console.warn('Some questions could not be submitted after 5 attempts:', missingQuestions);
   } else {
-      console.log('All questions submitted successfully.');
+    console.log('All questions submitted successfully.');
   }
 
   // Parse responses and download the result with the specified filename format
@@ -306,5 +308,5 @@ async function submitQuestionsInBatches(questions, startIndex, batchSize) {
 }
 
 // Start the question submission and parsing process with specified indices and batch size
-// const batchSize = 30; // Define your batch size
-// submitQuestionsInBatches(questions, 0, batchSize); // Example: start from index 0 with a batch size of 5
+const batchSize = 25; // Define your batch size
+submitQuestionsInBatches(questions, 0, batchSize); // Example: start from index 0 with a batch size of 5
