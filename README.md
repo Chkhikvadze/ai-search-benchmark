@@ -132,4 +132,4 @@ We are committed to regularly updating this benchmark to reflect the latest adva
 
 If you encounter any inaccuracies or areas for improvement, please share your thoughts with us. We are eager to enhance the benchmark based on your insights.
 
-For inquiries, suggestions, or contributions, feel free to contact matt at talc.ai.
+For inquiries, suggestions, or contributions, feel free to contact
