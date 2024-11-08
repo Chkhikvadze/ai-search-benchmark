@@ -4,12 +4,16 @@
 
 The AI Search Wars Have Begun - ChatGPT Search, Andi Search, Gemini Grounding, and more. In this rapidly evolving digital landscape, AI-powered search engines are at the forefront of innovation, offering users enhanced search capabilities and personalized experiences. This benchmark aims to analyze, fetch, and prepare data from leading AI search providers currently available in the market. Our focus includes:
 
-1. **[Andi Search](https://andisearch.com/)** - Visit Andi Search
+1. **[Datura (Meta - Bittensor Network, Subnet 22)](https://chi.datura.ai/)** - Visit Datura
+
+
 2. **[You.com](https://you.com/)** - Visit You.com
 3. **[OpenAI ChatGPT](https://openai.com/index/introducing-chatgpt-search/)** - Learn about ChatGPT Search
 4. **[Perplexity](https://www.perplexity.ai/)** - Visit Perplexity
 5. **[Google Gemini](https://gemini.google.com/app)** - Visit Google Gemini
 6. **[Datura (Meta - Bittensor Network, Subnet 22)](https://chi.datura.ai/)** - Visit Datura
+7. **[Andi Search](https://andisearch.com/)** - Visit Andi Search
+7. **[X Grok](https://x.com/i/grok)** - X Grok
 
 Through this benchmark, we aim to provide insights into the capabilities and performance of these AI search engines, helping users and developers make informed decisions about which platforms best meet their needs.
 
@@ -123,7 +127,28 @@ Below is a table showcasing the results of each provider in various aspects of o
 | OpenAI ChatGPT         | [Score]                | [Score]                            | [Time]           | [Similarity]         |
 | Perplexity             | [Score]                | [Score]                            | [Time]           | [Similarity]         |
 | Google Gemini          | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
 
+
+
+## 🐦 Twitter Relevance Results
+
+In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Datura and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
+
+Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
+
+| Provider               | Summary Relevance      | Twitter Content Relevance          | Performance (ms) | Embedding Similarity |
+|------------------------|------------------------|------------------------------------|------------------|----------------------|
+| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+
+## ⚡ Fastest and Most Affordable Models
+
+In this section, we evaluate the AI search providers based on their speed and cost-effectiveness. The following chart illustrates the latency of each model, providing insights into which models offer the fastest response times at the most affordable rates.
+
+![Latency Chart](/docs/assets/latency.png)
 
 
 ## 🚀 Future Directions
