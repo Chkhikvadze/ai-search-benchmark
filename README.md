@@ -41,18 +41,6 @@ The SearchBench repository addresses common issues with traditional benchmarks b
     </div>
 </div> -->
 
-## 🐦 Twitter Relevance Results
-
-In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Datura and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
-
-Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
-
-| Provider               | Summary Relevance      | Twitter Content Relevance          | Performance (ms) | Embedding Similarity |
-|------------------------|------------------------|------------------------------------|------------------|----------------------|
-| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
 
 ### 📊 Top Models Chart
 
