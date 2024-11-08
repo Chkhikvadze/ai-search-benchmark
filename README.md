@@ -52,6 +52,17 @@ To better illustrate the structure of responses in your `README.md`, you can pro
 
 Filling in more realistic values in the example can indeed make it clearer and more informative for users. Here's an updated version of the example with more detailed and realistic values:
 
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 48%; text-align: center;">
+        <h4>📈 Areas</h4>
+        <img src="docs/assets/subcategory_percentages.png" alt="Subcategory Percentages" style="width: 100%;">
+    </div>
+    <div style="width: 48%; text-align: center;">
+        <h4>📉 Categories</h4>
+        <img src="docs/assets/summary_category_percentages.png" alt="Summary Category Percentages" style="width: 100%;">
+    </div>
+</div>
+
 ### 🧰 Scraper Scripts
 
 All scraper scripts are located in the `./scraper` directory. These scripts are designed to collect data from each provider's repository. We execute these processes on our local machines, and the collected data is stored in the `results` directory.
@@ -89,6 +100,47 @@ The structure of the responses is as follows:
 ```
 
 By using this approach, we ensure that we can gather the necessary data for our analysis, even in the absence of direct API access from the providers.
+
+
+### 🏆 Top Model Analysis
+
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 48%; text-align: center;">
+        <h4>🏆 Top Model Per Search Summary</h4>
+        <img src="docs/assets/chart_bar.png" alt="Top Model Per Search Summary" style="width: 100%;">
+    </div>
+    <div style="width: 48%; text-align: center;">
+        <h4>🌐 Best Model Per Web Link Content Relevance</h4>
+        <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
+    </div>
+</div>
+
+## 🐦 Twitter Relevance Results
+
+In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Datura and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
+
+Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
+
+| Provider               | Summary Relevance      | Twitter Content Relevance          | Performance (ms) | Embedding Similarity |
+|------------------------|------------------------|------------------------------------|------------------|----------------------|
+| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+
+### 📊 Top Models Chart
+
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 48%; text-align: center;">
+        <h4>🥇 op Models Per Twitter Content</h4>
+        <img src="docs/assets/chart_bar.png" alt="Top Model Per Search Summary" style="width: 100%;">
+    </div>
+    <div style="width: 48%; text-align: center;">
+        <h4>🔍 Best Model Embedding Similarity</h4>
+        <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
+    </div>
+</div>
+
 
 ## 📈 Scoring Mechanism
 
