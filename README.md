@@ -26,7 +26,11 @@ The SearchBench repository addresses common issues with traditional benchmarks b
 
 ### 🏆 Top Model Analysis
 
-<div style="display: flex; justify-content: space-between;">
+| 📊 Top Model Per Search Summary | 🌐 Best Model Per Web Link Content Relevance |
+|---------------------------------|---------------------------------------------|
+| ![Top Model Per Search Summary](docs/assets/chart_bar.png) | ![Best Model Per Web Link Content Relevance](docs/assets/chart_bar.png) |
+
+<!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
         <h4>📊 Top Model Per Search Summary</h4>
         <img src="docs/assets/chart_bar.png" alt="Top Model Per Search Summary" style="width: 100%;">
@@ -35,7 +39,7 @@ The SearchBench repository addresses common issues with traditional benchmarks b
         <h4>🌐 Best Model Per Web Link Content Relevance</h4>
         <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
     </div>
-</div>
+</div> -->
 
 ## 🐦 Twitter Relevance Results
 
@@ -52,7 +56,10 @@ Below is a table showcasing the results of each provider in terms of Summary and
 
 ### 📊 Top Models Chart
 
-<div style="display: flex; justify-content: space-between;">
+| 🥇 Top Models Per Twitter Content | 🔍 Best Model Embedding Similarity |
+|-----------------------------------|-----------------------------------|
+| ![Top Model Per Search Summary](docs/assets/chart_bar.png) | ![Best Model Per Web Link Content Relevance](docs/assets/chart_bar.png) |
+<!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
         <h4>🥇 op Models Per Twitter Content</h4>
         <img src="docs/assets/chart_bar.png" alt="Top Model Per Search Summary" style="width: 100%;">
@@ -61,7 +68,7 @@ Below is a table showcasing the results of each provider in terms of Summary and
         <h4>🔍 Best Model Embedding Similarity</h4>
         <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
     </div>
-</div>
+</div> -->
 
 
 ## 📈 Scoring Mechanism
