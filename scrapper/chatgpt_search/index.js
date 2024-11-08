@@ -1,12 +1,3 @@
-// Sample questions array to automate
-const questions = [
-  {"id": "90589bcc-c99e-42ad-8dd6-35b1e12a18c1", "question": "why did oracle discontinue java development after sun microsystems acquisition"},
-  {"id": "1a49b8ad-67ee-4027-a75c-754adb4eadc8", "question": "express bus fare cost nyc"},
-  {"id": "797d8c64-6772-4d11-bd75-ce99cbb6bac2", "question": "ukrain destroyed what type of russian ship?"},
-  {"id": "c474b8b5-1c9d-4957-9506-7ba00ec7d701", "question": "What was the significance of the Boeing 747's first flight?"},
-  {"id": "4d353679-d1ae-4c94-b51c-066f1213d931", "question": "What is the refund policy for the Learn Enough tutorials?"}
-];
-
 // Utility to delay execution for a specified time (in ms)
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -14,9 +5,9 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 function clickButton(selector) {
   const button = document.querySelector(selector);
   if (button) {
-      button.click();
+    button.click();
   } else {
-      console.error(`Button not found: ${selector}`);
+    console.error(`Button not found: ${selector}`);
   }
 }
 
@@ -29,10 +20,11 @@ function initializeChat() {
 // Clicks the "Web" button if available
 function clickWebButton() {
   const webButton = document.querySelector('button[aria-label="Search the web"]');
+
   if (webButton) {
-      webButton.click();
+    webButton.click();
   } else {
-      console.error('Web button not found.');
+    console.error('Web button not found.');
   }
 }
 
@@ -40,11 +32,11 @@ function clickWebButton() {
 async function findSubmitButton() {
   let submitButton = null;
   while (!submitButton) {
-      submitButton = document.querySelector('button[data-testid="send-button"]');
-      if (!submitButton) {
-          console.log('Waiting for submit button to appear...');
-          await sleep(500);
-      }
+    submitButton = document.querySelector('button[data-testid="send-button"]');
+    if (!submitButton) {
+      console.log('Waiting for submit button to appear...');
+      await sleep(500);
+    }
   }
   return submitButton;
 }
@@ -68,7 +60,7 @@ async function clickSubmitButton() {
 // Waits until the response generation completes by checking for the "Stop" button
 async function waitForResponseToFinish() {
   while (document.querySelector('button[data-testid="stop-button"]')) {
-      await sleep(300); // Short interval check
+    await sleep(100); // Short interval check
   }
 }
 
@@ -83,31 +75,31 @@ function parseCitationsAndResults() {
   const mainContainer = document.querySelector('.flex.w-full.flex-col.border-t.border-token-border-light.bg-token-main-surface-primary');
 
   if (mainContainer) {
-      mainContainer.querySelectorAll(':scope > div').forEach(section => {
-          const header = section.querySelector('div.sticky');
-          if (header) {
-              const items = section.querySelectorAll('.flex.flex-col.px-3.py-2 > div');
-              items.forEach(item => {
-                  const linkElement = item.querySelector('a');
-                  const titleElement = item.querySelector('div.line-clamp-2.text-sm.font-semibold');
-                  const descriptionElement = item.querySelector('div.line-clamp-2.text-sm.font-normal');
-                  
-                  if (linkElement && titleElement && descriptionElement) {
-                      const entry = {
-                          link: linkElement.href,
-                          title: titleElement.innerText,
-                          description: descriptionElement.innerText
-                      };
+    mainContainer.querySelectorAll(':scope > div').forEach(section => {
+      const header = section.querySelector('div.sticky');
+      if (header) {
+        const items = section.querySelectorAll('.flex.flex-col.px-3.py-2 > div');
+        items.forEach(item => {
+          const linkElement = item.querySelector('a');
+          const titleElement = item.querySelector('div.line-clamp-2.text-sm.font-semibold');
+          const descriptionElement = item.querySelector('div.line-clamp-2.text-sm.font-normal');
 
-                      if (header.innerText.includes("Citations")) {
-                          sources.citations.push(entry);
-                      } else if (header.innerText.includes("Search Results")) {
-                          sources.searchResults.push(entry);
-                      }
-                  }
-              });
+          if (linkElement && titleElement && descriptionElement) {
+            const entry = {
+              title: titleElement.innerText,
+              url: linkElement.href,
+              description: descriptionElement.innerText
+            };
+
+            if (header.innerText.includes("Citations")) {
+              sources.citations.push(entry);
+            } else if (header.innerText.includes("Search Results")) {
+              sources.searchResults.push(entry);
+            }
           }
-      });
+        });
+      }
+    });
   }
   return sources;
 }
@@ -124,58 +116,102 @@ function downloadJSON(data, filename) {
 }
 
 // Parses and downloads responses for each question
-async function parseResponses() {
-  const responseData = {};
+async function parseResponses(questions, response_times) {
+  const responseData = [];
   const responses = document.querySelectorAll('article.w-full.text-token-text-primary');
   let currentQuestion = null;
 
+  let i = 0;
+
   for (const response of responses) {
-      let textContent = response.innerText;
-      
-      // Check if it's a user or assistant message
-      if (response.querySelector('[data-message-author-role="user"]')) {
-          currentQuestion = textContent;
-      } else if (response.querySelector('[data-message-author-role="assistant"]') && currentQuestion) {
-          textContent = textContent.replace("ChatGPT said:\nChatGPT\n\n", "");
+    let textContent = response.innerText;
 
-          // Get sources if available
-          const sourcesButton = response.querySelector('button.not-prose.group\\/footnote.mb-2.mt-3.flex.w-fit.items-center.gap-1\\.5.rounded-xl.border.border-token-border-light.bg-token-main-surface-primary.py-2.hover\\:bg-token-main-surface-secondary.pl-3.pr-2\\.5');
-          let sources = { citations: [], searchResults: [] };
+    // Check if it's a user or assistant message
+    if (response.querySelector('[data-message-author-role="user"]')) {
+      currentQuestion = textContent;
+    } else if (response.querySelector('[data-message-author-role="assistant"]') && currentQuestion) {
+      textContent = textContent.replace("ChatGPT said:\nChatGPT\n\n", "");
 
-          if (sourcesButton) {
-              sourcesButton.click();
-              await sleep(1000); // Wait for citations to load
-              sources = parseCitationsAndResults();
-          }
+      // Get sources if available
+      const sourcesButton = response.querySelector('button.not-prose.group\\/footnote.mb-2.mt-3.flex.w-fit.items-center.gap-1\\.5.rounded-xl.border.border-token-border-light.bg-token-main-surface-primary.py-2.hover\\:bg-token-main-surface-secondary.pl-3.pr-2\\.5');
+      let sources = { citations: [], searchResults: [] };
 
-          responseData[currentQuestion] = { text: textContent, sources };
-          currentQuestion = null;
+      if (sourcesButton) {
+        sourcesButton.click();
+        await sleep(1000); // Wait for citations to load
+        sources = parseCitationsAndResults();
       }
+
+
+      let responseDatum = { id: questions[i].id, question: questions[i].question };
+
+      responseDatum.result = textContent;
+      responseDatum.search_results = [...sources.citations, ...sources.searchResults];
+      responseDatum.response_time = response_times[i];
+
+      i += 1;
+      responseData.push(Object.assign({}, responseDatum));
+      currentQuestion = null;
+    }
   }
-  downloadJSON(responseData, 'response.json');
+
+  return responseData;
 }
 
 // Submits all questions in sequence with appropriate delays
 async function submitAllQuestionsSequentially(questions) {
   await sleep(1000);
-  for (const { question } of questions) {
-      while (await isResponseBeingGenerated()) {
-          console.log('Waiting for current response to finish...');
-          await sleep(1000);
-      }
+  let response_times = [];
+  for (const { id, question } of questions) {
+    while (await isResponseBeingGenerated()) {
+      console.log('Waiting for current response to finish...');
+      await sleep(100);
+    }
+    const startTime = Date.now();
 
-      await addSentence(question);
-      await clickSubmitButton();
-      await waitForResponseToFinish();
-      await sleep(2000); // Adjust delay based on rate limits
+    await addSentence(question);
+    await clickSubmitButton();
+    await waitForResponseToFinish();
+    const endTime = Date.now();
+    response_times.push(endTime - startTime);
+    await sleep(2000); // Adjust delay based on rate limits
   }
 
   console.log('Waiting briefly before parsing responses...');
   await sleep(7000);
   console.log('All questions submitted. Parsing responses now...');
-  await parseResponses();
+  const responseData = await parseResponses(questions, response_times);
+  return responseData;
+}
+async function processQuestionRange(questions, startIndex, endIndex) {
+  let responseDataBatch = [];
+  const batchSize = 30; // Number of questions to process before saving
+  
+  // Ensure indices are within bounds
+  startIndex = Math.max(0, Math.min(startIndex, questions.length));
+  endIndex = Math.max(0, Math.min(endIndex, questions.length));
+  
+  for (let i = startIndex; i < endIndex; i++) {
+    try {
+      await initializeChat();
+      const responseData = await submitAllQuestionsSequentially([questions[i]]);
+      responseDataBatch = responseDataBatch.concat(responseData);
+      
+      // Save batch when reaching batch size or at the end
+      if (responseDataBatch.length >= batchSize || i === endIndex - 1) {
+        const batchNumber = Math.floor(i / batchSize) + 1;
+        downloadJSON({ result: responseDataBatch }, `response-b${batchNumber}.json`);
+        responseDataBatch = [];
+      }
+    } catch (error) {
+      console.error(`Error processing question ${i}:`, error);
+      // Save current batch in case of error
+      if (responseDataBatch.length > 0) {
+        downloadJSON({ result: responseDataBatch }, `response-error-recovery.json`);
+      }
+    }
+  }
 }
 
-// Starts the question submission and parsing process
-// initializeChat();
-// submitAllQuestionsSequentially(questions);
+// Example usage:
+// processQuestionRange(questions, 241, questions.length);
