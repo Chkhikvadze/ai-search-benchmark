@@ -12,7 +12,6 @@
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "env": {
-                // "PYTHONPATH": "/Users/mirian/Documents/benchmark",
                 "PYTHONPATH": "/Users/mirian/Documents/meta-benchmark"
             },
             "python": "/Users/mirian/miniconda3/envs/benchmark/bin/python",

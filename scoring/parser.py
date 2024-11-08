@@ -23,7 +23,8 @@ PROVIDERS = {
     "datura_horizon": "datura_120_results.jsonl",
     # "perplexity": "perplexity_ai_100_result.jsonl",
     # "andi": "andi_result.jsonl",
-    "chatgpt": "chatgpt_search_200_result.jsonl",
+    # "chatgpt": "chatgpt_search_200_result.jsonl",
+    "you": "you_results.jsonl",
 }
 
 
@@ -144,12 +145,12 @@ results = {}
 ### Comment after full dataset
 perplexity_questions = set()
 perplexity_file_path = os.path.join(
-    os.path.dirname(current_dir), "results", PROVIDERS["chatgpt"]
+    os.path.dirname(current_dir), "results", PROVIDERS["you"]
 )
 
 with open(perplexity_file_path) as f:
     items = [json.loads(line) for line in f]
-    perplexity_questions = {item["question"] for item in items}
+    perplexity_questions = {item["question"] for item in items[:100]}
 ###
 
 # Read and parse results from each provider

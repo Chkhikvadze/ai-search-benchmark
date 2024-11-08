@@ -1,7 +1,4 @@
-from typing import List
-import os
 import asyncio
-import re
 import time
 from .llm import call_openai
 from .prompts import ScoringPrompt
@@ -10,23 +7,6 @@ from .prompts import ScoringPrompt
 class RewardLLM:
     def __init__(self):
         self.scoring_prompt = ScoringPrompt()
-
-    def clean_text(self, text):
-        # Remove newline characters and replace with a space
-        text = text.replace("\n", " ")
-
-        # Remove URLs
-        text = re.sub(
-            r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",
-            "",
-            text,
-        )
-
-        # Keep hashtags, alphanumeric characters, and spaces
-        # Remove other special characters but ensure to keep structured elements like <Question>, <Answer>, etc., intact
-        text = re.sub(r"(?<![\w<>#])[^\w\s#<>]+", "", text)
-
-        return text
 
     async def get_score_by_openai(self, messages):
         try:

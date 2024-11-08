@@ -1,28 +1,4 @@
-# import traceback
-# import time
-# import torch
-# import bittensor as bt
-# import random
-# import asyncio
-# import re
-# from typing import List, Tuple
-# from neurons.validators.reward.config import RewardModelType, RewardScoringType
-# from neurons.validators.reward.reward import BaseRewardModel, BaseRewardEvent
-# from neurons.validators.utils.prompts import (
-#     SummaryRelevancePrompt,
-#     LinkContentPrompt,
-#     LinkContentAndDescriptionPrompt,
-# )
-
-# from datura.protocol import ScraperStreamingSynapse, ScraperTextRole
-# from neurons.validators.reward.reward_llm import RewardLLM
-# from datura.services.twitter_utils import TwitterUtils
-# from datura.services.web_search_utils import WebSearchUtils
-# import json
-# from neurons.validators.reward.config import DefaultSummaryRelevanceWeightConfig
-# from datura.utils import clean_text
 import traceback
-import asyncio
 from typing import List, Dict
 from .reward_llm import RewardLLM
 from .prompts import SummaryRelevancePrompt

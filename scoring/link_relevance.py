@@ -1,12 +1,10 @@
-from typing import List
 from .reward_llm import RewardLLM
 import traceback
-import asyncio
 from .prompts import (
     SearchSummaryRelevancePrompt,
 )
 
-LINKS = 3
+LINKS = 10
 
 
 class LinkRelevanceModel:
