@@ -2,7 +2,7 @@
 
 ## 📚 Introduction
 
-The AI Search Wars Have Begun - SearchGPT, Gemini Grounding, and more. In this rapidly evolving digital landscape, AI-powered search engines are at the forefront of innovation, offering users enhanced search capabilities and personalized experiences. This benchmark aims to analyze, fetch, and prepare data from leading AI search providers currently available in the market. Our focus includes:
+The AI Search Wars Have Begun - ChatGPT Search, Andi Search, Gemini Grounding, and more. In this rapidly evolving digital landscape, AI-powered search engines are at the forefront of innovation, offering users enhanced search capabilities and personalized experiences. This benchmark aims to analyze, fetch, and prepare data from leading AI search providers currently available in the market. Our focus includes:
 
 1. **[Andi Search](https://andisearch.com/)** - Visit Andi Search
 2. **[You.com](https://you.com/)** - Visit You.com
