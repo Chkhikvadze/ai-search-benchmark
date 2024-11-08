@@ -30,6 +30,7 @@ async def process_question(semaphore, question, data):
                 "summary": provider_data.get("summary", ""),
                 "link_relevance": 0,  # Will be updated
                 "summary_relevance": 0,  # Will be updated
+                "embedding_relevance": 0,  # Will be updated
             }
             results_list.append(result)
 
@@ -42,6 +43,9 @@ async def process_question(semaphore, question, data):
             provider_data["link_relevance"] = results_list[i].get("link_relevance", 0)
             provider_data["summary_relevance"] = results_list[i].get(
                 "summary_relevance", 0
+            )
+            provider_data["embedding_relevance"] = results_list[i].get(
+                "embedding_relevance", 0
             )
 
 
@@ -182,8 +186,8 @@ for provider_name in providers_order:
 # Generate Markdown content
 md_content = "## 📊 Results Table\n\n"
 md_content += "Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:\n\n"
-md_content += "| Provider          | Summary Text Relevance | Link Title & Description Relevance | Performance (s) | Embedding Similarity |\n"
-md_content += "|-------------------|------------------------|------------------------------------|-----------------|----------------------|\n"
+md_content += "| Provider            | Summary Text Relevance | Link Title & Description Relevance | Performance (s)  | Embedding Similarity   |\n"
+md_content += "|---------------------|------------------------|------------------------------------|------------------|------------------------|\n"
 
 prev_display_name = None
 
@@ -193,7 +197,7 @@ for entry in table_entries:
         provider_cell = ""
     else:
         prev_display_name = provider_cell
-    md_content += f"| {provider_cell:<17} | {entry['Summary Text Relevance']:<22} | {entry['Link Title & Description Relevance']:<34} | {entry['Performance (s)']:<16} | {entry['Embedding Similarity']:<22} |\n"
+    md_content += f"| {provider_cell:<19} | {entry['Summary Text Relevance']:<22} | {entry['Link Title & Description Relevance']:<34} | {entry['Performance (s)']:<16} | {entry['Embedding Similarity']:<22} |\n"
 
 # Write Markdown file
 md_file_path = os.path.join(os.path.dirname(current_dir), "results", "benchmark.md")

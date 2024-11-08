@@ -1,6 +1,8 @@
 import traceback
 from typing import List, Dict
+from sklearn.metrics.pairwise import cosine_similarity
 from .reward_llm import RewardLLM
+from .llm import get_openai_embeddings
 from .prompts import SummaryRelevancePrompt
 
 
@@ -33,6 +35,8 @@ class SummaryRelevanceModel:
             scoring_messages = []
             index_to_result = {}
 
+            prompt_embedding = await get_openai_embeddings(prompt)
+
             for index, result in enumerate(results):
                 summary = result.get("summary", "")
 
@@ -49,6 +53,15 @@ class SummaryRelevanceModel:
                 else:
                     result["summary_relevance"] = 0
 
+                # Calculate embeddings for the summary
+                summary_embedding = await get_openai_embeddings(summary)
+
+                similarity = cosine_similarity([prompt_embedding], [summary_embedding])[
+                    0
+                ][0]
+
+                result["embedding_relevance"] = similarity.tolist()
+
             # Now call the LLM to get scores
             if scoring_messages:
                 score_responses = await self.reward_llm.get_score_by_openai(
@@ -62,6 +75,7 @@ class SummaryRelevanceModel:
                         score = scoring_prompt.extract_score(score_result)
                         # Scale score to 0-1 range and cap at 1.0
                         result["summary_relevance"] = min(score / 10.0, 1.0)
+
             return results
         except Exception as e:
             error_message = f"Summary Relevance get_rewards: {str(e)}"

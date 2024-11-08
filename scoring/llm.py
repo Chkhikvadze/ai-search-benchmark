@@ -38,7 +38,6 @@ async def call_openai(
     return None
 
 
-
 async def call_openai_beta(
     messages, temperature, model, seed=1234, response_format=None, top_p=None
 ):
@@ -69,3 +68,8 @@ async def call_openai_beta(
             await asyncio.sleep(0.5)
 
     return None
+
+
+async def get_openai_embeddings(text, model="text-embedding-3-small"):
+    response = await client.embeddings.create(input=text, model=model)
+    return response.data[0].embedding
