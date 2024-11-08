@@ -21,9 +21,9 @@ PROVIDERS = {
     "datura_nova": "datura_10_results.jsonl",
     "datura_orbit": "datura_30_results.jsonl",
     "datura_horizon": "datura_120_results.jsonl",
-    # "perplexity": "perplexity_ai_100_result.jsonl",
-    # "andi": "andi_result.jsonl",
-    # "chatgpt": "chatgpt_search_200_result.jsonl",
+    "perplexity": "perplexity_ai_results.jsonl",
+    "andi": "andi_search_result.jsonl",
+    "chatgpt": "chatgpt_search_200_result.jsonl",
     "you": "you_results.jsonl",
 }
 
@@ -116,17 +116,6 @@ def parse_datura(item):
     }
 
 
-def parse_chatgpt(item):
-    return {
-        "id": item.get("id"),
-        "question": item.get("question"),
-        "summary": item.get("result", {}).get("answerText"),
-        "urls": [sr.get("url") for sr in item.get("search_results", [])],
-        "response_time": item.get("response_time", 0),
-        "search_results": item.get("search_results", []),
-    }
-
-
 def parse_generic(item):
     return {
         "id": item.get("id"),
@@ -145,12 +134,12 @@ results = {}
 ### Comment after full dataset
 perplexity_questions = set()
 perplexity_file_path = os.path.join(
-    os.path.dirname(current_dir), "results", PROVIDERS["you"]
+    os.path.dirname(current_dir), "results", PROVIDERS["chatgpt"]
 )
 
 with open(perplexity_file_path) as f:
     items = [json.loads(line) for line in f]
-    perplexity_questions = {item["question"] for item in items[:100]}
+    perplexity_questions = {item["question"] for item in items[:200]}
 ###
 
 # Read and parse results from each provider
@@ -173,8 +162,6 @@ for provider, filename in PROVIDERS.items():
 
             if provider.startswith("datura"):
                 parsed_item = parse_datura(item)
-            elif provider == "chatgpt":
-                parsed_item = parse_chatgpt(item)
             else:
                 parsed_item = parse_generic(item)
 
