@@ -18,9 +18,9 @@ class ProviderResult(TypedDict):
 
 
 PROVIDERS = {
-    "datura_nova": "datura_10_results.jsonl",
-    "datura_orbit": "datura_30_results.jsonl",
-    "datura_horizon": "datura_120_results.jsonl",
+    "datura_nova": "datura_10_results_2.jsonl",
+    "datura_orbit": "datura_30_results_2.jsonl",
+    # "datura_horizon": "datura_120_results.jsonl",
     "perplexity": "perplexity_ai_results.jsonl",
     "andi": "andi_search_result.jsonl",
     "chatgpt": "chatgpt_search_200_result.jsonl",

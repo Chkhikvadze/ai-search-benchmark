@@ -1,0 +1,136 @@
+{
+  "results_table": [
+    {
+      "Provider": "Andi Search",
+      "Product": "-",
+      "Summary Text Relevance": "19.95%",
+      "Link Title & Description Relevance": "22.30%",
+      "Performance (s)": "7.84s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "You.com",
+      "Product": "-",
+      "Summary Text Relevance": "21.14%",
+      "Link Title & Description Relevance": "24.40%",
+      "Performance (s)": "1.74s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "OpenAI ChatGPT",
+      "Product": "-",
+      "Summary Text Relevance": "14.22%",
+      "Link Title & Description Relevance": "24.73%",
+      "Performance (s)": "0.59s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "Perplexity",
+      "Product": "-",
+      "Summary Text Relevance": "12.28%",
+      "Link Title & Description Relevance": "24.92%",
+      "Performance (s)": "5.66s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "Google Gemini",
+      "Product": "-",
+      "Summary Text Relevance": "0.00%",
+      "Link Title & Description Relevance": "0.00%",
+      "Performance (s)": "0.00s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "Datura",
+      "Product": "Nova 1.0",
+      "Summary Text Relevance": "12.08%",
+      "Link Title & Description Relevance": "22.35%",
+      "Performance (s)": "0.00s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "Datura",
+      "Product": "Orbit 1.0",
+      "Summary Text Relevance": "14.84%",
+      "Link Title & Description Relevance": "23.17%",
+      "Performance (s)": "0.00s",
+      "Embedding Similarity": "0.00%"
+    },
+    {
+      "Provider": "Datura",
+      "Product": "Horizon 1.0",
+      "Summary Text Relevance": "0.00%",
+      "Link Title & Description Relevance": "0.00%",
+      "Performance (s)": "0.00s",
+      "Embedding Similarity": "0.00%"
+    }
+  ],
+  "provider_stats": {
+    "datura_nova": {
+      "link_relevance_total": 42.919999999999995,
+      "summary_relevance_total": 23.200000000000006,
+      "embedding_relevance_total": 0,
+      "response_time_total": 0,
+      "num_questions": 192,
+      "link_relevance_avg": 0.22354166666666664,
+      "summary_relevance_avg": 0.12083333333333336,
+      "embedding_relevance_avg": 0.0,
+      "response_time_avg": 0.0
+    },
+    "datura_orbit": {
+      "link_relevance_total": 44.49444444444446,
+      "summary_relevance_total": 28.500000000000068,
+      "embedding_relevance_total": 0,
+      "response_time_total": 0,
+      "num_questions": 192,
+      "link_relevance_avg": 0.23174189814814825,
+      "summary_relevance_avg": 0.14843750000000036,
+      "embedding_relevance_avg": 0.0,
+      "response_time_avg": 0.0
+    },
+    "perplexity": {
+      "link_relevance_total": 49.09448412698415,
+      "summary_relevance_total": 24.200000000000035,
+      "embedding_relevance_total": 0,
+      "response_time_total": 1114.6048000000724,
+      "num_questions": 197,
+      "link_relevance_avg": 0.24921057932479262,
+      "summary_relevance_avg": 0.1228426395939088,
+      "embedding_relevance_avg": 0.0,
+      "response_time_avg": 5.65789238578717
+    },
+    "andi": {
+      "link_relevance_total": 44.83000000000003,
+      "summary_relevance_total": 40.100000000000044,
+      "embedding_relevance_total": 0,
+      "response_time_total": 1576.4420000000007,
+      "num_questions": 201,
+      "link_relevance_avg": 0.2230348258706469,
+      "summary_relevance_avg": 0.19950248756218927,
+      "embedding_relevance_avg": 0.0,
+      "response_time_avg": 7.842995024875625
+    },
+    "chatgpt": {
+      "link_relevance_total": 47.47999999999997,
+      "summary_relevance_total": 27.30000000000005,
+      "embedding_relevance_total": 0,
+      "response_time_total": 112.6570000000001,
+      "num_questions": 192,
+      "link_relevance_avg": 0.2472916666666665,
+      "summary_relevance_avg": 0.14218750000000027,
+      "embedding_relevance_avg": 0.0,
+      "response_time_avg": 0.5867552083333338
+    },
+    "you": {
+      "link_relevance_total": 49.03888888888885,
+      "summary_relevance_total": 42.50000000000008,
+      "embedding_relevance_total": 0,
+      "response_time_total": 349.2315263748169,
+      "num_questions": 201,
+      "link_relevance_avg": 0.24397457158651167,
+      "summary_relevance_avg": 0.21144278606965214,
+      "embedding_relevance_avg": 0.0,
+      "response_time_avg": 1.737470280471726
+    }
+  }
+}
