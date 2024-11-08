@@ -98,17 +98,16 @@ By incorporating these factors, our scoring mechanism provides a holistic view o
 
 Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
 
-| Provider               | Summary Text Relevance | Link Title & Description Relevance | Performance (ms) | Embedding Similarity |
-|------------------------|------------------------|------------------------------------|------------------|----------------------|
-| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Andi Search            | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| You.com                | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| OpenAI ChatGPT         | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Perplexity             | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Google Gemini          | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Provider          | Summary Text Relevance | Link Title & Description Relevance | Performance (s) | Embedding Similarity |
+|-------------------|------------------------|------------------------------------|-----------------|----------------------|
+| Andi Search       | 19.95%                 | 22.44%                             | 7.84s            | 0.00%               |
+| You.com           | 21.34%                 | 24.66%                             | 1.74s            | 0.00%               |
+| OpenAI ChatGPT    | 13.65%                 | 24.86%                             | 0.59s            | 0.00%               |
+| Perplexity        | 12.13%                 | 25.00%                             | 5.66s            | 0.00%               |
+| Google Gemini     | 0.00%                  | 0.00%                              | 0.00s            | 0.00%               |
+| Datura Nova 1.0   | 12.29%                 | 22.39%                             | 0.00s            | 0.00%               |
+| Datura Orbit 1.0  | 14.84%                 | 23.31%                             | 0.00s            | 0.00%               |
+| Datura Horizon 1.0 | 0.00%                  | 0.00%                              | 0.00s            | 0.00%              |
 
 
 
