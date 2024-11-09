@@ -11,6 +11,8 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
+BATCH_SIZE = 100
+
 
 class TweetAnalyzerScrapper:
     def __init__(
@@ -23,12 +25,13 @@ class TweetAnalyzerScrapper:
         self.max_execution_times = [10, 30, 120]
         self.results_dir = "../../results"
 
-    async def send_request(self, client, payload):
+    async def send_request(self, client: httpx.AsyncClient, payload):
         """Send an HTTP POST request with the given payload."""
         try:
             response = await client.post(self.url, json=payload, timeout=120.0)
             response.raise_for_status()  # Raise exception for HTTP errors
-            return response.text
+            response_time = response.elapsed.total_seconds()
+            return response.text, response_time
         except httpx.RequestError as e:
             logging.error(f"Request error: {e}")
         except httpx.HTTPStatusError as e:
@@ -52,6 +55,91 @@ class TweetAnalyzerScrapper:
         logging.info(f"Loaded {len(json_data)} records from {self.data_path}")
         return json_data
 
+    def parse_datura_results(self, type, data):
+        standardized_results = []
+
+        if type == "search":
+            for result in data.get("organic_results", []):
+                standardized_results.append(
+                    {
+                        "title": result.get("title"),
+                        "url": result.get("link"),
+                        "description": result.get("snippet"),
+                    }
+                )
+        elif "arxiv_search" in data:
+            for result in data:
+                standardized_results.append(
+                    {
+                        "title": result.get("title"),
+                        "link": result.get("url"),
+                        "snippet": result.get("snippet"),
+                    }
+                )
+        elif "hacker_news_search" in data:
+            for result in data:
+                standardized_results.append(
+                    {
+                        "title": result.get("title"),
+                        "link": result.get("url"),
+                        "snippet": result.get("snippet"),
+                    }
+                )
+        else:
+            pass
+            # print(f"Parse datura results unknown type: {type}")
+
+        return standardized_results
+
+    def parse_datura(self, response: str):
+        data = []
+
+        # Split the result by newlines and process each line
+        for line in response.splitlines():
+            line = line.strip()  # Remove leading/trailing whitespace
+
+            if line.startswith("data: "):
+                json_str = line[len("data: ") :].strip()  # Remove the prefix
+
+                try:
+                    json_obj = json.loads(json_str)  # Parse the JSON
+                    data.append(json_obj)  # Collect the parsed JSON objects
+                except json.JSONDecodeError:
+                    # Handle JSON parsing error if needed
+                    continue
+
+        search_results = []
+
+        for chunk in data:
+            type = chunk.get("type")
+            content = chunk.get("content")
+            results = self.parse_datura_results(type, content)
+            search_results.extend(results)
+
+        completion = next(
+            (d.get("content") for d in data if d.get("type") == "completion"), ""
+        )
+
+        print(completion)
+
+        print("-------------------")
+
+        # Extract text after **Summary**
+        summary_start = completion.find("Summary:**")
+        summary_text = None
+
+        if summary_start != -1:
+            summary_text = completion[summary_start + len("Summary:**") :].strip()
+
+        print(summary_text)
+
+        return {
+            "result": (
+                summary_text if summary_text else "Request failed or response was None"
+            ),
+            "search_results": search_results,
+        }
+
     async def process_data_chunk(self, client, chunk, execution_time):
         """Process a chunk of data by sending requests and collecting results."""
         tasks = [
@@ -68,10 +156,10 @@ class TweetAnalyzerScrapper:
                                 "Google News Search",
                                 "Wikipedia Search",
                                 "ArXiv Search",
-                                "Hacker News Search",
+                                # "Hacker News Search",
                             ],
                             "date_filter": "PAST_2_WEEKS",
-                            "response_order": "SUMMARY_FIRST",
+                            "response_order": "LINKS_FIRST",
                         }
                     ],
                 },
@@ -83,11 +171,10 @@ class TweetAnalyzerScrapper:
             {
                 "id": str(uuid.uuid4()),
                 "question": question["question"],
-                "result": (
-                    response if response else "Request failed or response was None"
-                ),
+                **self.parse_datura(response),
+                "response_time": response_time,
             }
-            for response, question in zip(responses, chunk)
+            for (response, response_time), question in zip(responses, chunk)
         ]
         return results
 
@@ -99,8 +186,8 @@ class TweetAnalyzerScrapper:
             for execution_time in self.max_execution_times:
                 logging.info(f"Processing with max execution time: {execution_time}")
                 full_results = []
-                for i in range(0, len(data), 100):
-                    chunk = data[i : i + 100]
+                for i in range(0, len(data), BATCH_SIZE):
+                    chunk = data[i : i + BATCH_SIZE]
                     results = await self.process_data_chunk(
                         client, chunk, execution_time
                     )
