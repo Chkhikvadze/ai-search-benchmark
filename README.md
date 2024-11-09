@@ -5,14 +5,11 @@
 The AI Search Wars Have Begun - ChatGPT Search, Andi Search, Gemini Grounding, and more. In this rapidly evolving digital landscape, AI-powered search engines are at the forefront of innovation, offering users enhanced search capabilities and personalized experiences. This benchmark aims to analyze, fetch, and prepare data from leading AI search providers currently available in the market. Our focus includes:
 
 1. **[Datura (Meta - Bittensor Network, Subnet 22)](https://chi.datura.ai/)** - Visit Datura
-
-
 2. **[You.com](https://you.com/)** - Visit You.com
 3. **[OpenAI ChatGPT](https://openai.com/index/introducing-chatgpt-search/)** - Learn about ChatGPT Search
 4. **[Perplexity](https://www.perplexity.ai/)** - Visit Perplexity
 5. **[Google Gemini](https://gemini.google.com/app)** - Visit Google Gemini
-6. **[Datura (Meta - Bittensor Network, Subnet 22)](https://chi.datura.ai/)** - Visit Datura
-7. **[Andi Search](https://andisearch.com/)** - Visit Andi Search
+6. **[Andi Search](https://andisearch.com/)** - Visit Andi Search
 7. **[X Grok](https://x.com/i/grok)** - X Grok
 
 Through this benchmark, we aim to provide insights into the capabilities and performance of these AI search engines, helping users and developers make informed decisions about which platforms best meet their needs.
