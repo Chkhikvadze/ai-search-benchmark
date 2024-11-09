@@ -71,7 +71,7 @@ class LinkRelevanceModel:
                     continue
 
                 links_with_metadata = []
-                for sr in search_results[:LINKS]:  # Limit to top 3 links
+                for sr in search_results[:LINKS]:
                     url = sr.get("url")
                     title = sr.get("title", "")
                     description = sr.get("description", "")
