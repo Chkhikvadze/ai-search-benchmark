@@ -53,12 +53,12 @@ In this section, we present the results focusing on Summary and Twitter Content 
 
 Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
 
-| Provider               | Summary Relevance      | Twitter Content Relevance          | Performance (ms) | Embedding Similarity |
-|------------------------|------------------------|------------------------------------|------------------|----------------------|
-| Datura Nova 1.0        | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Orbit 1.0       | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| Datura Horizon 1.0     | [Score]                | [Score]                            | [Time]           | [Similarity]         |
-| X Grok                 | [Score]                | [Score]                            | [Time]           | [Similarity]         |
+| Provider            | Summary Text Relevance | Link Title & Description Relevance | Performance (s)  | Embedding Similarity   |
+|---------------------|------------------------|------------------------------------|------------------|------------------------|
+| Grok 2              | 11.33%                 | 7.68%                              | 8.86s            | 77.92%                 |
+| Datura Nova 1.0     | 17.33%                 | 11.80%                             | 9.77s            | 36.50%                 |
+| Datura Orbit 1.0    | 17.00%                 | 13.47%                             | 25.49s           | 37.52%                 |
+
 
 
 ### 📊 Top Models Chart
