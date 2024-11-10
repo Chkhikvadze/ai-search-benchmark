@@ -1,15 +1,15 @@
 import asyncio
 import json
 import os
-from scoring.parser import (
+from parser import (
     TWITTER_PROVIDERS,
     WEB_PROVIDERS,
     web_results,
     twitter_results,
 )
-from scoring.reward_llm import RewardLLM
-from scoring.link_relevance import LinkRelevanceModel
-from scoring.summary_relevance import SummaryRelevanceModel
+from reward_llm import RewardLLM
+from link_relevance import LinkRelevanceModel
+from summary_relevance import SummaryRelevanceModel
 
 llm_reward = RewardLLM()
 
@@ -70,7 +70,7 @@ provider_display_names = {
     "perplexity": "Perplexity",
     "google_gemini": "Google Gemini",
     "grok": "Grok 2",
-    "datura_nova": "Datura Nova 1.0",
+    "lord": "Datura Nova 1.0",
     "datura_orbit": "Datura Orbit 1.0",
     "datura_horizon": "Datura Horizon 1.0",
 }
@@ -194,5 +194,5 @@ async def score_results(results, provider):
 
 
 # Run the asynchronous function
-asyncio.run(score_results(twitter_results, TWITTER_PROVIDERS))
+#asyncio.run(score_results(twitter_results, TWITTER_PROVIDERS))
 asyncio.run(score_results(web_results, WEB_PROVIDERS))

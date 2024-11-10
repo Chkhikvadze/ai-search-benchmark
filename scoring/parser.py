@@ -20,8 +20,9 @@ class ProviderResult(TypedDict):
 WEB_PROVIDERS = {
     "name": "web",
     "files": {
-        "datura_nova": "datura_10_results_2.jsonl",
-        "datura_orbit": "datura_30_results_2.jsonl",
+        #"datura_nova": "datura_10_results_2.jsonl",
+        #"datura_orbit": "datura_30_results_2.jsonl",
+        "lord": "lord_10_results.jsonl",
         # "datura_horizon": "datura_120_results.jsonl",
         "perplexity": "perplexity_ai_results.jsonl",
         "andi": "andi_search_result.jsonl",
@@ -35,6 +36,7 @@ WEB_PROVIDERS = {
         "perplexity",
         "google_gemini",
         "grok",
+        "lord",
         "datura_nova",
         "datura_orbit",
         "datura_horizon",

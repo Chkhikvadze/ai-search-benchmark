@@ -29,7 +29,7 @@ class ScoringPrompt(BasePrompt):
         # Mapping of special codes to numeric scores
 
         # Extract score from output string with various formats
-        match = re.search(r"(?i)score[:\s]*([0-9]|10)", response)
+        match = re.search(r"(?i)score[:\s]*(2|5|10)", response)
         if match:
             try:
                 score = float(match.group(1))
@@ -39,7 +39,7 @@ class ScoringPrompt(BasePrompt):
                 return 0
 
         # Extract score directly from the response if "Score:" prefix is missing
-        match = re.search(r"\b([0-9]|10)\b", response)
+        match = re.search(r"\b(2|5|10)\b", response)
         if match:
             try:
                 score = float(match.group(1))

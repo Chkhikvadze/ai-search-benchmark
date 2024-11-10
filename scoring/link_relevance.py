@@ -1,6 +1,6 @@
-from .reward_llm import RewardLLM
+from reward_llm import RewardLLM
 import traceback
-from .prompts import (
+from prompts import (
     SearchSummaryRelevancePrompt,
 )
 
@@ -102,6 +102,7 @@ class LinkRelevanceModel:
 
             # Now, for each result, compute the average score
             for result in results:
+                print(result)
                 total_score = 0
                 num_links = 0
                 search_results = result.get("search_results", [])
@@ -110,10 +111,13 @@ class LinkRelevanceModel:
                     score_result = val_score_responses.get(url, None)
                     if score_result is not None:
                         score = scoring_prompt.extract_score(score_result)
+                        print(f"score_result: {score_result}")
+                        print(f"score: {score}")
                         total_score += score / 10.0  # Adjust score scaling as needed
                         num_links += 1
                 if num_links > 0:
                     average_score = total_score / num_links
+                    print(f"total_score: {total_score}, num_links: {num_links}, average_score: {average_score}")
                     reward = min(average_score, 1.0)
                     result["link_relevance"] = reward
                 else:
