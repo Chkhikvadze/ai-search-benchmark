@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "./Table";
+import { StyledHeader, StyledWrapper } from "./ProviderPerformanceTalble";
 
 const TwitterRelevanceTable = () => {
   const data = React.useMemo(
@@ -62,12 +63,10 @@ const TwitterRelevanceTable = () => {
   );
 
   return (
-    <>
-      {/* <Typography bold size="x-large">
-        Twitter Relevance
-      </Typography> */}
+    <StyledWrapper>
+      <StyledHeader>🐦 Twitter Relevance Results</StyledHeader>
       <Table columns={columns} data={data} />
-    </>
+    </StyledWrapper>
   );
 };
 

@@ -84,6 +84,8 @@ const StyledTable = styled.table`
   border-radius: 10px;
 
   width: 100%;
+
+  font-size: 14px;
 `;
 
 const StyledTh = styled.th`

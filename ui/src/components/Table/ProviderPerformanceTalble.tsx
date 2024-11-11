@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "./Table";
+import { styled } from "styled-components";
 
 const ProviderPerformanceTable = () => {
   const columns = React.useMemo(
@@ -103,7 +104,26 @@ const ProviderPerformanceTable = () => {
     []
   );
 
-  return <Table columns={columns} data={data} />;
+  return (
+    <StyledWrapper>
+      <StyledHeader>📊 Provider Performance Comparison</StyledHeader>
+      <Table columns={columns} data={data} />
+    </StyledWrapper>
+  );
 };
 
 export default ProviderPerformanceTable;
+
+export const StyledWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 32px;
+`;
+
+export const StyledHeader = styled.h1`
+  font-size: 30px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.body.textColorSecondary};
+`;
