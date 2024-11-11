@@ -20,24 +20,24 @@ class ProviderResult(TypedDict):
 WEB_PROVIDERS = {
     "name": "web",
     "files": {
-        "datura_nova": "datura_10_results_2.jsonl",
-        "datura_orbit": "datura_30_results_2.jsonl",
+        "datura_nova": "datura_10_web_results.jsonl",
+        "datura_orbit": "datura_30_web_results.jsonl",
         # "datura_horizon": "datura_120_results.jsonl",
         "perplexity": "perplexity_ai_results.jsonl",
         "andi": "andi_search_result.jsonl",
         "chatgpt": "chatgpt_search_result.jsonl",
         "you": "you_results.jsonl",
+        "gemini": "gemini_results.jsonl",
     },
     "table_order": [
         "andi",
         "you",
         "chatgpt",
         "perplexity",
-        "google_gemini",
-        "grok",
+        "gemini",
         "datura_nova",
         "datura_orbit",
-        "datura_horizon",
+        # "datura_horizon",
     ],
 }
 
@@ -97,7 +97,14 @@ def parse_provider(
             # items = items[:10]  # Adjust as needed
 
             ### Comment after full dataset
-            items = [json.loads(line) for line in f]
+            # items = [json.loads(line) for line in f]
+            items = []
+            for line in f:
+                try:
+                    item = json.loads(line)
+                    items.append(item)
+                except json.JSONDecodeError as e:
+                    print("Error decoding line:", line)
             items = [item for item in items if item["question"] in perplexity_questions]
             items = sorted(items, key=lambda x: x["question"])
             ###
@@ -153,5 +160,5 @@ twitter_results = parse_provider(
 )
 
 web_results = parse_provider(
-    providers=WEB_PROVIDERS, provider_with_least_results="chatgpt"
+    providers=WEB_PROVIDERS, provider_with_least_results="datura_nova"
 )
