@@ -15,8 +15,25 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortByEnabled = columns.some((column: any) => column.sort);
 
+  const initialSortBy = columns
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .filter((column: any) => column.defaultSort)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((column: any) => ({
+      id: column.accessor,
+      desc: column.defaultSort === "desc",
+    }));
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, ...(sortByEnabled ? [useSortBy] : []));
+    useTable(
+      {
+        columns,
+        data,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        initialState: { sortBy: initialSortBy } as any,
+      },
+      ...(sortByEnabled ? [useSortBy] : [])
+    );
 
   return (
     <TableContainer>

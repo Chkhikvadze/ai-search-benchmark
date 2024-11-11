@@ -47,6 +47,7 @@ const TwitterRelevanceTable = () => {
         Header: "Link Content Relevance",
         accessor: "Link Content Relevance",
         sort: true,
+        defaultSort: "desc",
       },
       {
         Header: "Performance (s)",
