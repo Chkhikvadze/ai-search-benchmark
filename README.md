@@ -14,27 +14,26 @@ The AI Search Wars Have Begun - ChatGPT Search, Andi Search, Gemini Grounding, a
 
 Through this benchmark, we aim to provide insights into the capabilities and performance of these AI search engines, helping users and developers make informed decisions about which platforms best meet their needs.
 
-
 ## 📊 Provider Performance Comparison
 
 Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
 
-| Provider            | Summary Text Relevance | Link Title & Description Relevance | Performance (s)  | Embedding Similarity   |
-|---------------------|------------------------|------------------------------------|------------------|------------------------|
-| Andi Search         | 23.75%                 | 66.42%                             | 6.47s            | 21.47%                 |
-| You.com             | 43.84%                 | 65.07%                             | 1.69s            | 57.07%                 |
-| OpenAI ChatGPT      | 92.05%                 | 65.04%                             | 2.31s            | 73.15%                 |
-| Perplexity          | 94.71%                 | 63.85%                             | 5.61s            | 75.38%                 |
-| Google Gemini       | 0.00%                  | 0.00%                              | 0.00s            | 0.00%                  |
-| Grok 2              | 0.00%                  | 0.00%                              | 0.00s            | 0.00%                  |
-| Datura Nova 1.0     | 88.15%                 | 74.06%                             | 8.89s            | 73.04%                 |
-| Datura Orbit 1.0    | 92.95%                 | 76.00%                             | 18.92s           | 72.97%                 |
-| Datura Horizon 1.0  | 0.00%                  | 0.00%                              | 0.00s            | 0.00%                  |
+| Provider           | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity |
+| ------------------ | ---------------------- | ---------------------- | --------------- | -------------------- |
+| Andi Search        | 23.75%                 | 66.42%                 | 6.47s           | 21.47%               |
+| You.com            | 43.84%                 | 65.07%                 | 1.69s           | 57.07%               |
+| OpenAI ChatGPT     | 92.05%                 | 65.04%                 | 2.31s           | 73.15%               |
+| Perplexity         | 94.71%                 | 63.85%                 | 5.61s           | 75.38%               |
+| Google Gemini      | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
+| Grok 2             | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
+| Datura Nova 1.0    | 88.15%                 | 74.06%                 | 8.89s           | 73.04%               |
+| Datura Orbit 1.0   | 92.95%                 | 76.00%                 | 18.92s          | 72.97%               |
+| Datura Horizon 1.0 | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
 
 ### 🏆 Top Model Analysis
 
-| 📊 Top Model Per Search Summary | 🌐 Best Model Per Web Link Content Relevance |
-|---------------------------------|---------------------------------------------|
+| 📊 Top Model Per Search Summary                            | 🌐 Best Model Per Web Link Content Relevance                            |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------- |
 | ![Top Model Per Search Summary](docs/assets/chart_bar.png) | ![Best Model Per Web Link Content Relevance](docs/assets/chart_bar.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
@@ -54,19 +53,18 @@ In this section, we present the results focusing on Summary and Twitter Content 
 
 Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
 
-| Provider            | Summary Text Relevance | Link Title & Description Relevance | Performance (s)  | Embedding Similarity   |
-|---------------------|------------------------|------------------------------------|------------------|------------------------|
-| Grok 2              | 96.67%                 | 27.14%                             | 8.86s            | 77.92%                 |
-| Datura Nova 1.0     | 67.33%                 | 24.57%                             | 8.21s            | 69.34%                 |
-| Datura Orbit 1.0    | 78.33%                 | 49.57%                             | 26.04s           | 71.31%                 |
-
-
+| Provider         | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity |
+| ---------------- | ---------------------- | ---------------------- | --------------- | -------------------- |
+| Grok 2           | 96.67%                 | 27.14%                 | 8.86s           | 77.92%               |
+| Datura Nova 1.0  | 67.33%                 | 24.57%                 | 8.21s           | 69.34%               |
+| Datura Orbit 1.0 | 78.33%                 | 49.57%                 | 26.04s          | 71.31%               |
 
 ### 📊 Top Models Chart
 
-| 🥇 Top Models Per Twitter Content | 🔍 Best Model Embedding Similarity |
-|-----------------------------------|-----------------------------------|
+| 🥇 Top Models Per Twitter Content                          | 🔍 Best Model Embedding Similarity                                      |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------- |
 | ![Top Model Per Search Summary](docs/assets/chart_bar.png) | ![Best Model Per Web Link Content Relevance](docs/assets/chart_bar.png) |
+
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
         <h4>🥇 op Models Per Twitter Content</h4>
@@ -78,21 +76,22 @@ Below is a table showcasing the results of each provider in terms of Summary and
     </div>
 </div> -->
 
-
-
 ## 📈 Scoring Mechanism
 
 To evaluate the performance and relevance of AI search providers, we have developed a comprehensive scoring mechanism. This mechanism assesses the quality of responses based on several key factors:
 
 1. **Summary Text Relevance**:
+
    - We utilize a language model (LLM) to evaluate the relevance of the summary text provided by each AI search provider in relation to the question asked.
    - In our initial tests, we employed GPT-4o to assess the relevance between the summary text and the questions.
 
 2. **Link Title and Description Relevance**:
+
    - Each link's title and description returned by the provider are checked for contextual relevance to the question.
    - This involves analyzing whether the content of the links is pertinent to the query, ensuring that the search results are not only accurate but also useful.
 
 3. **Performance**:
+
    - This metric evaluates the response time of each provider, measured in milliseconds.
    - Faster response times contribute positively to the overall score, as they enhance the user experience by providing timely information.
 
@@ -141,7 +140,6 @@ In our first test, we decided to utilize a dataset from the [Talc AI SearchBench
 
 The SearchBench repository addresses common issues with traditional benchmarks by focusing on practical, everyday use cases rather than theoretical limits. It emphasizes realistic user queries and the incorporation of new knowledge over time, ensuring that AI products remain relevant and useful.
 
-
 ### 📂 Dataset Source
 
 Our dataset is sourced from the Talc AI Search Bench repository and is stored in the `dataset/data.jsonl` file.
@@ -150,12 +148,11 @@ To better illustrate the structure of responses in your `README.md`, you can pro
 
 Filling in more realistic values in the example can indeed make it clearer and more informative for users. Here's an updated version of the example with more detailed and realistic values:
 
-| 📈 Areas | 📉 Categories |
-|----------|--------------|
+| 📈 Areas                                                            | 📉 Categories                                                                 |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | ![Subcategory Percentages](docs/assets/subcategory_percentages.png) | ![Summary Category Percentages](docs/assets/summary_category_percentages.png) |
 
 By using this approach, we ensure that we can gather the necessary data for our analysis, even in the absence of direct API access from the providers.
-
 
 ### 📐 Structure of Responses
 
@@ -170,22 +167,22 @@ The structure of the responses is as follows:
 
 ```json
 {
-    "id": "c0683ac6-baee-4e2a-9290-8b734b777301",
-    "question": "What did safety reviews conclude about the danger of experiments at the Large Hadron Collider?",
-    "result": "Safety reviews have consistently concluded that the experiments at the Large Hadron Collider pose no significant risk to the public or the environment.",
-    "search_results": [
-        {
-            "title": "CERN's Safety Assessment",
-            "url": "https://home.cern/science/experiments/safety",
-            "description": "An overview of the safety measures and assessments conducted by CERN regarding the LHC experiments."
-        },
-        {
-            "title": "LHC Safety: Public Concerns Addressed",
-            "url": "https://www.scientificamerican.com/article/lhc-safety-public-concerns/",
-            "description": "This article addresses public concerns about the safety of the LHC and explains why these fears are unfounded."
-        }
-    ],
-    "response_time": 10
+  "id": "c0683ac6-baee-4e2a-9290-8b734b777301",
+  "question": "What did safety reviews conclude about the danger of experiments at the Large Hadron Collider?",
+  "result": "Safety reviews have consistently concluded that the experiments at the Large Hadron Collider pose no significant risk to the public or the environment.",
+  "search_results": [
+    {
+      "title": "CERN's Safety Assessment",
+      "url": "https://home.cern/science/experiments/safety",
+      "description": "An overview of the safety measures and assessments conducted by CERN regarding the LHC experiments."
+    },
+    {
+      "title": "LHC Safety: Public Concerns Addressed",
+      "url": "https://www.scientificamerican.com/article/lhc-safety-public-concerns/",
+      "description": "This article addresses public concerns about the safety of the LHC and explains why these fears are unfounded."
+    }
+  ],
+  "response_time": 10
 }
 ```
 

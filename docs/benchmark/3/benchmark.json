@@ -3,56 +3,56 @@
     {
       "Provider": "Andi Search",
       "Summary Text Relevance": "19.95%",
-      "Link Title & Description Relevance": "22.44%",
+      "Link Content Relevance": "22.44%",
       "Performance (s)": "7.84s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "You.com",
       "Summary Text Relevance": "21.34%",
-      "Link Title & Description Relevance": "24.66%",
+      "Link Content Relevance": "24.66%",
       "Performance (s)": "1.74s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "OpenAI ChatGPT",
       "Summary Text Relevance": "13.65%",
-      "Link Title & Description Relevance": "24.86%",
+      "Link Content Relevance": "24.86%",
       "Performance (s)": "0.59s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "Perplexity",
       "Summary Text Relevance": "12.13%",
-      "Link Title & Description Relevance": "25.00%",
+      "Link Content Relevance": "25.00%",
       "Performance (s)": "5.66s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "Google Gemini",
       "Summary Text Relevance": "0.00%",
-      "Link Title & Description Relevance": "0.00%",
+      "Link Content Relevance": "0.00%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "Datura Nova 1.0",
       "Summary Text Relevance": "12.29%",
-      "Link Title & Description Relevance": "22.39%",
+      "Link Content Relevance": "22.39%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "Datura Orbit 1.0",
       "Summary Text Relevance": "14.84%",
-      "Link Title & Description Relevance": "23.31%",
+      "Link Content Relevance": "23.31%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     },
     {
       "Provider": "Datura Horizon 1.0",
       "Summary Text Relevance": "0.00%",
-      "Link Title & Description Relevance": "0.00%",
+      "Link Content Relevance": "0.00%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     }
