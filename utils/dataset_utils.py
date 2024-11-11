@@ -52,6 +52,13 @@ def remove_duplicates_by_id(input_file, output_file):
 # stats = remove_duplicates_by_id(andi_input_file, andi_output_file)
 # print(f"Processed {stats['total_processed']} unique entries from Andi search results")
 
+
+# Remove duplicates from Grok search results
+grok_input_file = 'results/grok_search_result.jsonl'
+grok_output_file = 'results/cleaned/rm_dup_grok_search_result.jsonl'
+stats = remove_duplicates_by_id(grok_input_file, grok_output_file)
+print(f"Processed {stats['total_processed']} unique entries from Grok search results")
+
 def validate_results(dataset_file, result_file, unused_output_file=None):
     """
     Validate results against dataset and check for missing or unused entries
@@ -118,7 +125,8 @@ def validate_all_results():
     result_files = {
         'perplexity': 'results/cleaned/rm_dup_perplexity_ai_results.jsonl',
         'you': 'results/cleaned/rm_dup_you_results.jsonl',
-        'andi': 'results/cleaned/rm_dup_andi_search_result.jsonl'
+        'andi': 'results/cleaned/rm_dup_andi_search_result.jsonl',
+        'grok': 'results/cleaned/rm_dup_grok_search_result.jsonl'
     }
 
     for source, result_file in result_files.items():
@@ -134,6 +142,6 @@ def validate_all_results():
         if stats['missing_entries'] > 0:
             print(f"Missing IDs: {stats['missing_ids']}")
 
-# # Run the validation
-# if __name__ == "__main__":
-#     validate_all_results()
+# Run the validation
+if __name__ == "__main__":
+    validate_all_results()
