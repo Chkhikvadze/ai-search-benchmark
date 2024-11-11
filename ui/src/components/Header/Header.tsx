@@ -6,7 +6,9 @@ const Header = () => {
     <StyledRoot>
       <StyledCompanyName>
         <StyledLogo src={"DaturaLogo.svg"} alt="logo" />
-        <Typography>Datura Meta</Typography>
+        <Typography kind="secondary" semibold size="large">
+          Datura Meta
+        </Typography>
       </StyledCompanyName>
     </StyledRoot>
   );
@@ -17,13 +19,10 @@ export default Header;
 const StyledRoot = styled.header`
   width: 100%;
   height: 60px;
-  /* background-color: red; */
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* background-color: ${({ theme }) => theme.body.backgroundColorSecondary}; */
 `;
 
 const StyledLogo = styled.img`
