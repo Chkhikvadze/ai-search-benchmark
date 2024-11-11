@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import Typography from "../../components/Typography";
+import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable";
 
 const Home = () => {
   return (
     <StyledRoot>
-      <Typography>Home</Typography>
+      {/* <Typography>Home</Typography> */}
+
+      <TwitterRelevanceTable />
     </StyledRoot>
   );
 };

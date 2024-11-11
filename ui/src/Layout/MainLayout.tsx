@@ -16,7 +16,7 @@ const StyledRoot = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background-color: ${({ theme }) => theme.body.backgroundColorPrimary};
+  background-color: #0a0b0e;
 `;
 
 const StyledContent = styled.div`

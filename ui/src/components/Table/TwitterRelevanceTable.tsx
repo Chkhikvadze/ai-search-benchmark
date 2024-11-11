@@ -1,0 +1,72 @@
+import React from "react";
+import Table from "./Table";
+
+const TwitterRelevanceTable = () => {
+  const data = React.useMemo(
+    () => [
+      {
+        Provider: "Grok 2",
+        "Summary Text Relevance": "96.67%",
+        "Link Title & Description Relevance": "27.14%",
+        "Performance (s)": "8.86s",
+        "Embedding Similarity": "77.92%",
+      },
+      {
+        Provider: "Datura Nova 1.0",
+        "Summary Text Relevance": "67.33%",
+        "Link Title & Description Relevance": "24.57%",
+        "Performance (s)": "8.21s",
+        "Embedding Similarity": "69.34%",
+      },
+      {
+        Provider: "Datura Orbit 1.0",
+        "Summary Text Relevance": "78.33%",
+        "Link Title & Description Relevance": "49.57%",
+        "Performance (s)": "26.04s",
+        "Embedding Similarity": "71.31%",
+      },
+    ],
+    []
+  );
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Provider",
+        accessor: "Provider",
+      },
+      {
+        Header: "Summary Text Relevance",
+        accessor: "Summary Text Relevance",
+        sort: true,
+      },
+      {
+        Header: "Link Title & Description Relevance",
+        accessor: "Link Title & Description Relevance",
+        sort: true,
+      },
+      {
+        Header: "Performance (s)",
+        accessor: "Performance (s)",
+        sort: true,
+      },
+      {
+        Header: "Embedding Similarity",
+        accessor: "Embedding Similarity",
+        sort: true,
+      },
+    ],
+    []
+  );
+
+  return (
+    <>
+      {/* <Typography bold size="x-large">
+        Twitter Relevance
+      </Typography> */}
+      <Table columns={columns} data={data} />
+    </>
+  );
+};
+
+export default TwitterRelevanceTable;
