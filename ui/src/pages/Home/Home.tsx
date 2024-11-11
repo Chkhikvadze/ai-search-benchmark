@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable";
+import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTalble";
 
 const Home = () => {
   return (
@@ -7,6 +8,8 @@ const Home = () => {
       {/* <Typography>Home</Typography> */}
 
       <TwitterRelevanceTable />
+
+      <ProviderPerformanceTable />
     </StyledRoot>
   );
 };
@@ -18,6 +21,4 @@ const StyledRoot = styled.div`
   height: 100%;
 
   padding: 20px;
-
-  /* background-color: red; */
 `;

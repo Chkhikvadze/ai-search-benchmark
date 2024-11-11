@@ -30,6 +30,10 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                   {...column.getHeaderProps(
                     column.sort ? column.getSortByToggleProps() : undefined
                   )}
+                  style={{
+                    width: column.width,
+                    minWidth: column.minWidth,
+                  }}
                 >
                   <StyledHeaderRow>
                     {column.render("Header")}

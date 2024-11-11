@@ -34,6 +34,8 @@ const TwitterRelevanceTable = () => {
       {
         Header: "Provider",
         accessor: "Provider",
+        width: 150,
+        minWidth: 150,
       },
       {
         Header: "Summary Text Relevance",
