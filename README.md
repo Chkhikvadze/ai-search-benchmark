@@ -55,9 +55,9 @@ Below is a table showcasing the results of each provider in terms of Summary and
 
 | Provider            | Summary Text Relevance | Link Title & Description Relevance | Performance (s)  | Embedding Similarity   |
 |---------------------|------------------------|------------------------------------|------------------|------------------------|
-| Grok 2              | 11.33%                 | 7.68%                              | 8.86s            | 77.92%                 |
-| Datura Nova 1.0     | 17.33%                 | 11.80%                             | 9.77s            | 36.50%                 |
-| Datura Orbit 1.0    | 17.00%                 | 13.47%                             | 25.49s           | 37.52%                 |
+| Grok 2              | 96.67%                 | 27.14%                             | 8.86s            | 77.92%                 |
+| Datura Nova 1.0     | 67.33%                 | 24.57%                             | 8.21s            | 69.34%                 |
+| Datura Orbit 1.0    | 78.33%                 | 49.57%                             | 26.04s           | 71.31%                 |
 
 
 

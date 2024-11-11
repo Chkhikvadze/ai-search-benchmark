@@ -11,10 +11,10 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-BATCH_SIZE = 20
+BATCH_SIZE = 10
 
 COUNT_LIMIT = (
-    2  # Set to an integer to limit the number of records processed for testing
+    200  # Set to an integer to limit the number of records processed for testing
 )
 
 

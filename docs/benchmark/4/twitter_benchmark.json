@@ -1,0 +1,60 @@
+{
+  "results_table": [
+    {
+      "Provider": "Grok 2",
+      "Summary Text Relevance": "96.67%",
+      "Link Title & Description Relevance": "27.14%",
+      "Performance (s)": "8.86s",
+      "Embedding Similarity": "77.92%"
+    },
+    {
+      "Provider": "Datura Nova 1.0",
+      "Summary Text Relevance": "67.33%",
+      "Link Title & Description Relevance": "24.57%",
+      "Performance (s)": "8.21s",
+      "Embedding Similarity": "69.34%"
+    },
+    {
+      "Provider": "Datura Orbit 1.0",
+      "Summary Text Relevance": "78.33%",
+      "Link Title & Description Relevance": "49.57%",
+      "Performance (s)": "26.04s",
+      "Embedding Similarity": "71.31%"
+    }
+  ],
+  "provider_stats": {
+    "datura_nova": {
+      "link_relevance_total": 7.370000000000002,
+      "summary_relevance_total": 20.2,
+      "embedding_relevance_total": 20.800583245448063,
+      "response_time_total": 246.220163,
+      "num_questions": 30,
+      "link_relevance_avg": 0.24566666666666673,
+      "summary_relevance_avg": 0.6733333333333333,
+      "embedding_relevance_avg": 0.6933527748482687,
+      "response_time_avg": 8.207338766666668
+    },
+    "datura_orbit": {
+      "link_relevance_total": 14.87,
+      "summary_relevance_total": 23.5,
+      "embedding_relevance_total": 21.394269706426098,
+      "response_time_total": 781.263046,
+      "num_questions": 30,
+      "link_relevance_avg": 0.49566666666666664,
+      "summary_relevance_avg": 0.7833333333333333,
+      "embedding_relevance_avg": 0.7131423235475366,
+      "response_time_avg": 26.042101533333334
+    },
+    "grok": {
+      "link_relevance_total": 8.142857142857142,
+      "summary_relevance_total": 29.0,
+      "embedding_relevance_total": 23.376344629395554,
+      "response_time_total": 265.8545000000149,
+      "num_questions": 30,
+      "link_relevance_avg": 0.2714285714285714,
+      "summary_relevance_avg": 0.9666666666666667,
+      "embedding_relevance_avg": 0.7792114876465185,
+      "response_time_avg": 8.861816666667163
+    }
+  }
+}
