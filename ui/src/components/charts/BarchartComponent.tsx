@@ -8,6 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import Typography from "../Typography";
 
 interface BarChartComponentProps {
   data: Array<{ name: string; value: number }>;
@@ -16,6 +17,7 @@ interface BarChartComponentProps {
 const BarChartComponent: React.FC<BarChartComponentProps> = ({ data }) => {
   return (
     <div style={{ width: "40%", height: 300, position: "relative" }}>
+      <Typography>Top Model Per Search Summary</Typography>
       <ResponsiveContainer>
         <BarChart
           data={data}

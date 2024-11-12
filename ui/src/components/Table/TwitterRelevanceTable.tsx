@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "./Table";
-import { StyledHeader, StyledWrapper } from "./ProviderPerformanceTalble";
-import { twitterBenchmark } from "./constants";
+import { StyledHeader, StyledWrapper } from "./ProviderPerformanceTable";
+import twitterBenchmark from "../../../../docs/benchmark/4/twitter_benchmark.json";
 
 const TwitterRelevanceTable = () => {
   const columns = React.useMemo(

@@ -1,24 +1,25 @@
 import styled from "styled-components";
 import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable";
-import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTalble";
+import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTable";
 import BarChartComponent from "../../components/charts/BarchartComponent";
-import { webBenchmark } from "../../components/Table/constants";
+import webBenchmark from "../../../../docs/benchmark/4/web_benchmark.json";
 
 const Home = () => {
-  const data = webBenchmark.results_table.map((item) => ({
-    name: item.Provider,
-    value: parseFloat(item["Summary Text Relevance"]),
-  }));
+  const data = webBenchmark.results_table
+    .map((item) => ({
+      name: item.Provider,
+      value: parseFloat(item["Summary Text Relevance"]),
+    }))
+    .sort((a, b) => b.value - a.value); // Sort in descending order
 
   return (
     <StyledRoot>
       {/* <Typography>Home</Typography> */}
-
-      <TwitterRelevanceTable />
-
       <div>
         <BarChartComponent data={data} />
       </div>
+
+      <TwitterRelevanceTable />
 
       <ProviderPerformanceTable />
     </StyledRoot>
