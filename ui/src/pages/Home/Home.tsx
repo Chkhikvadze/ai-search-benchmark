@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <StyledRoot>
       <StyledBody>
-        <StyledTitle>Meta Leaderboard</StyledTitle>
+        <StyledTitle>22 Meta Leaderboard</StyledTitle>
 
         <Charts />
 
