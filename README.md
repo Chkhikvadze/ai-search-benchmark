@@ -20,17 +20,16 @@ Through this benchmark, we aim to provide insights into the capabilities and per
 
 Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
 
-| Provider           | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity |
-| ------------------ | ---------------------- | ---------------------- | --------------- | -------------------- |
-| Andi Search        | 23.75%                 | 66.42%                 | 6.47s           | 21.47%               |
-| You.com            | 43.84%                 | 65.07%                 | 1.69s           | 57.07%               |
-| OpenAI ChatGPT     | 92.05%                 | 65.04%                 | 2.31s           | 73.15%               |
-| Perplexity         | 94.71%                 | 63.85%                 | 5.61s           | 75.38%               |
-| Google Gemini      | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
-| Grok 2             | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
-| Datura Nova 1.0    | 88.15%                 | 74.06%                 | 8.89s           | 73.04%               |
-| Datura Orbit 1.0   | 92.95%                 | 76.00%                 | 18.92s          | 72.97%               |
-| Datura Horizon 1.0 | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
+| Provider            | Summary Text Relevance | Link Content Relevance             | Performance (s)  | Embedding Similarity   | Expected Answer Relevance 
+|---------------------|------------------------|------------------------------------|------------------|------------------------|---------------------------
+| Datura Horizon 1.0  | 92.57%                 | 80.46%                             | 38.35s           | 72.60%                 | 69.69%                    |
+| Datura Orbit 1.0    | 88.03%                 | 77.32%                             | 19.40s           | 72.53%                 | 69.86%                    |
+| Datura Nova 1.0     | 83.80%                 | 71.22%                             | 8.84s            | 72.20%                 | 69.56%                    |
+| Andi Search         | 23.30%                 | 62.06%                             | 6.68s            | 20.70%                 | 18.88%                    |
+| OpenAI ChatGPT      | 90.70%                 | 61.36%                             | 2.23s            | 73.27%                 | 71.38%                    |
+| You.com             | 37.64%                 | 60.11%                             | 1.73s            | 54.77%                 | 50.40%                    |
+| Perplexity          | 91.82%                 | 59.63%                             | 5.68s            | 73.30%                 | 70.29%                    |
+| Google Gemini       | 71.58%                 | 53.42%                             | 1.81s            | 60.92%                 | 56.90%                    |
 
 ### 🏆 Top Model Analysis
 
@@ -55,11 +54,12 @@ In this section, we present the results focusing on Summary and Twitter Content 
 
 Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
 
-| Provider         | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity |
-| ---------------- | ---------------------- | ---------------------- | --------------- | -------------------- |
-| Grok 2           | 96.67%                 | 27.14%                 | 8.86s           | 77.92%               |
-| Datura Nova 1.0  | 67.33%                 | 24.57%                 | 8.21s           | 69.34%               |
-| Datura Orbit 1.0 | 78.33%                 | 49.57%                 | 26.04s          | 71.31%               |
+| Provider            | Summary Text Relevance | Link Content Relevance             | Performance (s)  | Embedding Similarity   | Expected Answer Relevance 
+|---------------------|------------------------|------------------------------------|------------------|------------------------|---------------------------
+| Datura Horizon 1.0  | 79.00%                 | 44.92%                             | 31.45s           | 71.72%                 | 65.47%                    |
+| Datura Orbit 1.0    | 66.19%                 | 40.63%                             | 24.59s           | 68.18%                 | 62.37%                    |
+| Grok 2              | 92.68%                 | 29.95%                             | 30.20s           | 76.44%                 | 75.37%                    |
+| Datura Nova 1.0     | 52.68%                 | 23.43%                             | 8.59s            | 66.00%                 | 59.20%                    |
 
 ### 📊 Top Models Chart
 
