@@ -27,7 +27,9 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
   return (
     <StyledContainer>
       <StyledTitleWrapper>
-        <Typography kind="secondary">{title}</Typography>
+        <Typography kind="secondary" bold>
+          {title}
+        </Typography>
       </StyledTitleWrapper>
       <ResponsiveContainer>
         <BarChart

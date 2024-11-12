@@ -7,6 +7,8 @@ const Home = () => {
   return (
     <StyledRoot>
       <StyledBody>
+        <StyledTitle>Meta Leaderboard</StyledTitle>
+
         <Charts />
 
         <TwitterRelevanceTable />
@@ -39,4 +41,13 @@ const StyledBody = styled.div`
   display: flex;
   gap: 100px;
   flex-direction: column;
+  align-items: center;
+`;
+
+const StyledTitle = styled.h1`
+  background: linear-gradient(90deg, #989bff, #4e54fc 50%, #4e54fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 `;
