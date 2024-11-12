@@ -4,7 +4,7 @@ import Typography from "../Typography";
 const Footer = () => {
   return (
     <StyledFooter>
-      <Typography kind="primary" bold>
+      {/* <Typography kind="primary" bold>
         Datura
       </Typography>
       <p>
@@ -14,7 +14,7 @@ const Footer = () => {
           metrics, hotkeys, or IDs, helping you stay informed and manage
           resources efficiently.
         </Typography>
-      </p>
+      </p> */}
 
       <p>
         <Typography size="xs-small" kind="secondary">
