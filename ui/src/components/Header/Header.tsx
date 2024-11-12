@@ -1,14 +1,10 @@
 import { styled } from "styled-components";
-import Typography from "../Typography";
 
 const Header = () => {
   return (
     <StyledRoot>
       <StyledCompanyName>
         <StyledLogo src={"DaturaLogo.svg"} alt="logo" />
-        <Typography kind="secondary" semibold size="large">
-          Datura Meta
-        </Typography>
       </StyledCompanyName>
     </StyledRoot>
   );
@@ -18,7 +14,7 @@ export default Header;
 
 const StyledRoot = styled.header`
   width: 100%;
-  height: 60px;
+  height: 80px;
 
   display: flex;
   align-items: center;
@@ -26,8 +22,8 @@ const StyledRoot = styled.header`
 `;
 
 const StyledLogo = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 `;
 
 const StyledCompanyName = styled.div`

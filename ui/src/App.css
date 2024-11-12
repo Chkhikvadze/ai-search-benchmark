@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -14,7 +16,7 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: "Onest" !important;
+  font-family: "Roboto", sans-serif;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
   font-display: swap;

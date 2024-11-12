@@ -1,26 +1,23 @@
 import styled from "styled-components";
 import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable";
-import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTalble";
-import BarChartComponent from "../../components/charts/BarchartComponent";
-import { webBenchmark } from "../../components/Table/constants";
+import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTable";
+import Charts from "./components/Charts";
+import Footer from "../../components/Footer";
 
 const Home = () => {
-  const data = webBenchmark.results_table.map((item) => ({
-    name: item.Provider,
-    value: parseFloat(item["Summary Text Relevance"]),
-  }));
-
   return (
     <StyledRoot>
-      {/* <Typography>Home</Typography> */}
+      <StyledBody>
+        <StyledTitle>Meta Leaderboard</StyledTitle>
 
-      <TwitterRelevanceTable />
+        <Charts />
 
-      <div>
-        <BarChartComponent data={data} />
-      </div>
+        <TwitterRelevanceTable />
 
-      <ProviderPerformanceTable />
+        <ProviderPerformanceTable />
+      </StyledBody>
+
+      <Footer />
     </StyledRoot>
   );
 };
@@ -37,5 +34,23 @@ const StyledRoot = styled.div`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
+
+const StyledBody = styled.div`
+  width: 100%;
+  max-width: 1400px;
+
+  display: flex;
   gap: 100px;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledTitle = styled.h1`
+  background: linear-gradient(90deg, #989bff, #4e54fc 50%, #4e54fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 `;
