@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Tooltip from "../Tooltip";
 
 export interface TypographyProps<T extends React.ElementType> {
   as?: T;
@@ -9,6 +10,7 @@ export interface TypographyProps<T extends React.ElementType> {
   bold?: boolean;
   semibold?: boolean;
   kind?: "primary" | "secondary" | "tertiary" | "quaternary";
+  tooltipText?: string;
 }
 
 function Typography<T extends React.ElementType = "span">({
@@ -19,6 +21,7 @@ function Typography<T extends React.ElementType = "span">({
   bold = false,
   semibold = false,
   kind = "primary",
+  tooltipText,
 }: TypographyProps<T> &
   Omit<React.ComponentPropsWithoutRef<T>, keyof TypographyProps<T>>) {
   return (
@@ -30,6 +33,7 @@ function Typography<T extends React.ElementType = "span">({
       kind={kind}
     >
       {children || value}
+      {tooltipText && <Tooltip text={tooltipText} />}
     </StyledTypography>
   );
 }
@@ -42,6 +46,12 @@ const StyledTypography = styled.span<{
   semibold: boolean;
   kind?: "primary" | "secondary" | "tertiary" | "quaternary";
 }>`
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
   font-style: normal;
   ${(props) =>
     props.size === "large" &&
