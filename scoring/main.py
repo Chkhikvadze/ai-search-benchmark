@@ -11,7 +11,7 @@ from scoring.reward_llm import RewardLLM
 from scoring.link_relevance import LinkRelevanceModel
 from scoring.summary_relevance import SummaryRelevanceModel
 from scoring.expected_answer_relevance import ExpectedAnswerRelevanceModel
-import matplotlib.pyplot as plt
+from scoring.chart import generate_charts
 
 llm_reward = RewardLLM()
 
@@ -22,40 +22,6 @@ expected_answer_relevance_model = ExpectedAnswerRelevanceModel(llm_reward)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 CONCURRENT_TASKS = 5  # Adjust this value as needed
-
-import matplotlib.pyplot as plt
-import os
-
-
-def generate_performance_chart(provider_stats, provider_name):
-    # Extract data and sort by average response time
-    sorted_providers = sorted(
-        provider_stats.items(), key=lambda x: x[1]["response_time_avg"]
-    )
-
-    # Extract labels and values for the chart
-    labels = [provider_display_names.get(name, name) for name, _ in sorted_providers]
-    values = [stats["response_time_avg"] for _, stats in sorted_providers]
-
-    # Plotting the vertical bar chart
-    plt.figure(figsize=(10, 6))
-    plt.bar(labels, values, color="orange")
-    plt.ylabel("Average Response Time (seconds)")
-    plt.title(f"{provider_name.capitalize()} Performance Comparison")
-    plt.xticks(rotation=45, ha="right")  # Rotate x-axis labels for readability
-    plt.tight_layout()
-    plt.gca().set_facecolor("white")  # Set background to white
-
-    # Save the chart as a PNG file in the specified directory
-    output_dir = "docs/assets"
-    os.makedirs(output_dir, exist_ok=True)
-    output_chart_path = os.path.join(
-        output_dir, f"{provider_name}_performance_chart.png"
-    )
-
-    plt.savefig(output_chart_path)
-    plt.close()
-    print(f"Performance chart saved to {output_chart_path}")
 
 
 async def process_question(semaphore, question, data):
@@ -245,7 +211,7 @@ async def score_results(results, provider):
         json.dump(json_output, f, indent=2)
 
     # Generate performance chart
-    generate_performance_chart(provider_stats, provider.get("name"))
+    generate_charts(provider_stats, provider.get("name"), provider_display_names)
 
     print("Benchmark results have been written to the Markdown and JSON files.")
 
