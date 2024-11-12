@@ -86,6 +86,5 @@ class SummaryRelevanceModel:
             return results
         except Exception as e:
             error_message = f"Summary Relevance get_rewards: {str(e)}"
-            tb_str = traceback.format_exception(type(e), e, e.__traceback__)
-            print("\n".join(tb_str) + error_message)
+            print(error_message)
             return results

@@ -128,7 +128,6 @@ def parse_provider(
                     print("Error decoding line:", line)
             items = [item for item in items if item["question"] in perplexity_questions]
             items = sorted(items, key=lambda x: x["question"])
-            items = items[:20]
 
             for item in items:
                 parsed_item = parse_generic(item)
@@ -186,5 +185,5 @@ twitter_results = parse_provider(
 )
 
 web_results = parse_provider(
-    providers=WEB_PROVIDERS, provider_with_least_results="datura_nova"
+    providers=WEB_PROVIDERS, provider_with_least_results="perplexity"
 )

@@ -189,7 +189,9 @@ async def score_results(results, provider):
 
     # Write Markdown file
     md_file_path = os.path.join(
-        os.path.dirname(current_dir), "results", f"{provider.get("name")}_benchmark.md"
+        os.path.dirname(current_dir),
+        "docs/benchmark",
+        f"{provider.get("name")}_benchmark.md",
     )
 
     with open(md_file_path, "w") as f:
@@ -203,7 +205,7 @@ async def score_results(results, provider):
 
     output_file_path = os.path.join(
         os.path.dirname(current_dir),
-        "results",
+        "docs/benchmark",
         f"{provider.get("name")}_benchmark.json",
     )
 
