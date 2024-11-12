@@ -1,0 +1,33 @@
+{
+  "config_name": "default",
+  "features": {
+    "id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "expected_answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "category": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "area": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": null,
+      "num_examples": 929,
+      "dataset_name": "search-dataset"
+    }
+  }
+}

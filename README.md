@@ -1,6 +1,6 @@
 # 🏆 AI Search Providers Benchmark
 
-[[🌐 Website](https://chi.datura.ai/)] [[📂 Dataset](dataset/data.jsonl)] [[🏅 Leaderboard](https://22.datura.ai)] [[🔎 Visualization](https://huggingface.co/datasets/)]
+[[🌐 Website](https://chi.datura.ai/)] [[📂 Dataset](https://huggingface.co/datasets/junzhang1207/search-dataset)] [[🏅 Leaderboard](https://22.datura.ai)]
 
 ## 📚 Introduction
 
