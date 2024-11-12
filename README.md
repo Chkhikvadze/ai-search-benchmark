@@ -20,23 +20,22 @@ Through this benchmark, we aim to provide insights into the capabilities and per
 
 Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:
 
-| Provider           | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity |
-| ------------------ | ---------------------- | ---------------------- | --------------- | -------------------- |
-| Andi Search        | 23.75%                 | 66.42%                 | 6.47s           | 21.47%               |
-| You.com            | 43.84%                 | 65.07%                 | 1.69s           | 57.07%               |
-| OpenAI ChatGPT     | 92.05%                 | 65.04%                 | 2.31s           | 73.15%               |
-| Perplexity         | 94.71%                 | 63.85%                 | 5.61s           | 75.38%               |
-| Google Gemini      | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
-| Grok 2             | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
-| Datura Nova 1.0    | 88.15%                 | 74.06%                 | 8.89s           | 73.04%               |
-| Datura Orbit 1.0   | 92.95%                 | 76.00%                 | 18.92s          | 72.97%               |
-| Datura Horizon 1.0 | 0.00%                  | 0.00%                  | 0.00s           | 0.00%                |
+| Provider            | Summary Text Relevance | Link Content Relevance             | Performance (s)  | Embedding Similarity   | Expected Answer Relevance 
+|---------------------|------------------------|------------------------------------|------------------|------------------------|---------------------------
+| Datura Horizon 1.0  | 92.57%                 | 80.46%                             | 38.35s           | 72.60%                 | 69.69%                    |
+| Datura Orbit 1.0    | 88.03%                 | 77.32%                             | 19.40s           | 72.53%                 | 69.86%                    |
+| Datura Nova 1.0     | 83.80%                 | 71.22%                             | 8.84s            | 72.20%                 | 69.56%                    |
+| Andi Search         | 23.30%                 | 62.06%                             | 6.68s            | 20.70%                 | 18.88%                    |
+| OpenAI ChatGPT      | 90.70%                 | 61.36%                             | 2.23s            | 73.27%                 | 71.38%                    |
+| You.com             | 37.64%                 | 60.11%                             | 1.73s            | 54.77%                 | 50.40%                    |
+| Perplexity          | 91.82%                 | 59.63%                             | 5.68s            | 73.30%                 | 70.29%                    |
+| Google Gemini       | 71.58%                 | 53.42%                             | 1.81s            | 60.92%                 | 56.90%                    |
 
 ### 🏆 Top Model Analysis
 
-| 📊 Best in Search Summary                            | 🌐 Best in Web Link Content Relevance                            |
-| ---------------------------------------------------- | ---------------------------------------------------------------- |
-| ![Best in Search Summary](docs/assets/chart_bar.png) | ![Best in Web Link Content Relevance](docs/assets/chart_bar.png) |
+| 📊 Best in Search Summary                                                   | 🌐 Best in Web Link Content Relevance                                                   |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/web_summary_text_relevance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/web_link_content_relevance_chart.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
@@ -55,17 +54,18 @@ In this section, we present the results focusing on Summary and Twitter Content 
 
 Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
 
-| Provider         | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity |
-| ---------------- | ---------------------- | ---------------------- | --------------- | -------------------- |
-| Grok 2           | 96.67%                 | 27.14%                 | 8.86s           | 77.92%               |
-| Datura Nova 1.0  | 67.33%                 | 24.57%                 | 8.21s           | 69.34%               |
-| Datura Orbit 1.0 | 78.33%                 | 49.57%                 | 26.04s          | 71.31%               |
+| Provider            | Summary Text Relevance | Link Content Relevance             | Performance (s)  | Embedding Similarity   | Expected Answer Relevance 
+|---------------------|------------------------|------------------------------------|------------------|------------------------|---------------------------
+| Datura Horizon 1.0  | 79.00%                 | 44.92%                             | 31.45s           | 71.72%                 | 65.47%                    |
+| Datura Orbit 1.0    | 66.19%                 | 40.63%                             | 24.59s           | 68.18%                 | 62.37%                    |
+| Grok 2              | 92.68%                 | 29.95%                             | 30.20s           | 76.44%                 | 75.37%                    |
+| Datura Nova 1.0     | 52.68%                 | 23.43%                             | 8.59s            | 66.00%                 | 59.20%                    |
 
 ### 📊 Top Models Chart
 
-| 🥇 Best in Twitter Content Relevance                 | 🔍 Best in Embedding Similarity                                  |
-| ---------------------------------------------------- | ---------------------------------------------------------------- |
-| ![Best in Search Summary](docs/assets/chart_bar.png) | ![Best in Web Link Content Relevance](docs/assets/chart_bar.png) |
+| 🥇 Best in Twitter Summary                                                      | 🔍 Best in Twitter Link Content Relevance                                                   |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/twitter_summary_text_relevance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/twitter_link_content_relevance_chart.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
@@ -84,22 +84,22 @@ To evaluate the performance and relevance of AI search providers, we have develo
 
 1. **Summary Text Relevance**:
 
-   - We utilize a language model (LLM) to evaluate the relevance of the summary text provided by each AI search provider in relation to the question asked.
-   - In our initial tests, we employed GPT-4o to assess the relevance between the summary text and the questions.
+    - We utilize a language model (LLM) to evaluate the relevance of the summary text provided by each AI search provider in relation to the question asked.
+    - In our initial tests, we employed GPT-4o to assess the relevance between the summary text and the questions.
 
 2. **Link Title and Description Relevance**:
 
-   - Each link's title and description returned by the provider are checked for contextual relevance to the question.
-   - This involves analyzing whether the content of the links is pertinent to the query, ensuring that the search results are not only accurate but also useful.
+    - Each link's title and description returned by the provider are checked for contextual relevance to the question.
+    - This involves analyzing whether the content of the links is pertinent to the query, ensuring that the search results are not only accurate but also useful.
 
 3. **Performance**:
 
-   - This metric evaluates the response time of each provider, measured in milliseconds.
-   - Faster response times contribute positively to the overall score, as they enhance the user experience by providing timely information.
+    - This metric evaluates the response time of each provider, measured in milliseconds.
+    - Faster response times contribute positively to the overall score, as they enhance the user experience by providing timely information.
 
 4. **Embedding Similarity**:
-   - We calculate the similarity between the embeddings of the question and the returned results.
-   - This involves using vector representations to measure how closely related the question is to the content of the results, providing an additional layer of relevance assessment.
+    - We calculate the similarity between the embeddings of the question and the returned results.
+    - This involves using vector representations to measure how closely related the question is to the content of the results, providing an additional layer of relevance assessment.
 
 By incorporating these factors, our scoring mechanism provides a holistic view of each provider's capabilities, helping users and developers make informed decisions based on both qualitative and quantitative data.
 
@@ -109,7 +109,9 @@ By incorporating these factors, our scoring mechanism provides a holistic view o
 
 In this section, we evaluate the AI search providers based on their speed and cost-effectiveness. The following chart illustrates the latency of each model, providing insights into which models offer the fastest response times at the most affordable rates.
 
-![Latency Chart](/docs/assets/latency.png)
+| 🥇 Web Performance                                               | 🥇 Twitter Performance                                                           |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/web_performance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/twitter_performance_chart.png) |
 
 ### 🧰 Scraper Scripts
 
@@ -169,22 +171,22 @@ The structure of the responses is as follows:
 
 ```json
 {
-  "id": "c0683ac6-baee-4e2a-9290-8b734b777301",
-  "question": "What did safety reviews conclude about the danger of experiments at the Large Hadron Collider?",
-  "result": "Safety reviews have consistently concluded that the experiments at the Large Hadron Collider pose no significant risk to the public or the environment.",
-  "search_results": [
-    {
-      "title": "CERN's Safety Assessment",
-      "url": "https://home.cern/science/experiments/safety",
-      "description": "An overview of the safety measures and assessments conducted by CERN regarding the LHC experiments."
-    },
-    {
-      "title": "LHC Safety: Public Concerns Addressed",
-      "url": "https://www.scientificamerican.com/article/lhc-safety-public-concerns/",
-      "description": "This article addresses public concerns about the safety of the LHC and explains why these fears are unfounded."
-    }
-  ],
-  "response_time": 10
+    "id": "c0683ac6-baee-4e2a-9290-8b734b777301",
+    "question": "What did safety reviews conclude about the danger of experiments at the Large Hadron Collider?",
+    "result": "Safety reviews have consistently concluded that the experiments at the Large Hadron Collider pose no significant risk to the public or the environment.",
+    "search_results": [
+        {
+            "title": "CERN's Safety Assessment",
+            "url": "https://home.cern/science/experiments/safety",
+            "description": "An overview of the safety measures and assessments conducted by CERN regarding the LHC experiments."
+        },
+        {
+            "title": "LHC Safety: Public Concerns Addressed",
+            "url": "https://www.scientificamerican.com/article/lhc-safety-public-concerns/",
+            "description": "This article addresses public concerns about the safety of the LHC and explains why these fears are unfounded."
+        }
+    ],
+    "response_time": 10
 }
 ```
 

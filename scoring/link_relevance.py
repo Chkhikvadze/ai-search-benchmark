@@ -66,6 +66,7 @@ class LinkRelevanceModel:
 
             for result in results:
                 search_results = result.get("search_results", [])
+
                 if not search_results:
                     result["link_relevance"] = 0
                     continue

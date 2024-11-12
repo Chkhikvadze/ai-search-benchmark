@@ -1,6 +1,7 @@
 from typing import TypedDict, List, Optional, Union, Dict
 import os
 import json
+import logging
 
 
 class SearchResult(TypedDict):
@@ -20,9 +21,9 @@ class ProviderResult(TypedDict):
 WEB_PROVIDERS = {
     "name": "web",
     "files": {
-        "datura_nova": "datura_10_web_results.jsonl",
-        "datura_orbit": "datura_30_web_results.jsonl",
-        # "datura_horizon": "datura_120_results.jsonl",
+        "datura_nova": "datura_nova_web_results.jsonl",
+        "datura_orbit": "datura_orbit_web_results.jsonl",
+        "datura_horizon": "datura_horizon_web_results.jsonl",
         "perplexity": "perplexity_ai_results.jsonl",
         "andi": "andi_search_result.jsonl",
         "chatgpt": "chatgpt_search_result.jsonl",
@@ -37,22 +38,48 @@ WEB_PROVIDERS = {
         "gemini",
         "datura_nova",
         "datura_orbit",
-        # "datura_horizon",
+        "datura_horizon",
     ],
 }
 
 TWITTER_PROVIDERS = {
     "name": "twitter",
     "files": {
-        "datura_nova": "datura_10_twitter_results.jsonl",
-        "datura_orbit": "datura_30_twitter_results.jsonl",
-        "grok": "grok_30_result.jsonl",
+        "datura_nova": "datura_nova_twitter_results.jsonl",
+        "datura_orbit": "datura_orbit_twitter_results.jsonl",
+        "datura_horizon": "datura_horizon_twitter_results.jsonl",
+        "grok": "grok_search_result.jsonl",
     },
-    "table_order": ["grok", "datura_nova", "datura_orbit"],
+    "table_order": ["grok", "datura_nova", "datura_orbit", "datura_horizon"],
 }
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
+
+
+def load_questions_data():
+    data_path = os.path.join(os.path.dirname(current_dir), "dataset", "data.jsonl")
+
+    """Load JSONL data from the file and return as a list of dictionaries."""
+    if not os.path.exists(data_path):
+        logging.warning(f"Data file not found at {data_path}")
+        return {}
+
+    questions_map = {}
+
+    with open(data_path, "r") as json_file:
+        for line in json_file:
+            try:
+                item = json.loads(line)
+                questions_map[item.get("question")] = item
+            except json.JSONDecodeError as e:
+                logging.error(f"Error decoding JSON: {e}")
+
+    logging.info(f"Loaded {len(questions_map)} records from {data_path}")
+    return questions_map
+
+
+questions_map = load_questions_data()
 
 
 def parse_generic(item):
@@ -92,12 +119,6 @@ def parse_provider(
         )
 
         with open(results_file_path) as f:
-            # items = [json.loads(line) for line in f]
-            # items = sorted(items, key=lambda x: x["question"])
-            # items = items[:10]  # Adjust as needed
-
-            ### Comment after full dataset
-            # items = [json.loads(line) for line in f]
             items = []
             for line in f:
                 try:
@@ -107,7 +128,6 @@ def parse_provider(
                     print("Error decoding line:", line)
             items = [item for item in items if item["question"] in perplexity_questions]
             items = sorted(items, key=lambda x: x["question"])
-            ###
 
             for item in items:
                 parsed_item = parse_generic(item)
@@ -120,10 +140,15 @@ def parse_provider(
                     response_time = parsed_item.get("response_time", 0)
                     search_results = parsed_item.get("search_results", [])
 
+                    question_item = questions_map.get(question, {})
+
                     if question not in results:
                         results[question] = {
                             "id": id,
                             "question": question,
+                            "expected_answer": question_item.get("expected_answer"),
+                            "category": question_item.get("category"),
+                            "area": question_item.get("area"),
                             "providers": [],
                         }
 
@@ -160,5 +185,5 @@ twitter_results = parse_provider(
 )
 
 web_results = parse_provider(
-    providers=WEB_PROVIDERS, provider_with_least_results="datura_nova"
+    providers=WEB_PROVIDERS, provider_with_least_results="perplexity"
 )

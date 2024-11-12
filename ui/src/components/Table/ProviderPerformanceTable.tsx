@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "./Table";
 import { styled } from "styled-components";
-import webBenchmark from "../../../../docs/benchmark/4/web_benchmark.json";
+import webBenchmark from "../../../../docs/benchmark/web_benchmark.json";
 
 const ProviderPerformanceTable = () => {
   const columns = React.useMemo(

@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import BarChartComponent from "../../../components/charts/BarchartComponent";
-import webBenchmark from "../../../../../docs/benchmark/4/web_benchmark.json";
-import twitterBenchmark from "../../../../../docs/benchmark/4/twitter_benchmark.json";
+import webBenchmark from "../../../../../docs/benchmark/web_benchmark.json";
+import twitterBenchmark from "../../../../../docs/benchmark/twitter_benchmark.json";
 
 const Charts = () => {
   const data = webBenchmark.results_table

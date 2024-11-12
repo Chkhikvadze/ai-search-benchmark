@@ -14,7 +14,7 @@ logging.basicConfig(
 BATCH_SIZE = 10
 
 COUNT_LIMIT = (
-    200  # Set to an integer to limit the number of records processed for testing
+    1000  # Set to an integer to limit the number of records processed for testing
 )
 
 
@@ -23,20 +23,27 @@ class TweetAnalyzerScrapper:
         self,
         name,
         data_with_least_items_path=None,  # For example if Grok has 30 results and Datura has 100 twitter results, we can filter to take same 30 results for both
-        url="https://api.smartscrape.ai/analyse-tweets-event",
+        url="https://api.smartscrape.ai/search",
         data_path="../../dataset/data.jsonl",
     ):
         self.url = url
         self.data_path = data_path
-        self.max_execution_times = [10, 30, 120]
+        self.models = ["NOVA", "ORBIT", "HORIZON"]
         self.results_dir = "../../results"
         self.name = name
         self.data_with_least_items_path = data_with_least_items_path
 
     async def send_request(self, client: httpx.AsyncClient, payload):
         """Send an HTTP POST request with the given payload."""
+        access_key = "test"
+
         try:
-            response = await client.post(self.url, json=payload, timeout=120.0)
+            response = await client.post(
+                self.url,
+                json=payload,
+                headers={"Access-Key": access_key},
+                timeout=120.0,
+            )
             response.raise_for_status()  # Raise exception for HTTP errors
             response_time = response.elapsed.total_seconds()
             return response.text, response_time
@@ -87,7 +94,7 @@ class TweetAnalyzerScrapper:
                             json_data.append(item)
                 except json.JSONDecodeError as e:
                     logging.error(f"Error decoding JSON: {e}")
-        print(json_data[0])
+
         logging.info(f"Loaded {len(json_data)} records from {self.data_path}")
         return json_data
 
@@ -113,6 +120,15 @@ class TweetAnalyzerScrapper:
                     }
                 )
         elif type == "hacker_news_search":
+            for result in data:
+                standardized_results.append(
+                    {
+                        "title": result.get("title"),
+                        "link": result.get("url"),
+                        "snippet": result.get("snippet"),
+                    }
+                )
+        elif type == "wikipedia_search":
             for result in data:
                 standardized_results.append(
                     {
@@ -181,7 +197,7 @@ class TweetAnalyzerScrapper:
             "search_results": search_results,
         }
 
-    async def process_data_chunk(self, client, chunk, execution_time):
+    async def process_data_chunk(self, client, chunk, model):
         """Process a chunk of data by sending requests and collecting results."""
         tools = []
 
@@ -193,24 +209,18 @@ class TweetAnalyzerScrapper:
                 "Google News Search",
                 "Wikipedia Search",
                 "ArXiv Search",
-                "Hacker News Search",
             ]
 
         tasks = [
             self.send_request(
                 client,
                 {
-                    "max_execution_time": execution_time,
-                    "coldkeys": [],
-                    "messages": [
-                        {
-                            "role": "user",
-                            "content": question["question"],
-                            "tools": tools,
-                            "date_filter": "PAST_2_WEEKS",
-                            "response_order": "LINKS_FIRST",
-                        }
-                    ],
+                    "model": model,
+                    "prompt": question["question"],
+                    "tools": tools,
+                    "date_filter": "PAST_2_WEEKS",
+                    "response_order": "LINKS_FIRST",
+                    "coldkeys": ["5HVbMkSCa4PFEPXpbSRDyXMZ6qYHVG1FRo2j8LSqMMmyRpLF"],
                 },
             )
             for question in chunk
@@ -234,32 +244,27 @@ class TweetAnalyzerScrapper:
 
         os.makedirs(self.results_dir, exist_ok=True)
         async with httpx.AsyncClient() as client:
-            for execution_time in self.max_execution_times:
-                logging.info(f"Processing with max execution time: {execution_time}")
-                full_results = []
+            for model in self.models:
+                logging.info(f"Processing with model: {model}")
+
                 for i in range(0, len(data), BATCH_SIZE):
                     chunk = data[i : i + BATCH_SIZE]
-                    results = await self.process_data_chunk(
-                        client, chunk, execution_time
-                    )
-                    full_results.extend(results)
-                await self.save_results(full_results, execution_time)
+                    results = await self.process_data_chunk(client, chunk, model)
+                    await self.save_results(results, model)
 
-    async def save_results(self, results, execution_time):
+    async def save_results(self, results, model):
         """Save results to a JSONL file."""
         output_file = os.path.join(
-            self.results_dir, f"datura_{execution_time}_{self.name}_results.jsonl"
+            self.results_dir, f"datura_{model.lower()}_{self.name}_results.jsonl"
         )
-        async with aiofiles.open(output_file, mode="w") as f:
+        async with aiofiles.open(output_file, mode="a") as f:
             results_str = "\n".join(json.dumps(result) for result in results)
             await f.write(results_str + "\n")
         logging.info(f"Results saved to {output_file}")
 
 
 if __name__ == "__main__":
-    analyzer = TweetAnalyzerScrapper(
-        name="twitter", data_with_least_items_path="../../results/grok_30_result.jsonl"
-    )
+    analyzer = TweetAnalyzerScrapper(name="twitter")
     asyncio.run(analyzer.search_and_save_data())
 
     analyzer = TweetAnalyzerScrapper(name="web")

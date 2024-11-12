@@ -28,7 +28,7 @@ class SummaryRelevanceModel:
             print(f"Error in get_scoring_text: {str(e)}")
             return None
 
-    async def get_rewards(self, prompt: str, results: List[Dict]):
+    async def get_rewards(self, prompt: str, expected_answer: str, results: List[Dict]):
         try:
             print("Computing Summary Relevance rewards")
 
@@ -36,6 +36,7 @@ class SummaryRelevanceModel:
             index_to_result = {}
 
             prompt_embedding = await get_openai_embeddings(prompt)
+            expected_answer_embedding = await get_openai_embeddings(expected_answer)
 
             for index, result in enumerate(results):
                 summary = result.get("summary", "")
@@ -62,6 +63,12 @@ class SummaryRelevanceModel:
 
                 result["embedding_relevance"] = similarity.tolist()
 
+                similarity = cosine_similarity(
+                    [expected_answer_embedding], [summary_embedding]
+                )[0][0]
+
+                result["expected_answer_relevance"] = similarity.tolist()
+
             # Now call the LLM to get scores
             if scoring_messages:
                 score_responses = await self.reward_llm.get_score_by_openai(
@@ -79,6 +86,5 @@ class SummaryRelevanceModel:
             return results
         except Exception as e:
             error_message = f"Summary Relevance get_rewards: {str(e)}"
-            tb_str = traceback.format_exception(type(e), e, e.__traceback__)
-            print("\n".join(tb_str) + error_message)
+            print(error_message)
             return results
