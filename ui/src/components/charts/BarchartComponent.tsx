@@ -37,7 +37,10 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
       <ResponsiveContainer>
         <BarChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
+          margin={{
+            top: 20,
+            bottom: 20,
+          }}
           barCategoryGap="35%"
         >
           <CartesianGrid strokeWidth={0.2} vertical={false} />
@@ -89,9 +92,17 @@ const StyledContainer = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  margin-left: -45px;
+  margin-left: -35px;
+
+  @media (max-width: 1080px) {
+    margin-left: 0px;
+  }
 `;
 
 const StyledTitleWrapper = styled.div`
-  margin-left: 45px;
+  margin-left: 35px;
+
+  @media (max-width: 1080px) {
+    margin-left: 0px;
+  }
 `;

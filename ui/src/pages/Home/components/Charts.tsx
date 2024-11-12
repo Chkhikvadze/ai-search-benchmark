@@ -95,7 +95,7 @@ const StyledContainer = styled.div`
 const StyledChartContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 34px;
   width: 100%;
 
   @media (max-width: 1080px) {
