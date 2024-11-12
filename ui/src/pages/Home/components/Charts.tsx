@@ -82,4 +82,8 @@ const StyledChartContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   width: 100%;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;

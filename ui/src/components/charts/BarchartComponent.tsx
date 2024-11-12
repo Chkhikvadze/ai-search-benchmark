@@ -35,7 +35,7 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
         <BarChart
           data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
-          barCategoryGap="30%" // Increase gap between bars
+          barCategoryGap="35%" // Increase gap between bars
         >
           <CartesianGrid strokeWidth={0.2} vertical={false} />
           <XAxis
