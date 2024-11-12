@@ -4,7 +4,7 @@
       "Provider": "Andi Search",
       "Product": "-",
       "Summary Text Relevance": "19.95%",
-      "Link Title & Description Relevance": "22.30%",
+      "Link Content Relevance": "22.30%",
       "Performance (s)": "7.84s",
       "Embedding Similarity": "0.00%"
     },
@@ -12,7 +12,7 @@
       "Provider": "You.com",
       "Product": "-",
       "Summary Text Relevance": "21.14%",
-      "Link Title & Description Relevance": "24.40%",
+      "Link Content Relevance": "24.40%",
       "Performance (s)": "1.74s",
       "Embedding Similarity": "0.00%"
     },
@@ -20,7 +20,7 @@
       "Provider": "OpenAI ChatGPT",
       "Product": "-",
       "Summary Text Relevance": "14.22%",
-      "Link Title & Description Relevance": "24.73%",
+      "Link Content Relevance": "24.73%",
       "Performance (s)": "0.59s",
       "Embedding Similarity": "0.00%"
     },
@@ -28,7 +28,7 @@
       "Provider": "Perplexity",
       "Product": "-",
       "Summary Text Relevance": "12.28%",
-      "Link Title & Description Relevance": "24.92%",
+      "Link Content Relevance": "24.92%",
       "Performance (s)": "5.66s",
       "Embedding Similarity": "0.00%"
     },
@@ -36,7 +36,7 @@
       "Provider": "Google Gemini",
       "Product": "-",
       "Summary Text Relevance": "0.00%",
-      "Link Title & Description Relevance": "0.00%",
+      "Link Content Relevance": "0.00%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     },
@@ -44,7 +44,7 @@
       "Provider": "Datura",
       "Product": "Nova 1.0",
       "Summary Text Relevance": "12.08%",
-      "Link Title & Description Relevance": "22.35%",
+      "Link Content Relevance": "22.35%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     },
@@ -52,7 +52,7 @@
       "Provider": "Datura",
       "Product": "Orbit 1.0",
       "Summary Text Relevance": "14.84%",
-      "Link Title & Description Relevance": "23.17%",
+      "Link Content Relevance": "23.17%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     },
@@ -60,7 +60,7 @@
       "Provider": "Datura",
       "Product": "Horizon 1.0",
       "Summary Text Relevance": "0.00%",
-      "Link Title & Description Relevance": "0.00%",
+      "Link Content Relevance": "0.00%",
       "Performance (s)": "0.00s",
       "Embedding Similarity": "0.00%"
     }
