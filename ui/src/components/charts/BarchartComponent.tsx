@@ -14,11 +14,15 @@ import { styled } from "styled-components";
 interface BarChartComponentProps {
   data: Array<{ name: string; value: number }>;
   title: string;
+  secondaryColor?: boolean;
+  yAxisDomain?: [number, number];
 }
 
 const BarChartComponent: React.FC<BarChartComponentProps> = ({
   data,
   title,
+  secondaryColor = false,
+  yAxisDomain,
 }) => {
   return (
     <StyledContainer>
@@ -39,12 +43,12 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
             tickLine={false}
           />
           <YAxis
-            domain={[0, 100]}
-            ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+            domain={yAxisDomain}
+            // ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
             tick={{ fontSize: 12 }}
           />
           <Tooltip />
-          <Bar dataKey="value" fill="#4169E1" />
+          <Bar dataKey="value" fill={secondaryColor ? "#d1a41d" : "#4169E1"} />
         </BarChart>
       </ResponsiveContainer>
     </StyledContainer>

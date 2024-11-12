@@ -36,16 +36,41 @@ const Charts = () => {
     .sort((a, b) => b.value - a.value)
     .slice(0, 5);
 
+  const data5 = webBenchmark.results_table
+    .map((item) => ({
+      name: item.Provider,
+      value: parseFloat(item["Performance (s)"]),
+    }))
+    .sort((a, b) => a.value - b.value) // Sort in ascending order
+    .slice(0, 5); // Show first 5 items
+
   return (
     <StyledChartContainer>
-      <BarChartComponent data={data} title="Top Model Per Search Summary" />
+      <BarChartComponent
+        data={data}
+        title="Top Model Per Search Summary"
+        yAxisDomain={[0, 100]}
+      />
       <BarChartComponent
         data={data2}
         title="Best Model Per Web Link Content Relevance"
+        yAxisDomain={[0, 100]}
       />
-      <BarChartComponent data={data3} title="Top Models Per Twitter Content" />
-      <BarChartComponent data={data4} title="Best Model Embedding Similarity" />
-      {/* <BarChartComponent data={data} title="Lowest Latency (TTFT)" /> */}
+      <BarChartComponent
+        data={data3}
+        title="Top Models Per Twitter Content"
+        yAxisDomain={[0, 100]}
+      />
+      <BarChartComponent
+        data={data4}
+        title="Best Model Embedding Similarity"
+        yAxisDomain={[0, 100]}
+      />
+      <BarChartComponent
+        secondaryColor
+        data={data5}
+        title="Lowest Latency (TTFT)"
+      />
     </StyledChartContainer>
   );
 };
