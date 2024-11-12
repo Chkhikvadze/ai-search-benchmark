@@ -1,27 +1,18 @@
 import styled from "styled-components";
 import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable";
 import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTable";
-import BarChartComponent from "../../components/charts/BarchartComponent";
-import webBenchmark from "../../../../docs/benchmark/4/web_benchmark.json";
+import Charts from "./components/Charts";
 
 const Home = () => {
-  const data = webBenchmark.results_table
-    .map((item) => ({
-      name: item.Provider,
-      value: parseFloat(item["Summary Text Relevance"]),
-    }))
-    .sort((a, b) => b.value - a.value); // Sort in descending order
-
   return (
     <StyledRoot>
-      {/* <Typography>Home</Typography> */}
-      <div>
-        <BarChartComponent data={data} />
-      </div>
+      <StyledBody>
+        <Charts />
 
-      <TwitterRelevanceTable />
+        <TwitterRelevanceTable />
 
-      <ProviderPerformanceTable />
+        <ProviderPerformanceTable />
+      </StyledBody>
     </StyledRoot>
   );
 };
@@ -38,5 +29,14 @@ const StyledRoot = styled.div`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
+
+const StyledBody = styled.div`
+  width: 100%;
+  max-width: 1400px;
+
+  display: flex;
   gap: 100px;
+  flex-direction: column;
 `;

@@ -39,7 +39,7 @@ const ProviderPerformanceTable = () => {
 
   return (
     <StyledWrapper>
-      <StyledHeader>📊 Provider Performance Comparison</StyledHeader>
+      <StyledHeader>📊 Performance Comparison</StyledHeader>
       <Table columns={columns} data={webBenchmark.results_table} />
     </StyledWrapper>
   );
