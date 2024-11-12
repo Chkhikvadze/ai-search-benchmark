@@ -16,21 +16,22 @@ import { BAR_CHART_COLORS } from "./constants";
 interface BarChartComponentProps {
   data: Array<{ name: string; value: number }>;
   title: string;
-
   yAxisDomain?: [number, number];
+  tooltipText?: string;
 }
 
 const BarChartComponent: React.FC<BarChartComponentProps> = ({
   data,
   title,
   yAxisDomain,
+  tooltipText,
 }) => {
   const theme = useTheme();
 
   return (
     <StyledContainer>
       <StyledTitleWrapper>
-        <Typography kind="secondary" semibold>
+        <Typography kind="secondary" semibold tooltipText={tooltipText}>
           {title}
         </Typography>
       </StyledTitleWrapper>

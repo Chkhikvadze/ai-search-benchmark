@@ -75,7 +75,11 @@ const Charts = () => {
       <StyledContainer>
         <StyledTitle>Fastest and Most Affordable Providers</StyledTitle>
         <StyledChartContainer>
-          <BarChartComponent data={data5} title="Lowest Latency (TTFT)" />
+          <BarChartComponent
+            data={data5}
+            title="Lowest Latency (TTFT)"
+            tooltipText="Lower is better"
+          />
         </StyledChartContainer>
       </StyledContainer>
     </>
