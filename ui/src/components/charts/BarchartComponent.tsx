@@ -88,6 +88,8 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  margin-left: -45px;
 `;
 
 const StyledTitleWrapper = styled.div`

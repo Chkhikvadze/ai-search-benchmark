@@ -106,6 +106,4 @@ const StyledChartContainer = styled.div`
 const StyledTitle = styled.h1`
   font-size: 30px;
   color: ${({ theme }) => theme.body.textColorPrimary};
-
-  margin-left: 45px;
 `;
