@@ -21,5 +21,5 @@ const StyledRoot = styled.div`
 
 const StyledContent = styled.div`
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 80px);
 `;
