@@ -10,12 +10,14 @@ from scoring.parser import (
 from scoring.reward_llm import RewardLLM
 from scoring.link_relevance import LinkRelevanceModel
 from scoring.summary_relevance import SummaryRelevanceModel
+from scoring.expected_answer_relevance import ExpectedAnswerRelevanceModel
 import matplotlib.pyplot as plt
 
 llm_reward = RewardLLM()
 
 link_relevance_model = LinkRelevanceModel(llm_reward)
 summary_relevance_model = SummaryRelevanceModel(llm_reward)
+expected_answer_relevance_model = ExpectedAnswerRelevanceModel(llm_reward)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -60,6 +62,7 @@ async def process_question(semaphore, question, data):
     async with semaphore:
         prompt = question
         providers = data.get("providers", [])
+        expected_answer = data.get("expected_answer")
 
         # Prepare results in the expected format
         results_list = []
@@ -71,12 +74,14 @@ async def process_question(semaphore, question, data):
                 "link_relevance": 0,  # Will be updated
                 "summary_relevance": 0,  # Will be updated
                 "embedding_relevance": 0,  # Will be updated
+                "expected_answer_relevance": 0,  # Will be updated
             }
             results_list.append(result)
 
         # Call get_rewards to compute link_relevance and summary_relevance
         await link_relevance_model.get_rewards(prompt, results_list)
-        await summary_relevance_model.get_rewards(prompt, results_list)
+        await summary_relevance_model.get_rewards(prompt, expected_answer, results_list)
+        # await expected_answer_relevance_model.get_rewards(expected_answer, results_list)
 
         # Update provider_data with computed link_relevance and summary_relevance
         for i, provider_data in enumerate(providers):
@@ -86,6 +91,9 @@ async def process_question(semaphore, question, data):
             )
             provider_data["embedding_relevance"] = results_list[i].get(
                 "embedding_relevance", 0
+            )
+            provider_data["expected_answer_relevance"] = results_list[i].get(
+                "expected_answer_relevance", 0
             )
 
 
@@ -103,7 +111,7 @@ provider_display_names = {
     "you": "You.com",
     "chatgpt": "OpenAI ChatGPT",
     "perplexity": "Perplexity",
-    "google_gemini": "Google Gemini",
+    "gemini": "Google Gemini",
     "grok": "Grok 2",
     "datura_nova": "Datura Nova 1.0",
     "datura_orbit": "Datura Orbit 1.0",
@@ -126,6 +134,7 @@ async def score_results(results, provider):
                     "link_relevance_total": 0,
                     "summary_relevance_total": 0,
                     "embedding_relevance_total": 0,
+                    "expected_answer_relevance_total": 0,
                     "response_time_total": 0,
                     "num_questions": 0,
                 }
@@ -138,6 +147,9 @@ async def score_results(results, provider):
             provider_stats[provider_name][
                 "embedding_relevance_total"
             ] += provider_data.get("embedding_relevance", 0)
+            provider_stats[provider_name][
+                "expected_answer_relevance_total"
+            ] += provider_data.get("expected_answer_relevance", 0)
             provider_stats[provider_name]["response_time_total"] += provider_data.get(
                 "response_time", 0
             )
@@ -154,6 +166,11 @@ async def score_results(results, provider):
         )
         stats["embedding_relevance_avg"] = (
             stats["embedding_relevance_total"] / num_questions if num_questions else 0
+        )
+        stats["expected_answer_relevance_avg"] = (
+            stats["expected_answer_relevance_total"] / num_questions
+            if num_questions
+            else 0
         )
         stats["response_time_avg"] = (
             stats["response_time_total"] / num_questions if num_questions else 0
@@ -174,6 +191,7 @@ async def score_results(results, provider):
                 "link_relevance_avg": 0,
                 "summary_relevance_avg": 0,
                 "embedding_relevance_avg": 0,
+                "expected_answer_relevance_avg": 0,
                 "response_time_avg": 0,
             },
         )
@@ -183,14 +201,15 @@ async def score_results(results, provider):
             "Link Content Relevance": f"{stats['link_relevance_avg'] * 100:.2f}%",
             "Performance (s)": f"{stats['response_time_avg']:.2f}s",
             "Embedding Similarity": f"{stats['embedding_relevance_avg'] * 100:.2f}%",
+            "Expected Answer Relevance": f"{stats['expected_answer_relevance_avg'] * 100:.2f}%",
         }
         table_entries.append(entry)
 
     # Generate Markdown content
     md_content = "## 📊 Results Table\n\n"
     md_content += "Below is a table showcasing the results of each provider in various aspects of our scoring mechanism:\n\n"
-    md_content += "| Provider            | Summary Text Relevance | Link Content Relevance | Performance (s)  | Embedding Similarity   |\n"
-    md_content += "|---------------------|------------------------|------------------------------------|------------------|------------------------|\n"
+    md_content += "| Provider            | Summary Text Relevance | Link Content Relevance             | Performance (s)  | Embedding Similarity   | Expected Answer Relevance \n"
+    md_content += "|---------------------|------------------------|------------------------------------|------------------|------------------------|---------------------------\n"
 
     prev_display_name = None
 
@@ -200,7 +219,7 @@ async def score_results(results, provider):
             provider_cell = ""
         else:
             prev_display_name = provider_cell
-        md_content += f"| {provider_cell:<19} | {entry['Summary Text Relevance']:<22} | {entry['Link Content Relevance']:<34} | {entry['Performance (s)']:<16} | {entry['Embedding Similarity']:<22} |\n"
+        md_content += f"| {provider_cell:<19} | {entry['Summary Text Relevance']:<22} | {entry['Link Content Relevance']:<34} | {entry['Performance (s)']:<16} | {entry['Embedding Similarity']:<22} | {entry['Expected Answer Relevance']:<25} |\n"
 
     # Write Markdown file
     md_file_path = os.path.join(
