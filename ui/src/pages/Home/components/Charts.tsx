@@ -45,29 +45,34 @@ const Charts = () => {
     .slice(-5); // Show first 5 items
 
   return (
-    <StyledChartContainer>
-      <BarChartComponent
-        data={data}
-        title="Top Model Per Search Summary"
-        yAxisDomain={[0, 100]}
-      />
-      <BarChartComponent
-        data={data2}
-        title="Best Model Per Web Link Content Relevance"
-        yAxisDomain={[0, 100]}
-      />
-      <BarChartComponent
-        data={data3}
-        title="Top Models Per Twitter Content"
-        yAxisDomain={[0, 100]}
-      />
-      <BarChartComponent
-        data={data4}
-        title="Best Model Embedding Similarity"
-        yAxisDomain={[0, 100]}
-      />
-      <BarChartComponent data={data5} title="Lowest Latency (TTFT)" />
-    </StyledChartContainer>
+    <>
+      <StyledChartContainer>
+        <BarChartComponent
+          data={data}
+          title="Best in Search Summary"
+          yAxisDomain={[0, 100]}
+        />
+        <BarChartComponent
+          data={data2}
+          title="Best in Web Link Content Relevance"
+          yAxisDomain={[0, 100]}
+        />
+        <BarChartComponent
+          data={data3}
+          title="Best in Twitter Content Relevance"
+          yAxisDomain={[0, 100]}
+        />
+        <BarChartComponent
+          data={data4}
+          title="Best in Embedding Similarity"
+          yAxisDomain={[0, 100]}
+        />
+      </StyledChartContainer>
+
+      <StyledChartContainer>
+        <BarChartComponent data={data5} title="Lowest Latency (TTFT)" />
+      </StyledChartContainer>
+    </>
   );
 };
 
