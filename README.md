@@ -34,18 +34,18 @@ Below is a table showcasing the results of each provider in various aspects of o
 
 ### 🏆 Top Model Analysis
 
-| 📊 Top Model Per Search Summary                            | 🌐 Best Model Per Web Link Content Relevance                            |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------- |
-| ![Top Model Per Search Summary](docs/assets/chart_bar.png) | ![Best Model Per Web Link Content Relevance](docs/assets/chart_bar.png) |
+| 📊 Best in Search Summary                            | 🌐 Best in Web Link Content Relevance                            |
+| ---------------------------------------------------- | ---------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/chart_bar.png) | ![Best in Web Link Content Relevance](docs/assets/chart_bar.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
-        <h4>📊 Top Model Per Search Summary</h4>
-        <img src="docs/assets/chart_bar.png" alt="Top Model Per Search Summary" style="width: 100%;">
+        <h4>📊 Best in Search Summary</h4>
+        <img src="docs/assets/chart_bar.png" alt="Best in Search Summary" style="width: 100%;">
     </div>
     <div style="width: 48%; text-align: center;">
-        <h4>🌐 Best Model Per Web Link Content Relevance</h4>
-        <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
+        <h4>🌐 Best in Web Link Content Relevance</h4>
+        <img src="docs/assets/chart_bar.png" alt="Best in Web Link Content Relevance" style="width: 100%;">
     </div>
 </div> -->
 
@@ -63,18 +63,18 @@ Below is a table showcasing the results of each provider in terms of Summary and
 
 ### 📊 Top Models Chart
 
-| 🥇 Top Models Per Twitter Content                          | 🔍 Best Model Embedding Similarity                                      |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------- |
-| ![Top Model Per Search Summary](docs/assets/chart_bar.png) | ![Best Model Per Web Link Content Relevance](docs/assets/chart_bar.png) |
+| 🥇 Best in Twitter Content Relevance                 | 🔍 Best in Embedding Similarity                                  |
+| ---------------------------------------------------- | ---------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/chart_bar.png) | ![Best in Web Link Content Relevance](docs/assets/chart_bar.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
         <h4>🥇 op Models Per Twitter Content</h4>
-        <img src="docs/assets/chart_bar.png" alt="Top Model Per Search Summary" style="width: 100%;">
+        <img src="docs/assets/chart_bar.png" alt="Best in Search Summary" style="width: 100%;">
     </div>
     <div style="width: 48%; text-align: center;">
-        <h4>🔍 Best Model Embedding Similarity</h4>
-        <img src="docs/assets/chart_bar.png" alt="Best Model Per Web Link Content Relevance" style="width: 100%;">
+        <h4>🔍 Best in Embedding Similarity</h4>
+        <img src="docs/assets/chart_bar.png" alt="Best in Web Link Content Relevance" style="width: 100%;">
     </div>
 </div> -->
 
