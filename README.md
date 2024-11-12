@@ -34,9 +34,9 @@ Below is a table showcasing the results of each provider in various aspects of o
 
 ### 🏆 Top Model Analysis
 
-| 📊 Best in Search Summary                            | 🌐 Best in Web Link Content Relevance                            |
-| ---------------------------------------------------- | ---------------------------------------------------------------- |
-| ![Best in Search Summary](docs/assets/chart_bar.png) | ![Best in Web Link Content Relevance](docs/assets/chart_bar.png) |
+| 📊 Best in Search Summary                                                   | 🌐 Best in Web Link Content Relevance                                                   |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/web_summary_text_relevance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/web_link_content_relevance_chart.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
@@ -63,9 +63,9 @@ Below is a table showcasing the results of each provider in terms of Summary and
 
 ### 📊 Top Models Chart
 
-| 🥇 Best in Twitter Content Relevance                 | 🔍 Best in Embedding Similarity                                  |
-| ---------------------------------------------------- | ---------------------------------------------------------------- |
-| ![Best in Search Summary](docs/assets/chart_bar.png) | ![Best in Web Link Content Relevance](docs/assets/chart_bar.png) |
+| 🥇 Best in Twitter Summary                                                      | 🔍 Best in Twitter Link Content Relevance                                                   |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/twitter_summary_text_relevance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/twitter_link_content_relevance_chart.png) |
 
 <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 48%; text-align: center;">
@@ -84,22 +84,22 @@ To evaluate the performance and relevance of AI search providers, we have develo
 
 1. **Summary Text Relevance**:
 
-   - We utilize a language model (LLM) to evaluate the relevance of the summary text provided by each AI search provider in relation to the question asked.
-   - In our initial tests, we employed GPT-4o to assess the relevance between the summary text and the questions.
+    - We utilize a language model (LLM) to evaluate the relevance of the summary text provided by each AI search provider in relation to the question asked.
+    - In our initial tests, we employed GPT-4o to assess the relevance between the summary text and the questions.
 
 2. **Link Title and Description Relevance**:
 
-   - Each link's title and description returned by the provider are checked for contextual relevance to the question.
-   - This involves analyzing whether the content of the links is pertinent to the query, ensuring that the search results are not only accurate but also useful.
+    - Each link's title and description returned by the provider are checked for contextual relevance to the question.
+    - This involves analyzing whether the content of the links is pertinent to the query, ensuring that the search results are not only accurate but also useful.
 
 3. **Performance**:
 
-   - This metric evaluates the response time of each provider, measured in milliseconds.
-   - Faster response times contribute positively to the overall score, as they enhance the user experience by providing timely information.
+    - This metric evaluates the response time of each provider, measured in milliseconds.
+    - Faster response times contribute positively to the overall score, as they enhance the user experience by providing timely information.
 
 4. **Embedding Similarity**:
-   - We calculate the similarity between the embeddings of the question and the returned results.
-   - This involves using vector representations to measure how closely related the question is to the content of the results, providing an additional layer of relevance assessment.
+    - We calculate the similarity between the embeddings of the question and the returned results.
+    - This involves using vector representations to measure how closely related the question is to the content of the results, providing an additional layer of relevance assessment.
 
 By incorporating these factors, our scoring mechanism provides a holistic view of each provider's capabilities, helping users and developers make informed decisions based on both qualitative and quantitative data.
 
@@ -110,6 +110,10 @@ By incorporating these factors, our scoring mechanism provides a holistic view o
 In this section, we evaluate the AI search providers based on their speed and cost-effectiveness. The following chart illustrates the latency of each model, providing insights into which models offer the fastest response times at the most affordable rates.
 
 ![Latency Chart](/docs/assets/latency.png)
+
+| 🥇 Web Performance                                               | 🥇 Twitter Performance                                                           |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| ![Best in Search Summary](docs/assets/web_performance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/twitter_performance_chart.png) |
 
 ### 🧰 Scraper Scripts
 
@@ -169,22 +173,22 @@ The structure of the responses is as follows:
 
 ```json
 {
-  "id": "c0683ac6-baee-4e2a-9290-8b734b777301",
-  "question": "What did safety reviews conclude about the danger of experiments at the Large Hadron Collider?",
-  "result": "Safety reviews have consistently concluded that the experiments at the Large Hadron Collider pose no significant risk to the public or the environment.",
-  "search_results": [
-    {
-      "title": "CERN's Safety Assessment",
-      "url": "https://home.cern/science/experiments/safety",
-      "description": "An overview of the safety measures and assessments conducted by CERN regarding the LHC experiments."
-    },
-    {
-      "title": "LHC Safety: Public Concerns Addressed",
-      "url": "https://www.scientificamerican.com/article/lhc-safety-public-concerns/",
-      "description": "This article addresses public concerns about the safety of the LHC and explains why these fears are unfounded."
-    }
-  ],
-  "response_time": 10
+    "id": "c0683ac6-baee-4e2a-9290-8b734b777301",
+    "question": "What did safety reviews conclude about the danger of experiments at the Large Hadron Collider?",
+    "result": "Safety reviews have consistently concluded that the experiments at the Large Hadron Collider pose no significant risk to the public or the environment.",
+    "search_results": [
+        {
+            "title": "CERN's Safety Assessment",
+            "url": "https://home.cern/science/experiments/safety",
+            "description": "An overview of the safety measures and assessments conducted by CERN regarding the LHC experiments."
+        },
+        {
+            "title": "LHC Safety: Public Concerns Addressed",
+            "url": "https://www.scientificamerican.com/article/lhc-safety-public-concerns/",
+            "description": "This article addresses public concerns about the safety of the LHC and explains why these fears are unfounded."
+        }
+    ],
+    "response_time": 10
 }
 ```
 
