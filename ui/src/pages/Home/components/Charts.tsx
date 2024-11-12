@@ -46,37 +46,51 @@ const Charts = () => {
 
   return (
     <>
-      <StyledChartContainer>
-        <BarChartComponent
-          data={data}
-          title="Best in Search Summary"
-          yAxisDomain={[0, 100]}
-        />
-        <BarChartComponent
-          data={data2}
-          title="Best in Web Link Content Relevance"
-          yAxisDomain={[0, 100]}
-        />
-        <BarChartComponent
-          data={data3}
-          title="Best in Twitter Content Relevance"
-          yAxisDomain={[0, 100]}
-        />
-        <BarChartComponent
-          data={data4}
-          title="Best in Embedding Similarity"
-          yAxisDomain={[0, 100]}
-        />
-      </StyledChartContainer>
+      <StyledContainer>
+        <StyledTitle>Top Search AI Providers</StyledTitle>
+        <StyledChartContainer>
+          <BarChartComponent
+            data={data}
+            title="Best in Search Summary"
+            yAxisDomain={[0, 100]}
+          />
+          <BarChartComponent
+            data={data2}
+            title="Best in Web Link Content Relevance"
+            yAxisDomain={[0, 100]}
+          />
+          <BarChartComponent
+            data={data3}
+            title="Best in Twitter Content Relevance"
+            yAxisDomain={[0, 100]}
+          />
+          <BarChartComponent
+            data={data4}
+            title="Best in Embedding Similarity"
+            yAxisDomain={[0, 100]}
+          />
+        </StyledChartContainer>
+      </StyledContainer>
 
-      <StyledChartContainer>
-        <BarChartComponent data={data5} title="Lowest Latency (TTFT)" />
-      </StyledChartContainer>
+      <StyledContainer>
+        <StyledTitle>Fastest and Most Affordable Providers</StyledTitle>
+        <StyledChartContainer>
+          <BarChartComponent data={data5} title="Lowest Latency (TTFT)" />
+        </StyledChartContainer>
+      </StyledContainer>
     </>
   );
 };
 
 export default Charts;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+
+  width: 100%;
+`;
 
 const StyledChartContainer = styled.div`
   display: grid;
@@ -87,4 +101,11 @@ const StyledChartContainer = styled.div`
   @media (max-width: 1080px) {
     grid-template-columns: repeat(1, 1fr);
   }
+`;
+
+const StyledTitle = styled.h1`
+  font-size: 30px;
+  color: ${({ theme }) => theme.body.textColorPrimary};
+
+  margin-left: 45px;
 `;

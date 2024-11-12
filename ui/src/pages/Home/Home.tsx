@@ -42,7 +42,7 @@ const StyledBody = styled.div`
   max-width: 1400px;
 
   display: flex;
-  gap: 100px;
+  gap: 80px;
   flex-direction: column;
   align-items: center;
 `;
