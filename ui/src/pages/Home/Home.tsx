@@ -2,6 +2,7 @@ import styled from "styled-components";
 import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable";
 import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTable";
 import Charts from "./components/Charts";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
 
         <ProviderPerformanceTable />
       </StyledBody>
+
+      <Footer />
     </StyledRoot>
   );
 };
