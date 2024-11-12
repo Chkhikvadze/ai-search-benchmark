@@ -66,11 +66,7 @@ const Charts = () => {
         title="Best Model Embedding Similarity"
         yAxisDomain={[0, 100]}
       />
-      <BarChartComponent
-        secondaryColor
-        data={data5}
-        title="Lowest Latency (TTFT)"
-      />
+      <BarChartComponent data={data5} title="Lowest Latency (TTFT)" />
     </StyledChartContainer>
   );
 };

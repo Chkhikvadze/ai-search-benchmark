@@ -7,21 +7,23 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
 import Typography from "../Typography";
 import { styled } from "styled-components";
+import { BAR_CHART_COLORS } from "./constants";
 
 interface BarChartComponentProps {
   data: Array<{ name: string; value: number }>;
   title: string;
-  secondaryColor?: boolean;
+
   yAxisDomain?: [number, number];
 }
 
 const BarChartComponent: React.FC<BarChartComponentProps> = ({
   data,
   title,
-  secondaryColor = false,
+
   yAxisDomain,
 }) => {
   return (
@@ -50,7 +52,14 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
             tick={{ fontSize: 12 }}
           />
           <Tooltip />
-          <Bar dataKey="value" fill={secondaryColor ? "#d1a41d" : "#4169E1"} />
+          <Bar dataKey="value">
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}${entry}`}
+                fill={BAR_CHART_COLORS[index % BAR_CHART_COLORS.length]}
+              />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </StyledContainer>
