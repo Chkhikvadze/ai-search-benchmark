@@ -9,40 +9,40 @@ const Charts = () => {
       name: item.Provider,
       value: parseFloat(item["Summary Text Relevance"]),
     }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 5); // Show first 5 items
+    .sort((a, b) => a.value - b.value)
+    .slice(-5); // Show first 5 items
 
   const data2 = webBenchmark.results_table
     .map((item) => ({
       name: item.Provider,
       value: parseFloat(item["Link Content Relevance"]),
     }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 5);
+    .sort((a, b) => a.value - b.value)
+    .slice(-5);
 
   const data3 = twitterBenchmark.results_table
     .map((item) => ({
       name: item.Provider,
       value: parseFloat(item["Link Content Relevance"]),
     }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 5);
+    .sort((a, b) => a.value - b.value)
+    .slice(-5);
 
   const data4 = webBenchmark.results_table
     .map((item) => ({
       name: item.Provider,
       value: parseFloat(item["Embedding Similarity"]),
     }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 5);
+    .sort((a, b) => a.value - b.value)
+    .slice(-5);
 
   const data5 = webBenchmark.results_table
     .map((item) => ({
       name: item.Provider,
       value: parseFloat(item["Performance (s)"]),
     }))
-    .sort((a, b) => a.value - b.value) // Sort in ascending order
-    .slice(0, 5); // Show first 5 items
+    .sort((a, b) => b.value - a.value) // Sort in ascending order
+    .slice(-5); // Show first 5 items
 
   return (
     <StyledChartContainer>
