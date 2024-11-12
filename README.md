@@ -109,8 +109,6 @@ By incorporating these factors, our scoring mechanism provides a holistic view o
 
 In this section, we evaluate the AI search providers based on their speed and cost-effectiveness. The following chart illustrates the latency of each model, providing insights into which models offer the fastest response times at the most affordable rates.
 
-![Latency Chart](/docs/assets/latency.png)
-
 | 🥇 Web Performance                                               | 🥇 Twitter Performance                                                           |
 | ---------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | ![Best in Search Summary](docs/assets/web_performance_chart.png) | ![Best in Web Link Content Relevance](docs/assets/twitter_performance_chart.png) |
