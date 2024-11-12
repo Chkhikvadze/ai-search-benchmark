@@ -27,20 +27,30 @@ const TooltipContainer = styled.div`
 const TooltipText = styled.div<{ visible: boolean }>`
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   width: 200px;
-  background-color: ${({ theme }) => theme.body.backgroundColorPrimary};
-  color: ${({ theme }) => theme.body.textColorPrimary};
+  background-color: ${({ theme }) => theme.body.textColorPrimary};
+  color: ${({ theme }) => theme.body.textColorTertiary};
   text-align: center;
   border-radius: 5px;
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position above the icon */
+  bottom: 200%; /* Position above the icon */
   left: 50%;
-  margin-left: -60px;
+  margin-left: -100px; /* Adjusted for arrow */
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: opacity 0.3s;
-
-  border: 1px solid ${({ theme }) => theme.body.dialogBorder};
-
   font-size: 14px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Position at the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+
+    border-color: ${({ theme }) => theme.body.textColorPrimary} transparent
+      transparent transparent;
+  }
 `;
