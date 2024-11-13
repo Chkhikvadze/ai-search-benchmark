@@ -1,11 +1,9 @@
 import { styled } from "styled-components";
 import categoryAreaPercentages from "../../../../../category_area_percentages.json";
 import BarChartComponent from "../../../components/charts/BarchartComponent";
-import {
-  StyledHeader,
-  StyledWrapper,
-} from "../../../components/Table/ProviderPerformanceTable";
+import { StyledHeader } from "../../../components/Table/ProviderPerformanceTable";
 import PieChartComponent from "../../../components/charts/PieChartComponent";
+import Typography from "../../../components/Typography";
 
 type CategoryData = {
   [category: string]: {
@@ -47,7 +45,25 @@ const DatasetCharts = () => {
 
   return (
     <StyledWrapper>
-      <StyledHeader>📂 Dataset Source</StyledHeader>
+      <div>
+        <StyledHeader>📂 Dataset Source</StyledHeader>
+
+        <StyledDescription>
+          <Typography kind="secondary" size="medium">
+            This visualization provides insights into the distribution of
+            articles across various categories and subcategories.
+          </Typography>
+          <Typography kind="secondary" size="medium">
+            You can see detailed dataset
+            <a
+              href="https://huggingface.co/datasets/junzhang1207/search-dataset"
+              target="_blank"
+            >
+              here
+            </a>
+          </Typography>
+        </StyledDescription>
+      </div>
 
       <StyledRow>
         <StyledBarChartWrapper>
@@ -73,6 +89,14 @@ const DatasetCharts = () => {
 
 export default DatasetCharts;
 
+const StyledWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  gap: 32px;
+`;
+
 const StyledRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -97,4 +121,14 @@ const StyledPieChartWrapper = styled.div`
   @media (max-width: 1200px) {
     width: 100%;
   }
+`;
+
+const StyledDescription = styled.div`
+  width: 100%;
+
+  margin-top: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
