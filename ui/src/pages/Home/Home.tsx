@@ -3,6 +3,7 @@ import TwitterRelevanceTable from "../../components/Table/TwitterRelevanceTable"
 import ProviderPerformanceTable from "../../components/Table/ProviderPerformanceTable";
 import Charts from "./components/Charts";
 import Footer from "../../components/Footer";
+import DatasetCharts from "./components/DatasetCharts";
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
         <TwitterRelevanceTable />
 
         <ProviderPerformanceTable />
+
+        <DatasetCharts />
       </StyledBody>
 
       <Footer />

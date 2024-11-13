@@ -18,6 +18,7 @@ interface BarChartComponentProps {
   title: string;
   yAxisDomain?: [number, number];
   tooltipText?: string;
+  verticalLabels?: boolean; // Add the new prop
 }
 
 const BarChartComponent: React.FC<BarChartComponentProps> = ({
@@ -25,11 +26,12 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
   title,
   yAxisDomain,
   tooltipText,
+  verticalLabels = false, // Default to false
 }) => {
   const theme = useTheme();
 
   return (
-    <StyledContainer>
+    <StyledContainer verticalLabels={verticalLabels}>
       <StyledTitleWrapper>
         <Typography kind="secondary" semibold tooltipText={tooltipText}>
           {title}
@@ -40,7 +42,7 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
           data={data}
           margin={{
             top: 20,
-            bottom: 20,
+            bottom: verticalLabels ? 100 : 20,
           }}
           barCategoryGap="35%"
         >
@@ -50,6 +52,8 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
             tick={{ fontSize: 10 }}
             interval={0}
             tickLine={false}
+            angle={verticalLabels ? -90 : 0} // Rotate labels if verticalLabels is true
+            textAnchor={verticalLabels ? "end" : "middle"} // Adjust text anchor
           />
           <YAxis domain={yAxisDomain} tick={{ fontSize: 12 }} />
           <Tooltip
@@ -85,9 +89,9 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
 
 export default BarChartComponent;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div<{ verticalLabels: boolean }>`
   width: 100%;
-  height: 350px;
+  height: ${({ verticalLabels }) => (verticalLabels ? "500px" : "350px")};
 
   display: flex;
   flex-direction: column;
