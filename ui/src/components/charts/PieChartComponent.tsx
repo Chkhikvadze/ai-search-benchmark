@@ -37,6 +37,7 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
             outerRadius={120}
             fontSize={10}
             label={({ name }) => name}
+            stroke={"transparent"}
           >
             {data.map((entry, index) => (
               <Cell
