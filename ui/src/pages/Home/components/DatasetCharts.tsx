@@ -6,7 +6,7 @@ import Typography from "../../../components/Typography";
 import { styled } from "styled-components";
 import { StyledHeader } from "../../../components/Table/ProviderPerformanceTable";
 
-import categoryAreaAmount from "../../../../../category_area_amounts.json";
+import categoryAreaAmount from "../../../../../dataset/category_area_amounts.json";
 
 import { datasetUrl } from "../../../constants";
 
