@@ -1,9 +1,13 @@
-import { styled } from "styled-components";
-import categoryAreaPercentages from "../../../../../category_area_percentages.json";
 import BarChartComponent from "../../../components/charts/BarchartComponent";
-import { StyledHeader } from "../../../components/Table/ProviderPerformanceTable";
 import PieChartComponent from "../../../components/charts/PieChartComponent";
+
 import Typography from "../../../components/Typography";
+
+import { styled } from "styled-components";
+import { StyledHeader } from "../../../components/Table/ProviderPerformanceTable";
+
+import categoryAreaAmount from "../../../../../category_area_amounts.json";
+
 import { datasetUrl } from "../../../constants";
 
 type CategoryData = {
@@ -41,8 +45,8 @@ const transformDataForPieChart = (data: CategoryData) => {
 };
 
 const DatasetCharts = () => {
-  const barChartData = transformData(categoryAreaPercentages);
-  const pieChartData = transformDataForPieChart(categoryAreaPercentages);
+  const barChartData = transformData(categoryAreaAmount);
+  const pieChartData = transformDataForPieChart(categoryAreaAmount);
 
   return (
     <StyledWrapper>
@@ -69,7 +73,7 @@ const DatasetCharts = () => {
             data={barChartData}
             verticalLabels
             title="Areas"
-            tooltipText="Category Area Percentages by Subcategory"
+            tooltipText="Category Area Amounts by Subcategory"
           />
         </StyledBarChartWrapper>
 
