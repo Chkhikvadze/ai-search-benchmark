@@ -1,5 +1,3 @@
-// src/components/charts/PieChartComponent.tsx
-
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { styled, useTheme } from "styled-components";
@@ -63,7 +61,7 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
               color: theme.body.textColorPrimary,
               fontSize: "14px",
             }}
-            formatter={(value: number) => `${value.toFixed(1)}%`}
+            formatter={(value: number) => value}
           />
         </PieChart>
       </ResponsiveContainer>
