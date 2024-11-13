@@ -42,17 +42,17 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({
           data={data}
           margin={{
             top: 20,
-            bottom: verticalLabels ? 100 : 20,
+            bottom: verticalLabels ? 120 : 20,
           }}
           barCategoryGap="35%"
         >
           <CartesianGrid strokeWidth={0.2} vertical={false} />
           <XAxis
             dataKey="name"
-            tick={{ fontSize: 10 }}
+            tick={{ fontSize: 12 }}
             interval={0}
             tickLine={false}
-            angle={verticalLabels ? -90 : 0} // Rotate labels if verticalLabels is true
+            angle={verticalLabels ? -45 : 0} // Rotate labels if verticalLabels is true
             textAnchor={verticalLabels ? "end" : "middle"} // Adjust text anchor
           />
           <YAxis domain={yAxisDomain} tick={{ fontSize: 12 }} />

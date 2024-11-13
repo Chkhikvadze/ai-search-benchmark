@@ -4,6 +4,7 @@ import BarChartComponent from "../../../components/charts/BarchartComponent";
 import { StyledHeader } from "../../../components/Table/ProviderPerformanceTable";
 import PieChartComponent from "../../../components/charts/PieChartComponent";
 import Typography from "../../../components/Typography";
+import { datasetUrl } from "../../../constants";
 
 type CategoryData = {
   [category: string]: {
@@ -55,10 +56,7 @@ const DatasetCharts = () => {
           </Typography>
           <Typography kind="secondary" size="medium">
             You can see detailed dataset
-            <a
-              href="https://huggingface.co/datasets/junzhang1207/search-dataset"
-              target="_blank"
-            >
+            <a href={datasetUrl} target="_blank">
               here
             </a>
           </Typography>

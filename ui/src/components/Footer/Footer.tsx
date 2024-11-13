@@ -1,5 +1,7 @@
 import { styled } from "styled-components";
 import Typography from "../Typography";
+import { FaGithub, FaDiscord } from "react-icons/fa"; // Import GitHub and Discord icons
+import { discordUrl, githubUrl } from "../../constants";
 
 const Footer = () => {
   return (
@@ -21,6 +23,15 @@ const Footer = () => {
           © 2024 Datura. All rights reserved.
         </Typography>
       </p>
+
+      <IconLinks>
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+          <FaGithub size={24} />
+        </a>
+        <a href={discordUrl} target="_blank" rel="noopener noreferrer">
+          <FaDiscord size={24} />
+        </a>
+      </IconLinks>
     </StyledFooter>
   );
 };
@@ -38,4 +49,19 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   gap: 20px;
+`;
+
+const IconLinks = styled.div`
+  display: flex;
+  gap: 10px;
+
+  a {
+    opacity: 0.5;
+    color: ${({ theme }) => theme.body.iconColor};
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `;
