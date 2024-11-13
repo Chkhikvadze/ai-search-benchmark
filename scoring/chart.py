@@ -62,7 +62,7 @@ def generate_link_content_relevance_chart(
 ):
     # Extract data and sort by link_relevance_avg in descending order
     sorted_providers = sorted(
-        provider_stats.items(), key=lambda x: x[1]["link_relevance_avg"], reverse=True
+        provider_stats.items(), key=lambda x: x[1]["link_relevance_avg"]
     )
 
     # Extract labels, values, and colors
@@ -108,7 +108,6 @@ def generate_summary_text_relevance_chart(
     sorted_providers = sorted(
         provider_stats.items(),
         key=lambda x: x[1]["summary_relevance_avg"],
-        reverse=True,
     )
 
     # Extract labels, values, and colors
@@ -154,7 +153,6 @@ def generate_embedding_similarity_chart(
     sorted_providers = sorted(
         provider_stats.items(),
         key=lambda x: x[1]["embedding_relevance_avg"],
-        reverse=True,
     )
 
     # Extract labels, values, and colors
@@ -200,7 +198,6 @@ def generate_expected_answer_relevance_chart(
     sorted_providers = sorted(
         provider_stats.items(),
         key=lambda x: x[1]["expected_answer_relevance_avg"],
-        reverse=True,
     )
 
     # Extract labels, values, and colors
