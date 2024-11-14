@@ -45,7 +45,7 @@ export OPENAI_API_KEY="<your_openai_api_key>"
 
     ```bash
     cd scoring
-    python main.py
+    python3 main.py
     ```
 
 ## Configuration

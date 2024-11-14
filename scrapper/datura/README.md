@@ -49,7 +49,7 @@ export VALIDATOR_ACCESS_KEY="<your_validator_access_key>"
 
     ```bash
     cd scrapper/datura
-    python datura.py
+    python3 datura.py
     ```
 
 3. **The results will be saved in the `results` directory, with separate files for each execution time**.
