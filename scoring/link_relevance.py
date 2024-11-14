@@ -6,7 +6,6 @@ from .prompts import (
 
 LINKS = 10
 
-
 class LinkRelevanceModel:
     def __init__(self, llm_reward: RewardLLM):
         super().__init__()

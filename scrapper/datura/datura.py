@@ -219,8 +219,7 @@ class TweetAnalyzerScrapper:
                     "prompt": question["question"],
                     "tools": tools,
                     "date_filter": "PAST_2_WEEKS",
-                    "response_order": "LINKS_FIRST",
-                    "coldkeys": ["5HVbMkSCa4PFEPXpbSRDyXMZ6qYHVG1FRo2j8LSqMMmyRpLF"],
+                    "response_order": "LINKS_FIRST"
                 },
             )
             for question in chunk
