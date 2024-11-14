@@ -5,14 +5,17 @@ from openai import AsyncOpenAI
 
 client = AsyncOpenAI(timeout=90.0)
 
+api_key = os.environ.get("OPENAI_API_KEY")
+
+if not api_key:
+    logging.error("Please set the OPENAI_API_KEY environment variable.")
+    raise ValueError("Please set the OPENAI_API_KEY environment variable.")
+
 
 async def call_openai(
     messages, temperature, model, seed=1234, response_format=None, top_p=None
 ):
-    api_key = os.environ.get("OPENAI_API_KEY")
-
     if not api_key:
-        logging.error("Please set the OPENAI_API_KEY environment variable.")
         return None
 
     for attempt in range(2):
@@ -41,10 +44,7 @@ async def call_openai(
 async def call_openai_beta(
     messages, temperature, model, seed=1234, response_format=None, top_p=None
 ):
-    api_key = os.environ.get("OPENAI_API_KEY")
-
     if not api_key:
-        logging.error("Please set the OPENAI_API_KEY environment variable.")
         return None
 
     for attempt in range(2):
