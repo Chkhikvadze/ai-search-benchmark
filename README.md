@@ -168,6 +168,18 @@ The structure of the responses is as follows:
 }
 ```
 
+## 🏃‍♂️ Running benchmarks
+
+### 🛠️ Preparing results
+
+Before running benchmarks locally, you need to prepare the results from different providers. You can do this by running the scraper scripts located in the `./scrapper` directory. These scripts will collect data from each provider's repository and store the results in the `results` directory.
+
+-   [Scraping Datura](./scrapper/datura/README.md)
+
+### 🚀 Running the benchmark
+
+After preparing the results, you can score results locally by [following scoring guide](./scoring/README.md).
+
 ## 🚀 Future Directions
 
 We are committed to regularly updating this benchmark to reflect the latest advancements in AI search technologies. Your feedback is invaluable to us, as we strive to make this benchmark as practical and user-focused as possible.
