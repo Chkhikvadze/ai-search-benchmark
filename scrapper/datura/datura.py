@@ -101,6 +101,9 @@ class TweetAnalyzerScrapper:
     def parse_datura_results(self, type, data):
         standardized_results = []
 
+        if isinstance(data, str):
+            return []
+
         if type == "search":
             for result in data.get("organic_results", []):
                 standardized_results.append(
