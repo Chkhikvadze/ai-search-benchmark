@@ -2,88 +2,88 @@
   "results_table": [
     {
       "Provider": "Grok 2",
-      "Summary Text Relevance": "92.68%",
-      "Link Content Relevance": "29.95%",
+      "Summary Text Relevance": "92.72%",
+      "Link Content Relevance": "29.96%",
       "Performance (s)": "30.20s",
       "Embedding Similarity": "76.44%",
       "Expected Answer Relevance": "75.37%"
     },
     {
       "Provider": "Datura Nova 1.0",
-      "Summary Text Relevance": "52.68%",
-      "Link Content Relevance": "23.43%",
-      "Performance (s)": "8.59s",
-      "Embedding Similarity": "66.00%",
-      "Expected Answer Relevance": "59.20%"
+      "Summary Text Relevance": "59.31%",
+      "Link Content Relevance": "23.50%",
+      "Performance (s)": "11.35s",
+      "Embedding Similarity": "70.62%",
+      "Expected Answer Relevance": "63.46%"
     },
     {
       "Provider": "Datura Orbit 1.0",
-      "Summary Text Relevance": "66.19%",
-      "Link Content Relevance": "40.63%",
-      "Performance (s)": "24.59s",
-      "Embedding Similarity": "68.18%",
-      "Expected Answer Relevance": "62.37%"
+      "Summary Text Relevance": "72.88%",
+      "Link Content Relevance": "41.28%",
+      "Performance (s)": "22.96s",
+      "Embedding Similarity": "72.85%",
+      "Expected Answer Relevance": "66.52%"
     },
     {
       "Provider": "Datura Horizon 1.0",
-      "Summary Text Relevance": "79.00%",
-      "Link Content Relevance": "44.92%",
-      "Performance (s)": "31.45s",
-      "Embedding Similarity": "71.72%",
-      "Expected Answer Relevance": "65.47%"
+      "Summary Text Relevance": "81.31%",
+      "Link Content Relevance": "45.69%",
+      "Performance (s)": "38.24s",
+      "Embedding Similarity": "72.67%",
+      "Expected Answer Relevance": "66.50%"
     }
   ],
   "provider_stats": {
     "datura_nova": {
-      "link_relevance_total": 213.40821428571186,
-      "summary_relevance_total": 479.89999999999594,
-      "embedding_relevance_total": 601.2649933566443,
-      "expected_answer_relevance_total": 539.3448368689806,
-      "response_time_total": 7827.054491000004,
+      "link_relevance_total": 214.0444444444422,
+      "summary_relevance_total": 540.2999999999981,
+      "embedding_relevance_total": 643.3918418959428,
+      "expected_answer_relevance_total": 578.0924243004417,
+      "response_time_total": 10342.050385000004,
       "num_questions": 911,
-      "link_relevance_avg": 0.2342570958130756,
-      "summary_relevance_avg": 0.5267837541163511,
-      "embedding_relevance_avg": 0.6600054811818269,
-      "expected_answer_relevance_avg": 0.5920360448616692,
-      "response_time_avg": 8.591717333699236
+      "link_relevance_avg": 0.23495548237589706,
+      "summary_relevance_avg": 0.5930845225027422,
+      "embedding_relevance_avg": 0.7062479054840206,
+      "expected_answer_relevance_avg": 0.634569071679958,
+      "response_time_avg": 11.352415351262353
     },
     "datura_orbit": {
-      "link_relevance_total": 370.09999999999974,
-      "summary_relevance_total": 603.000000000001,
-      "embedding_relevance_total": 621.1585068871425,
-      "expected_answer_relevance_total": 568.1986103795282,
-      "response_time_total": 22403.638761000013,
+      "link_relevance_total": 376.01999999999947,
+      "summary_relevance_total": 663.9000000000025,
+      "embedding_relevance_total": 663.6842569720966,
+      "expected_answer_relevance_total": 606.035402747576,
+      "response_time_total": 20915.060644000037,
       "num_questions": 911,
-      "link_relevance_avg": 0.40625686059275495,
-      "summary_relevance_avg": 0.6619099890230528,
-      "embedding_relevance_avg": 0.681842488350321,
-      "expected_answer_relevance_avg": 0.6237086831827972,
-      "response_time_avg": 24.5923586838639
+      "link_relevance_avg": 0.41275521405049337,
+      "summary_relevance_avg": 0.72875960482986,
+      "embedding_relevance_avg": 0.7285227848211818,
+      "expected_answer_relevance_avg": 0.6652419349589198,
+      "response_time_avg": 22.958354164654267
     },
     "datura_horizon": {
-      "link_relevance_total": 409.24000000000007,
-      "summary_relevance_total": 719.7000000000018,
-      "embedding_relevance_total": 653.3861192194167,
-      "expected_answer_relevance_total": 596.4615978682714,
-      "response_time_total": 28647.495572000003,
+      "link_relevance_total": 416.27999999999963,
+      "summary_relevance_total": 740.7000000000019,
+      "embedding_relevance_total": 662.0226649447179,
+      "expected_answer_relevance_total": 605.792438740087,
+      "response_time_total": 34840.81966699999,
       "num_questions": 911,
-      "link_relevance_avg": 0.44922063666300777,
-      "summary_relevance_avg": 0.7900109769484103,
-      "embedding_relevance_avg": 0.7172185721398647,
-      "expected_answer_relevance_avg": 0.6547328187357534,
-      "response_time_avg": 31.44620809220637
+      "link_relevance_avg": 0.4569484083424804,
+      "summary_relevance_avg": 0.8130625686059296,
+      "embedding_relevance_avg": 0.7266988638251569,
+      "expected_answer_relevance_avg": 0.6649752346213909,
+      "response_time_avg": 38.24458799890229
     },
     "grok": {
-      "link_relevance_total": 277.9477380952379,
-      "summary_relevance_total": 860.1000000000008,
-      "embedding_relevance_total": 709.3355163950012,
-      "expected_answer_relevance_total": 699.4107608027783,
+      "link_relevance_total": 277.9932142857141,
+      "summary_relevance_total": 860.4000000000008,
+      "embedding_relevance_total": 709.3345791467112,
+      "expected_answer_relevance_total": 699.422601598436,
       "response_time_total": 28026.752300000026,
       "num_questions": 928,
-      "link_relevance_avg": 0.2995126488095236,
-      "summary_relevance_avg": 0.926831896551725,
-      "embedding_relevance_avg": 0.7643701685290961,
-      "expected_answer_relevance_avg": 0.7536753887960973,
+      "link_relevance_avg": 0.29956165332512297,
+      "summary_relevance_avg": 0.927155172413794,
+      "embedding_relevance_avg": 0.7643691585632664,
+      "expected_answer_relevance_avg": 0.7536881482741767,
       "response_time_avg": 30.201241702586234
     }
   }
