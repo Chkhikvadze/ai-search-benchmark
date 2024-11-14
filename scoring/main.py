@@ -10,14 +10,12 @@ from scoring.parser import (
 from scoring.reward_llm import RewardLLM
 from scoring.link_relevance import LinkRelevanceModel
 from scoring.summary_relevance import SummaryRelevanceModel
-from scoring.expected_answer_relevance import ExpectedAnswerRelevanceModel
 from scoring.chart import generate_charts
 
 llm_reward = RewardLLM()
 
 link_relevance_model = LinkRelevanceModel(llm_reward)
 summary_relevance_model = SummaryRelevanceModel(llm_reward)
-expected_answer_relevance_model = ExpectedAnswerRelevanceModel(llm_reward)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
