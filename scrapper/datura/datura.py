@@ -11,7 +11,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-BATCH_SIZE = 20
+BATCH_SIZE = 30
 
 COUNT_LIMIT = (
     1000  # Set to an integer to limit the number of records processed for testing
@@ -42,7 +42,7 @@ class TweetAnalyzerScrapper:
                 self.url,
                 json=payload,
                 headers={"Access-Key": ACCESS_KEY},
-                timeout=120.0,
+                timeout=180.0,
             )
             response.raise_for_status()  # Raise exception for HTTP errors
             response_time = response.elapsed.total_seconds()
@@ -51,7 +51,7 @@ class TweetAnalyzerScrapper:
             logging.error(f"Request error: {e}")
         except httpx.HTTPStatusError as e:
             logging.error(f"HTTP error: {e.response.status_code} for {e.request.url}")
-        return "Request failed or response was None"
+        return "Request failed or response was None", None
 
     def load_data_with_least_items(self):
         if not self.data_with_least_items_path:
@@ -155,6 +155,12 @@ class TweetAnalyzerScrapper:
         return standardized_results
 
     def parse_datura(self, response: str):
+        if response == "Request failed or response was None":
+            return {
+                "result": "Request failed or response was None",
+                "search_results": [],
+            }
+
         data = []
 
         # Split the result by newlines and process each line
@@ -228,15 +234,16 @@ class TweetAnalyzerScrapper:
             for question in chunk
         ]
         responses = await asyncio.gather(*tasks)
-        results = [
-            {
+        results = []
+        for (response, response_time), question in zip(responses, chunk):
+            parsed_data = self.parse_datura(response)
+            result = {
                 "id": str(uuid.uuid4()),
                 "question": question["question"],
-                **self.parse_datura(response),
+                **parsed_data,
                 "response_time": response_time,
             }
-            for (response, response_time), question in zip(responses, chunk)
-        ]
+            results.append(result)
         return results
 
     async def search_and_save_data(self):
