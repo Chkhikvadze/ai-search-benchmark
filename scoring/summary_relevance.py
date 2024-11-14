@@ -1,9 +1,9 @@
 import traceback
 from typing import List, Dict
 from sklearn.metrics.pairwise import cosine_similarity
-from .reward_llm import RewardLLM
-from .llm import get_openai_embeddings
-from .prompts import SummaryRelevancePrompt
+from reward_llm import RewardLLM
+from llm import get_openai_embeddings
+from prompts import SummaryRelevancePrompt
 
 
 class SummaryRelevanceModel:

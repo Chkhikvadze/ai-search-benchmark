@@ -1,16 +1,16 @@
 import asyncio
 import json
 import os
-from scoring.parser import (
+from parser import (
     TWITTER_PROVIDERS,
     WEB_PROVIDERS,
     web_results,
     twitter_results,
 )
-from scoring.reward_llm import RewardLLM
-from scoring.link_relevance import LinkRelevanceModel
-from scoring.summary_relevance import SummaryRelevanceModel
-from scoring.chart import generate_charts
+from reward_llm import RewardLLM
+from link_relevance import LinkRelevanceModel
+from summary_relevance import SummaryRelevanceModel
+from chart import generate_charts
 
 llm_reward = RewardLLM()
 

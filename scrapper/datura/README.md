@@ -19,7 +19,7 @@ Datura scraper scrapes tweets and web results by sending requests to an external
 
     ```bash
     git clone https://github.com/Datura-ai/meta-benchmark.git
-    cd meta-benchmark/scrapper/datura
+    cd meta-benchmark
     ```
 
 2. **Create and activate a virtual environment**:
@@ -48,7 +48,8 @@ export VALIDATOR_ACCESS_KEY="<your_validator_access_key>"
 2. **Run the application**:
 
     ```bash
-    python3 datura.py
+    cd scrapper/datura
+    python datura.py
     ```
 
 3. **The results will be saved in the `results` directory, with separate files for each execution time**.

@@ -1,7 +1,7 @@
 import asyncio
 import time
-from .llm import call_openai
-from .prompts import ScoringPrompt
+from llm import call_openai
+from prompts import ScoringPrompt
 
 
 class RewardLLM:

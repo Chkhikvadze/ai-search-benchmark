@@ -17,7 +17,7 @@
 
     ```bash
     git clone https://github.com/Datura-ai/meta-benchmark.git
-    cd meta-benchmark/scoring
+    cd meta-benchmark
     ```
 
 2. **Create and activate a virtual environment**:
@@ -44,7 +44,8 @@ export OPENAI_API_KEY="<your_openai_api_key>"
 1. **Run the application**:
 
     ```bash
-    python3 main.py
+    cd scoring
+    python main.py
     ```
 
 ## Configuration

@@ -1,10 +1,11 @@
-from .reward_llm import RewardLLM
+from reward_llm import RewardLLM
 import traceback
-from .prompts import (
+from prompts import (
     SearchSummaryRelevancePrompt,
 )
 
 LINKS = 10
+
 
 class LinkRelevanceModel:
     def __init__(self, llm_reward: RewardLLM):
