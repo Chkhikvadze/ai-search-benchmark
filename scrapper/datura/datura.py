@@ -11,11 +11,13 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-BATCH_SIZE = 10
+BATCH_SIZE = 20
 
 COUNT_LIMIT = (
     1000  # Set to an integer to limit the number of records processed for testing
 )
+
+ACCESS_KEY = os.environ.get("VALIDATOR_ACCESS_KEY", "test")
 
 
 class TweetAnalyzerScrapper:
@@ -35,13 +37,11 @@ class TweetAnalyzerScrapper:
 
     async def send_request(self, client: httpx.AsyncClient, payload):
         """Send an HTTP POST request with the given payload."""
-        access_key = "test"
-
         try:
             response = await client.post(
                 self.url,
                 json=payload,
-                headers={"Access-Key": access_key},
+                headers={"Access-Key": ACCESS_KEY},
                 timeout=120.0,
             )
             response.raise_for_status()  # Raise exception for HTTP errors
@@ -219,7 +219,7 @@ class TweetAnalyzerScrapper:
                     "prompt": question["question"],
                     "tools": tools,
                     "date_filter": "PAST_2_WEEKS",
-                    "response_order": "LINKS_FIRST"
+                    "response_order": "LINKS_FIRST",
                 },
             )
             for question in chunk
@@ -245,6 +245,15 @@ class TweetAnalyzerScrapper:
         async with httpx.AsyncClient() as client:
             for model in self.models:
                 logging.info(f"Processing with model: {model}")
+
+                # Delete output file if it exists
+                output_file = os.path.join(
+                    self.results_dir,
+                    f"datura_{model.lower()}_{self.name}_results.jsonl",
+                )
+                if os.path.exists(output_file):
+                    os.remove(output_file)
+                    logging.info(f"Deleted existing output file {output_file}")
 
                 for i in range(0, len(data), BATCH_SIZE):
                     chunk = data[i : i + BATCH_SIZE]
