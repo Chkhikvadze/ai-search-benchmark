@@ -7,11 +7,11 @@ const Footer = () => {
   return (
     <StyledFooter>
       {/* <Typography kind="primary" bold>
-        Datura
+        Desearch
       </Typography>
       <p>
         <Typography size="small" kind="secondary">
-          Datura provides real-time monitoring for decentralized AI inference on
+          Desearch provides real-time monitoring for decentralized AI inference on
           the Bittensor network. Track and filter miners and validators by key
           metrics, hotkeys, or IDs, helping you stay informed and manage
           resources efficiently.
@@ -20,7 +20,7 @@ const Footer = () => {
 
       <p>
         <Typography size="xs-small" kind="secondary">
-          © 2024 Datura. All rights reserved.
+          © 2024 Desearch. All rights reserved.
         </Typography>
       </p>
 

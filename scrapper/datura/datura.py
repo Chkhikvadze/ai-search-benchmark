@@ -24,7 +24,7 @@ class TweetAnalyzerScrapper:
     def __init__(
         self,
         name,
-        data_with_least_items_path=None,  # For example if Grok has 30 results and Datura has 100 twitter results, we can filter to take same 30 results for both
+        data_with_least_items_path=None,  # For example if Grok has 30 results and Desearch has 100 twitter results, we can filter to take same 30 results for both
         url="https://api.smartscrape.ai/search",
         data_path="../../dataset/data.jsonl",
     ):

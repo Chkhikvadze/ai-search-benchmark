@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <StyledRoot>
       <StyledCompanyName>
-        <StyledLogo src={"DaturaLogo.svg"} alt="logo" />
+        <StyledLogo src={"DesearchLogo.svg"} alt="logo" />
       </StyledCompanyName>
     </StyledRoot>
   );

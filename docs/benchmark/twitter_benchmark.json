@@ -9,7 +9,7 @@
       "Expected Answer Relevance": "75.37%"
     },
     {
-      "Provider": "Datura Nova 1.0",
+      "Provider": "Desearch Nova 1.0",
       "Summary Text Relevance": "59.31%",
       "Link Content Relevance": "23.50%",
       "Performance (s)": "11.35s",
@@ -17,7 +17,7 @@
       "Expected Answer Relevance": "63.46%"
     },
     {
-      "Provider": "Datura Orbit 1.0",
+      "Provider": "Desearch Orbit 1.0",
       "Summary Text Relevance": "72.88%",
       "Link Content Relevance": "41.28%",
       "Performance (s)": "22.96s",
@@ -25,7 +25,7 @@
       "Expected Answer Relevance": "66.52%"
     },
     {
-      "Provider": "Datura Horizon 1.0",
+      "Provider": "Desearch Horizon 1.0",
       "Summary Text Relevance": "81.31%",
       "Link Content Relevance": "45.69%",
       "Performance (s)": "38.24s",

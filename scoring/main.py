@@ -77,9 +77,9 @@ provider_display_names = {
     "perplexity": "Perplexity",
     "gemini": "Google Gemini",
     "grok": "Grok 2",
-    "datura_nova": "Datura Nova 1.0",
-    "datura_orbit": "Datura Orbit 1.0",
-    "datura_horizon": "Datura Horizon 1.0",
+    "datura_nova": "Desearch Nova 1.0",
+    "datura_orbit": "Desearch Orbit 1.0",
+    "datura_horizon": "Desearch Horizon 1.0",
 }
 
 

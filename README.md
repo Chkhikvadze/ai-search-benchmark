@@ -6,7 +6,7 @@
 
 The AI Search Wars Have Begun - ChatGPT Search, Andi Search, Gemini Grounding, and more. In this rapidly evolving digital landscape, AI-powered search engines are at the forefront of innovation, offering users enhanced search capabilities and personalized experiences. This benchmark aims to analyze, fetch, and prepare data from leading AI search providers currently available in the market. Our focus includes:
 
-1. **[Datura (Meta - Bittensor Network, Subnet 22)](https://chi.datura.ai/)** - Visit Datura
+1. **[Desearch (Meta - Bittensor Network, Subnet 22)](https://desearch.ai/)** - Visit Desearch
 2. **[You.com](https://you.com/)** - Visit You.com
 3. **[OpenAI ChatGPT](https://openai.com/index/introducing-chatgpt-search/)** - Learn about ChatGPT Search
 4. **[Perplexity](https://www.perplexity.ai/)** - Visit Perplexity
@@ -22,9 +22,9 @@ Below is a table showcasing the results of each provider in various aspects of o
 
 | Provider           | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity | Expected Answer Relevance |
 | ------------------ | ---------------------- | ---------------------- | --------------- | -------------------- | ------------------------- |
-| Datura Horizon 1.0 | 92.57%                 | 80.46%                 | 38.35s          | 72.60%               | 69.69%                    |
-| Datura Orbit 1.0   | 88.03%                 | 77.32%                 | 19.40s          | 72.53%               | 69.86%                    |
-| Datura Nova 1.0    | 83.80%                 | 71.22%                 | 8.84s           | 72.20%               | 69.56%                    |
+| Desearch Horizon 1.0 | 92.57%                 | 80.46%                 | 38.35s          | 72.60%               | 69.69%                    |
+| Desearch Orbit 1.0   | 88.03%                 | 77.32%                 | 19.40s          | 72.53%               | 69.86%                    |
+| Desearch Nova 1.0    | 83.80%                 | 71.22%                 | 8.84s           | 72.20%               | 69.56%                    |
 | Andi Search        | 23.30%                 | 62.06%                 | 6.68s           | 20.70%               | 18.88%                    |
 | OpenAI ChatGPT     | 90.70%                 | 61.36%                 | 2.23s           | 73.27%               | 71.38%                    |
 | You.com            | 37.64%                 | 60.11%                 | 1.73s           | 54.77%               | 50.40%                    |
@@ -39,16 +39,16 @@ Below is a table showcasing the results of each provider in various aspects of o
 
 ## 🐦 Twitter Relevance Results
 
-In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Datura and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
+In this section, we present the results focusing on Summary and Twitter Content Relevance. Only Desearch and X Grok are included in this analysis, as they have access to Twitter data. Other providers are excluded because they do not have the capability to provide Twitter-related insights.
 
 Below is a table showcasing the results of each provider in terms of Summary and Twitter Content Relevance:
 
 | Provider           | Summary Text Relevance | Link Content Relevance | Performance (s) | Embedding Similarity | Expected Answer Relevance |
 | ------------------ | ---------------------- | ---------------------- | --------------- | -------------------- | ------------------------- |
-| Datura Horizon 1.0 | 79.00%                 | 44.92%                 | 31.45s          | 71.72%               | 65.47%                    |
-| Datura Orbit 1.0   | 66.19%                 | 40.63%                 | 24.59s          | 68.18%               | 62.37%                    |
+| Desearch Horizon 1.0 | 79.00%                 | 44.92%                 | 31.45s          | 71.72%               | 65.47%                    |
+| Desearch Orbit 1.0   | 66.19%                 | 40.63%                 | 24.59s          | 68.18%               | 62.37%                    |
 | Grok 2             | 92.68%                 | 29.95%                 | 30.20s          | 76.44%               | 75.37%                    |
-| Datura Nova 1.0    | 52.68%                 | 23.43%                 | 8.59s           | 66.00%               | 59.20%                    |
+| Desearch Nova 1.0    | 52.68%                 | 23.43%                 | 8.59s           | 66.00%               | 59.20%                    |
 
 ### 📊 Top Models Chart
 
@@ -174,7 +174,7 @@ The structure of the responses is as follows:
 
 Before running benchmarks locally, you need to prepare the results from different providers. You can do this by running the scraper scripts located in the `./scrapper` directory. These scripts will collect data from each provider's repository and store the results in the `results` directory.
 
--   [Scraping Datura](./scrapper/datura/README.md)
+-   [Scraping Desearch](./scrapper/datura/README.md)
 
 ### 🚀 Running the benchmark
 

@@ -16,7 +16,7 @@
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/Datura-ai/meta-benchmark.git
+    git clone https://github.com/Chkhikvadze/ai-search-benchmark.git
     cd meta-benchmark
     ```
 

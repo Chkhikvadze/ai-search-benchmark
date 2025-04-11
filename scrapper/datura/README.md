@@ -1,6 +1,6 @@
-# Datura Scraper
+# Desearch Scraper
 
-Datura scraper scrapes tweets and web results by sending requests to an external API and saving the results. It processes data in chunks and supports asynchronous operations for efficient data handling.
+Desearch scraper scrapes tweets and web results by sending requests to an external API and saving the results. It processes data in chunks and supports asynchronous operations for efficient data handling.
 
 ## Features
 
@@ -18,7 +18,7 @@ Datura scraper scrapes tweets and web results by sending requests to an external
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/Datura-ai/meta-benchmark.git
+    git clone https://github.com/Chkhikvadze/ai-search-benchmark.git
     cd meta-benchmark
     ```
 
